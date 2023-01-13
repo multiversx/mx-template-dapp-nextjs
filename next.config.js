@@ -10,7 +10,6 @@ const withTM = require("next-transpile-modules")([
 module.exports = (phase, defaultConfig) => {
     const plugins = [
         withTM,
-        // withImages,
         (config) => config,
     ];
 
