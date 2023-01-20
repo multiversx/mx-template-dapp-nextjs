@@ -1,3 +1,50 @@
+# **MultiversX dApp based on Next.js and @multiversx/sdk-dapp**
+## This project is still in progress, but it can be used as reference
+
+### Important steps in order to make it working:
+1. Use ``next-transpile-modules`` in ``next.config.js`` file. Thanks, [Mihai Daniel Eremia](https://github.com/mihaieremia), for your insights!
+   - this will resolve the issue related to `"Cannot use import statement outside a module"`
+   ```
+   const withTM = require("next-transpile-modules")(["@multiversx/sdk-dapp"]);
+   
+   module.exports = (phase, defaultConfig) => {
+    const plugins = [
+        withTM,
+        (config) => config,
+    ];
+
+    const config = plugins.reduce(
+        (acc, plugin) => {
+            const update = plugin(acc);
+            return typeof update === "function"
+                ? update(phase, defaultConfig)
+                : update;
+        },
+        { ...nextConfig },
+    );
+
+    return config;
+   };   
+
+2. In order to use the UI components you should use dynamic imports with `ssr: false`.
+   - This will bypass the issue related to `'document is not defined'`.
+   ```
+   import dynamic from "next/dynamic";
+      
+   const ExtensionLoginButton = dynamic(
+       async () => {
+        return (await import("@multiversx/sdk-dapp/UI/extension/ExtensionLoginButton")).ExtensionLoginButton;
+       },
+       { ssr: false }
+   );
+   
+    <ExtensionLoginButton
+     loginButtonText='Extension'
+     {...commonProps}
+    />
+
+-------------------------------------------------------------------------------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
