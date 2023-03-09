@@ -14,28 +14,7 @@ import { AxiosError } from 'axios';
 
 import { apiTimeout, contractAddress, transactionSize } from '../../config';
 import { DashboardLayout } from '../../components/Dahsboard/DashboardLayout';
-import dynamic from "next/dynamic";
-
-const TransactionsTable = dynamic(
-    async () => {
-      return (await import("@multiversx/sdk-dapp/UI/TransactionsTable")).TransactionsTable;
-    },
-    { ssr: false }
-);
-
-const Loader = dynamic(
-    async () => {
-      return (await import("@multiversx/sdk-dapp/UI/Loader")).Loader;
-    },
-    { ssr: false }
-);
-
-const PageState = dynamic(
-    async () => {
-      return (await import("@multiversx/sdk-dapp/UI/PageState")).PageState;
-    },
-    { ssr: false }
-);
+import { Loader, PageState, TransactionsTable } from '../../components';
 
 const DashboardPage = () => {
   const {
@@ -71,10 +50,12 @@ const DashboardPage = () => {
     if (success || fail) {
       fetchTransactions();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success, fail]);
 
   useEffect(() => {
     fetchTransactions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) {
@@ -110,8 +91,8 @@ const DashboardPage = () => {
 
 export default function Dashboard() {
   return (
-      <DashboardLayout>
-        <DashboardPage />
-      </DashboardLayout>
-  )
+    <DashboardLayout>
+      <DashboardPage />
+    </DashboardLayout>
+  );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './dashboard.module.scss';
-import {TopInfo} from "./TopInfo";
-import {Actions} from "./Actions/Actions";
+import { TopInfo } from './TopInfo';
+import { Actions } from './Actions/Actions';
 
 export const DashboardLayout = ({ children }: React.PropsWithChildren) => {
   return (

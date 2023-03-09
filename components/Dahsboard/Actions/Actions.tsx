@@ -9,7 +9,7 @@ import moment from 'moment';
 import { contractAddress } from '../../../config';
 import { useGetTimeToPong } from './helpers/useGetTimeToPong';
 import { useGetPingAmount } from './helpers/useGetPingAmount';
-import Link from "next/link";
+import Link from 'next/link';
 
 export const Actions = () => {
   const { hasPendingTransactions } = useGetPendingTransactions();
@@ -40,6 +40,7 @@ export const Actions = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(mount, [hasPing]);
 
   const setSecondsRemaining = async () => {
@@ -64,6 +65,7 @@ export const Actions = () => {
 
   useEffect(() => {
     setSecondsRemaining();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasPendingTransactions]);
 
   const sendPingTransaction = async () => {
@@ -150,7 +152,10 @@ export const Actions = () => {
                   </button>
                   <span className='text-white'>
                     {pongAllowed ? (
-                      <Link href='/pages' className='text-white text-decoration-none'>
+                      <Link
+                        href='/pages'
+                        className='text-white text-decoration-none'
+                      >
                         Pong
                       </Link>
                     ) : (
