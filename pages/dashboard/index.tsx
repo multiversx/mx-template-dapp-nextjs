@@ -1,45 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { getTransactions } from '@multiversx/sdk-dapp/apiCalls';
+import { getTransactions } from "@multiversx/sdk-dapp/apiCalls";
 
 import {
   useGetAccount,
   useGetActiveTransactionsStatus,
-  useGetNetworkConfig
-} from '@multiversx/sdk-dapp/hooks';
+  useGetNetworkConfig,
+} from "@multiversx/sdk-dapp/hooks";
 
-import { ServerTransactionType } from '@multiversx/sdk-dapp/types';
-import { faBan, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
-import { AxiosError } from 'axios';
+import { ServerTransactionType } from "@multiversx/sdk-dapp/types";
+import { faBan, faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
+import { AxiosError } from "axios";
 
-import { apiTimeout, contractAddress, transactionSize } from '../../config';
-import { DashboardLayout } from '../../components/Dahsboard/DashboardLayout';
-import dynamic from "next/dynamic";
-
-const TransactionsTable = dynamic(
-    async () => {
-      return (await import("@multiversx/sdk-dapp/UI/TransactionsTable")).TransactionsTable;
-    },
-    { ssr: false }
-);
-
-const Loader = dynamic(
-    async () => {
-      return (await import("@multiversx/sdk-dapp/UI/Loader")).Loader;
-    },
-    { ssr: false }
-);
-
-const PageState = dynamic(
-    async () => {
-      return (await import("@multiversx/sdk-dapp/UI/PageState")).PageState;
-    },
-    { ssr: false }
-);
+import { apiTimeout, contractAddress, transactionSize } from "../../config";
+import { DashboardLayout } from "../../components/Dahsboard/DashboardLayout";
+import { Loader, PageState, TransactionsTable } from "../../components";
 
 const DashboardPage = () => {
   const {
-    network: { apiAddress }
+    network: { apiAddress },
   } = useGetNetworkConfig();
   const { address } = useGetAccount();
   const { success, fail } = useGetActiveTransactionsStatus();
@@ -55,9 +34,9 @@ const DashboardPage = () => {
         apiAddress,
         sender: address,
         receiver: contractAddress,
-        condition: 'must',
+        condition: "must",
         transactionSize,
-        apiTimeout
+        apiTimeout,
       });
       setTransactions(data);
     } catch (err) {
@@ -71,10 +50,12 @@ const DashboardPage = () => {
     if (success || fail) {
       fetchTransactions();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [success, fail]);
 
   useEffect(() => {
     fetchTransactions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) {
@@ -83,11 +64,11 @@ const DashboardPage = () => {
 
   if (error) {
     return (
-      <div className='my-5'>
+      <div className="my-5">
         <PageState
           icon={faBan}
-          className='text-muted'
-          title='Error fetching transactions.'
+          className="text-muted"
+          title="Error fetching transactions."
         />
       </div>
     );
@@ -95,11 +76,11 @@ const DashboardPage = () => {
 
   if (transactions.length === 0) {
     return (
-      <div className='my-5'>
+      <div className="my-5">
         <PageState
           icon={faExchangeAlt}
-          className='text-muted'
-          title='No Transactions'
+          className="text-muted"
+          title="No Transactions"
         />
       </div>
     );
@@ -110,8 +91,8 @@ const DashboardPage = () => {
 
 export default function Dashboard() {
   return (
-      <DashboardLayout>
-        <DashboardPage />
-      </DashboardLayout>
-  )
+    <DashboardLayout>
+      <DashboardPage />
+    </DashboardLayout>
+  );
 }
