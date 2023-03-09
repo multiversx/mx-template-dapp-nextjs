@@ -34,6 +34,7 @@ export const useGetPingAmount = () => {
 
   useEffect(() => {
     getPingAmount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return pingAmount;

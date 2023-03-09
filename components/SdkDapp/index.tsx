@@ -1,8 +1,8 @@
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 
 export const TransactionsTable = dynamic(
   async () => {
-    return (await import("@multiversx/sdk-dapp/UI/TransactionsTable"))
+    return (await import('@multiversx/sdk-dapp/UI/TransactionsTable'))
       .TransactionsTable;
   },
   { ssr: false }
@@ -10,14 +10,14 @@ export const TransactionsTable = dynamic(
 
 export const Loader = dynamic(
   async () => {
-    return (await import("@multiversx/sdk-dapp/UI/Loader")).Loader;
+    return (await import('@multiversx/sdk-dapp/UI/Loader')).Loader;
   },
   { ssr: false }
 );
 
 export const PageState = dynamic(
   async () => {
-    return (await import("@multiversx/sdk-dapp/UI/PageState")).PageState;
+    return (await import('@multiversx/sdk-dapp/UI/PageState')).PageState;
   },
   { ssr: false }
 );

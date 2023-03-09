@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { getTransactions } from "@multiversx/sdk-dapp/apiCalls";
+import { getTransactions } from '@multiversx/sdk-dapp/apiCalls';
 
 import {
   useGetAccount,
   useGetActiveTransactionsStatus,
-  useGetNetworkConfig,
-} from "@multiversx/sdk-dapp/hooks";
+  useGetNetworkConfig
+} from '@multiversx/sdk-dapp/hooks';
 
-import { ServerTransactionType } from "@multiversx/sdk-dapp/types";
-import { faBan, faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
-import { AxiosError } from "axios";
+import { ServerTransactionType } from '@multiversx/sdk-dapp/types';
+import { faBan, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+import { AxiosError } from 'axios';
 
-import { apiTimeout, contractAddress, transactionSize } from "../../config";
-import { DashboardLayout } from "../../components/Dahsboard/DashboardLayout";
-import { Loader, PageState, TransactionsTable } from "../../components";
+import { apiTimeout, contractAddress, transactionSize } from '../../config';
+import { DashboardLayout } from '../../components/Dahsboard/DashboardLayout';
+import { Loader, PageState, TransactionsTable } from '../../components';
 
 const DashboardPage = () => {
   const {
-    network: { apiAddress },
+    network: { apiAddress }
   } = useGetNetworkConfig();
   const { address } = useGetAccount();
   const { success, fail } = useGetActiveTransactionsStatus();
@@ -34,9 +34,9 @@ const DashboardPage = () => {
         apiAddress,
         sender: address,
         receiver: contractAddress,
-        condition: "must",
+        condition: 'must',
         transactionSize,
-        apiTimeout,
+        apiTimeout
       });
       setTransactions(data);
     } catch (err) {
@@ -64,11 +64,11 @@ const DashboardPage = () => {
 
   if (error) {
     return (
-      <div className="my-5">
+      <div className='my-5'>
         <PageState
           icon={faBan}
-          className="text-muted"
-          title="Error fetching transactions."
+          className='text-muted'
+          title='Error fetching transactions.'
         />
       </div>
     );
@@ -76,11 +76,11 @@ const DashboardPage = () => {
 
   if (transactions.length === 0) {
     return (
-      <div className="my-5">
+      <div className='my-5'>
         <PageState
           icon={faExchangeAlt}
-          className="text-muted"
-          title="No Transactions"
+          className='text-muted'
+          title='No Transactions'
         />
       </div>
     );

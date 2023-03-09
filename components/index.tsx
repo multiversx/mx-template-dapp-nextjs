@@ -1,1 +1,1 @@
-export * from "./SdkDapp";
+export * from './SdkDapp';

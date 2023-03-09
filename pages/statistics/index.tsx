@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import Link from "next/link";
+import React, { useEffect, useState } from 'react';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import Link from 'next/link';
 
-import { StatisticsLayout } from "./components/StatisticsLayout";
-import { routeNames } from "../../routes";
-import { Loader, PageState } from "../../components";
-import { TOOLS_API_URL } from "../../config";
-import { useGetLoginInfo } from "@multiversx/sdk-dapp/hooks";
+import { StatisticsLayout } from './components/StatisticsLayout';
+import { routeNames } from '../../routes';
+import { Loader, PageState } from '../../components';
+import { TOOLS_API_URL } from '../../config';
+import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks';
 
 interface StatisticsType {
   currentPrice: number;
@@ -24,18 +24,18 @@ const Statistics = () => {
         {
           statistics: StatisticsType;
         }[]
-      >("/growth-api/charts", {
+      >('/growth-api/charts', {
         baseURL: TOOLS_API_URL,
         params: {
-          types: "price",
+          types: 'price'
         },
         headers: {
-          Authorization: `Bearer ${tokenLogin?.nativeAuthToken}`,
-        },
+          Authorization: `Bearer ${tokenLogin?.nativeAuthToken}`
+        }
       });
       setStatistics(data[0].statistics);
     } catch (err) {
-      console.error("Unable to fetch Statistics");
+      console.error('Unable to fetch Statistics');
       setStatistics(null);
     }
   };
@@ -52,10 +52,10 @@ const Statistics = () => {
     return (
       <PageState
         icon={faTriangleExclamation}
-        iconClass="text-white"
-        iconBgClass="bg-warning"
-        iconSize="3x"
-        title="Unable to load statistics"
+        iconClass='text-white'
+        iconBgClass='bg-warning'
+        iconSize='3x'
+        title='Unable to load statistics'
         action={<Link href={routeNames.dashboard}>Back to Dashboard</Link>}
       />
     );
@@ -71,17 +71,17 @@ const Statistics = () => {
 
   return (
     <StatisticsLayout>
-      <div className="row mt-3">
-        <div className="col-12">
-          <p className="ml-2">
-            Information below is fetched using{" "}
-            <span className="badge badge-primary">nativeAuth</span> Bearer token
+      <div className='row mt-3'>
+        <div className='col-12'>
+          <p className='ml-2'>
+            Information below is fetched using{' '}
+            <span className='badge badge-primary'>nativeAuth</span> Bearer token
           </p>
-          <ul className="list-group text-left">
-            <li className="list-group-item">
+          <ul className='list-group text-left'>
+            <li className='list-group-item'>
               Current price: {statistics.currentPrice}
             </li>
-            <li className="list-group-item">
+            <li className='list-group-item'>
               24h Volume: {statistics.volume24h}
             </li>
           </ul>
