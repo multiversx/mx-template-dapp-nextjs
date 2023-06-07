@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { contractAddress } from '@/config';
