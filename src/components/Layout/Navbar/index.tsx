@@ -4,8 +4,8 @@ import { logout } from '@multiversx/sdk-dapp/utils';
 import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Navbar as BsNavbar, NavItem, Nav } from 'react-bootstrap';
-import { dAppName } from '../../../config';
-import { routeNames } from '../../../routes';
+import { dAppName } from '@/config';
+import { routeNames } from '@/routes';
 import Link from 'next/link';
 import Image from 'next/image';
 

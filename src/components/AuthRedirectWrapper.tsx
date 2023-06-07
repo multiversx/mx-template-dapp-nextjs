@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
-import { useRouter } from 'next/router';
-import { routeNames } from '../routes';
+import { useRouter } from 'next/navigation';
+import { routeNames } from '@/routes';
 
 export const AuthRedirectWrapper = ({ children }: PropsWithChildren) => {
   const isLoggedIn = useGetIsLoggedIn();
