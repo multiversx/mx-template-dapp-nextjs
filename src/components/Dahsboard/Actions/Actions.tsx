@@ -6,7 +6,7 @@ import { refreshAccount } from '@multiversx/sdk-dapp/utils';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
-import { contractAddress } from '../../../config';
+import { contractAddress } from '@/config';
 import { useGetTimeToPong } from './helpers/useGetTimeToPong';
 import { useGetPingAmount } from './helpers/useGetPingAmount';
 import Link from 'next/link';
@@ -131,7 +131,10 @@ export const Actions = () => {
               <button className='btn'>
                 <FontAwesomeIcon icon={faArrowUp} className='text-primary' />
               </button>
-              <Link href='/pages' className='text-white text-decoration-none'>
+              <Link
+                href='/old-pages'
+                className='text-white text-decoration-none'
+              >
                 Ping
               </Link>
             </div>
@@ -153,7 +156,7 @@ export const Actions = () => {
                   <span className='text-white'>
                     {pongAllowed ? (
                       <Link
-                        href='/pages'
+                        href='/old-pages'
                         className='text-white text-decoration-none'
                       >
                         Pong
