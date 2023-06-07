@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useGetPendingTransactions } from '@multiversx/sdk-dapp/hooks/transactions/useGetPendingTransactions';
@@ -131,10 +133,7 @@ export const Actions = () => {
               <button className='btn'>
                 <FontAwesomeIcon icon={faArrowUp} className='text-primary' />
               </button>
-              <Link
-                href='/old-pages'
-                className='text-white text-decoration-none'
-              >
+              <Link href='/' className='text-white text-decoration-none'>
                 Ping
               </Link>
             </div>
@@ -156,7 +155,7 @@ export const Actions = () => {
                   <span className='text-white'>
                     {pongAllowed ? (
                       <Link
-                        href='/old-pages'
+                        href='/'
                         className='text-white text-decoration-none'
                       >
                         Pong
