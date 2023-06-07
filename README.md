@@ -25,6 +25,18 @@
 
     return config;
    };   
+   ```
+
+
+   **Important UPDATE**: according to nextjs [documentation](https://nextjs.org/docs/pages/api-reference/next-config-js/transpilePackages), the above code can be simplified to:
+   ```
+      /** @type {import('next').NextConfig} */
+      const nextConfig = {
+      transpilePackages: ['@multiversx/sdk-dapp']
+      };
+   
+      module.exports = nextConfig;
+   ```
 
 2. In order to use the UI components you should use dynamic imports with `ssr: false`.
    - This will bypass the issue related to `'document is not defined'`.
