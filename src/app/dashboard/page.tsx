@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 
 import { getTransactions } from '@multiversx/sdk-dapp/apiCalls';
@@ -12,9 +14,9 @@ import { ServerTransactionType } from '@multiversx/sdk-dapp/types';
 import { faBan, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 import { AxiosError } from 'axios';
 
-import { apiTimeout, contractAddress, transactionSize } from '../../config';
-import { DashboardLayout } from '../../components/Dahsboard/DashboardLayout';
-import { Loader, PageState, TransactionsTable } from '../../components';
+import { apiTimeout, contractAddress, transactionSize } from '@/config';
+import { DashboardLayout } from '@/components/Dahsboard/DashboardLayout';
+import { Loader, PageState, TransactionsTable } from '@/components';
 
 const DashboardPage = () => {
   const {

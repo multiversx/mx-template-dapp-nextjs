@@ -1,7 +1,9 @@
+"use client"
+
 import React from 'react';
-import { walletConnectV2ProjectId } from '../../config';
-import { routeNames } from '../../routes';
-import { AuthRedirectWrapper } from '../../components/AuthRedirectWrapper';
+import { walletConnectV2ProjectId } from '@/config';
+import { routeNames } from '@/routes';
+import { AuthRedirectWrapper } from '@/components/AuthRedirectWrapper';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 

@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { routeNames } from '../../../routes';
+import { routeNames } from '@/routes';
 
 export const StatisticsLayout = ({ children }: PropsWithChildren) => {
   return (

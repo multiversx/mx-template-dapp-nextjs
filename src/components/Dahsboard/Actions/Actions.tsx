@@ -131,7 +131,7 @@ export const Actions = () => {
               <button className='btn'>
                 <FontAwesomeIcon icon={faArrowUp} className='text-primary' />
               </button>
-              <Link href='/pages' className='text-white text-decoration-none'>
+              <Link href='/old-pages' className='text-white text-decoration-none'>
                 Ping
               </Link>
             </div>
@@ -153,7 +153,7 @@ export const Actions = () => {
                   <span className='text-white'>
                     {pongAllowed ? (
                       <Link
-                        href='/pages'
+                        href='/old-pages'
                         className='text-white text-decoration-none'
                       >
                         Pong
