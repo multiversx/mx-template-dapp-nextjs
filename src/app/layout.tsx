@@ -1,8 +1,8 @@
 import '@/styles/globals.scss';
-import { Layout } from '@/components/Layout';
-import * as React from 'react';
+import { Layout, LayoutFallback } from '@/components/Layout';
 import Head from 'next/head';
-import Providers from '@/app/providers';
+import Providers from '@/components/SdkDapp/providers';
+import { Suspense } from 'react';
 
 export default function RootLayout({
   children
@@ -19,7 +19,9 @@ export default function RootLayout({
       </Head>
       <body>
         <Providers>
-          <Layout>{children}</Layout>
+          <Suspense fallback={<LayoutFallback>{children}</LayoutFallback>}>
+            <Layout>{children}</Layout>
+          </Suspense>
         </Providers>
       </body>
     </html>

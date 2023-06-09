@@ -1,10 +1,9 @@
-"use client"
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Link from 'next/link';
-
 import { StatisticsLayout } from './components/StatisticsLayout';
 import { routeNames } from '@/routes';
 import { Loader, PageState } from '@/components';
@@ -47,7 +46,6 @@ const Statistics = () => {
       return;
     }
     getStatistics();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tokenLogin]);
 
   if (statistics === null) {

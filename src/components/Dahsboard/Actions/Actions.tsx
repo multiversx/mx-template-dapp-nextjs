@@ -42,7 +42,6 @@ export const Actions = () => {
     }
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(mount, [hasPing]);
 
   const setSecondsRemaining = async () => {
@@ -67,7 +66,6 @@ export const Actions = () => {
 
   useEffect(() => {
     setSecondsRemaining();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasPendingTransactions]);
 
   const sendPingTransaction = async () => {
