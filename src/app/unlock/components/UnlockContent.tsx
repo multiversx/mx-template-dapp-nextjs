@@ -3,44 +3,12 @@
 import React from 'react';
 import { walletConnectV2ProjectId } from '@/config';
 import { routeNames } from '@/routes';
-import dynamic from 'next/dynamic';
-
-const ExtensionLoginButton = dynamic(
-  async () => {
-    return (
-      await import('@multiversx/sdk-dapp/UI/extension/ExtensionLoginButton')
-    ).ExtensionLoginButton;
-  },
-  { ssr: false }
-);
-
-const WalletConnectLoginButton = dynamic(
-  async () => {
-    return (
-      await import(
-        '@multiversx/sdk-dapp/UI/walletConnect/WalletConnectLoginButton'
-      )
-    ).WalletConnectLoginButton;
-  },
-  { ssr: false }
-);
-
-const LedgerLoginButton = dynamic(
-  async () => {
-    return (await import('@multiversx/sdk-dapp/UI/ledger/LedgerLoginButton'))
-      .LedgerLoginButton;
-  },
-  { ssr: false }
-);
-
-const WebWalletLoginButton = dynamic(
-  async () => {
-    return (
-      await import('@multiversx/sdk-dapp/UI/webWallet/WebWalletLoginButton')
-    ).WebWalletLoginButton;
-  },
-  { ssr: false }
-);
+import {
+  ExtensionLoginButton,
+  LedgerLoginButton,
+  WalletConnectLoginButton,
+  WebWalletLoginButton
+} from '@/components';
 
 export const UnlockContent = () => {
   const commonProps = {

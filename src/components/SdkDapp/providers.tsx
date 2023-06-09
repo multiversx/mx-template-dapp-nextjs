@@ -8,29 +8,11 @@ import {
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 import { DappProvider } from '@multiversx/sdk-dapp/wrappers/DappProvider';
 import { AxiosInterceptorContext } from '@multiversx/sdk-dapp/wrappers/AxiosInterceptorContext';
-import dynamic from 'next/dynamic';
-
-const SignTransactionsModals = dynamic(
-  async () => {
-    return (await import('@multiversx/sdk-dapp/UI/SignTransactionsModals'))
-      .SignTransactionsModals;
-  },
-  { ssr: false }
-);
-const NotificationModal = dynamic(
-  async () => {
-    return (await import('@multiversx/sdk-dapp/UI/NotificationModal'))
-      .NotificationModal;
-  },
-  { ssr: false }
-);
-const TransactionsToastList = dynamic(
-  async () => {
-    return (await import('@multiversx/sdk-dapp/UI/TransactionsToastList'))
-      .TransactionsToastList;
-  },
-  { ssr: false }
-);
+import {
+  NotificationModal,
+  SignTransactionsModals,
+  TransactionsToastList
+} from '@/components';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (

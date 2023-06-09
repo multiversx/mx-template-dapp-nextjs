@@ -3,14 +3,7 @@
 import * as React from 'react';
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 import { contractAddress } from '@/config';
-import dynamic from 'next/dynamic';
-
-const FormatAmount = dynamic(
-  async () => {
-    return (await import('@multiversx/sdk-dapp/UI/FormatAmount')).FormatAmount;
-  },
-  { ssr: false }
-);
+import { FormatAmount } from '@/components';
 
 export const TopInfo = () => {
   const { address, account } = useGetAccountInfo();
