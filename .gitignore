@@ -38,3 +38,8 @@ yalc.lock
 
 .idea
 .yalc
+
+#cypress
+/screenshots
+/videos
+/downloads
