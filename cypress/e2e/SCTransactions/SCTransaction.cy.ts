@@ -6,7 +6,8 @@ describe('Smart Contract Transactions', () => {
   before(() => {
     cy.visit('http://localhost:3000/');
     cy.getSelector(scSelectors.loginBtn).click();
-    cy.getSelector(scSelectors.webWalletLogin).click();
+    cy.get('.dapp-web-wallet-login').click();
+    // cy.getSelector(scSelectors.webWalletLogin).click();
     cy.login();
     cy.apiIntercept('POST', SCTransactionData.transactions);
   });

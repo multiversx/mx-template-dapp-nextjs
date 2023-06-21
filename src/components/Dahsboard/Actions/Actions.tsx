@@ -127,7 +127,12 @@ export const Actions = () => {
       {hasPing !== undefined && (
         <>
           {hasPing && !hasPendingTransactions ? (
-            <div className='action-btn' onClick={sendPingTransaction}>
+            <div
+              data-cy='transactionBtn'
+              data-testid='btnPing'
+              className='action-btn'
+              onClick={sendPingTransaction}
+            >
               <button className='btn'>
                 <FontAwesomeIcon icon={faArrowUp} className='text-primary' />
               </button>
@@ -139,6 +144,8 @@ export const Actions = () => {
             <>
               <div className='d-flex flex-column'>
                 <div
+                  data-cy='transactionBtn'
+                  data-testid='btnPong'
                   {...{
                     className: `action-btn ${notAllowedClass}`,
                     ...(pongAllowed ? { onClick: sendPongTransaction } : {})
