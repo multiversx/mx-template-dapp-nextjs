@@ -32,6 +32,7 @@ export const UnlockContent = () => {
 
               <WebWalletLoginButton
                 loginButtonText='Web wallet'
+                data-testid='webWalletLoginBtn'
                 {...commonProps}
               />
               <LedgerLoginButton
