@@ -41,13 +41,8 @@ export const UnlockContent = () => {
                 {...commonProps}
               />
               <WalletConnectLoginButton
-                loginButtonText='Maiar'
+                loginButtonText='xPortal'
                 {...commonProps}
-                {...(walletConnectV2ProjectId
-                  ? {
-                      isWalletConnectV2: true
-                    }
-                  : {})}
               />
             </div>
           </div>
