@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev | npx local-ssl-proxy --source 3002 --target 3000",
-    "build": "next build",
+    "build": "yarn build-devnet",
     "start": "next start",
     "lint": "next lint",
     "start-devnet": "yarn run copy-devnet-config & yarn dev",
@@ -13,9 +13,9 @@
     "copy-devnet-config": "cp ./src/config/config.devnet.ts ./src/config/index.ts",
     "copy-testnet-config": "cp ./src/config/config.testnet.ts ./src/config/index.ts",
     "copy-mainnet-config": "cp ./src/config/config.mainnet.ts ./src/config/index.ts",
-    "build-mainnet": "yarn run copy-mainnet-config & yarn build",
-    "build-testnet": "yarn run copy-testnet-config & yarn build",
-    "build-devnet": "yarn run copy-devnet-config & yarn build",
+    "build-mainnet": "yarn run copy-mainnet-config & next build",
+    "build-testnet": "yarn run copy-testnet-config & next build",
+    "build-devnet": "yarn run copy-devnet-config & next build",
     "test": "jest"
   },
   "dependencies": {
