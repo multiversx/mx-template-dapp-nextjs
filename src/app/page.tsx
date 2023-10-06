@@ -24,7 +24,7 @@ export default function Home({
           <div className='flex items-start sm:items-center h-full sm:w-1/2 sm:bg-center'>
             <div className='flex flex-col gap-2 max-w-[70sch] text-center sm:text-left text-xl font-medium md:text-2xl lg:text-3xl'>
               <div>
-                <h1>Template dApp</h1>
+                <h1>Template dApp Next.js</h1>
                 <p className='text-gray-400'>
                   The{' '}
                   <a

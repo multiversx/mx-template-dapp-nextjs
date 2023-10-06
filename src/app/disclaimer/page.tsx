@@ -4,7 +4,7 @@ export default function Disclaimer() {
       <h2 className='mb-4 font-bold text-lg'>Disclaimer</h2>
       <div className='flex flex-col gap-4'>
         <p>
-          This template is provided &quotas is&quot and &quot;as
+          This template is provided &quot;as is&quot; and &quot;as
           available&quot;, at your own risk, without warranty of any kind,
           either expressed or implied, including but not limited to warranties
           of title or implied warranties of merchantability or fitness for a
