@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-/// <reference types="cypress" />
 import { userData } from '../assets/globalData';
 import { AssertionEnum } from '../constants/enums';
 import { DEVNET_API } from '../constants/globalLinks';
