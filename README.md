@@ -1,5 +1,6 @@
 # **MultiversX dApp based on Next.js and @multiversx/sdk-dapp**
-## The project is work in progress, but it can be used as reference
+
+See [Dapp template](https://template-dapp-nextjs.multiversx.com/) for live demo.
 
 ### Important steps in order to make it working:
 1. Use ``next-transpile-modules`` in ``next.config.js`` file. Thanks, [Mihai Daniel Eremia](https://github.com/mihaieremia), for your insights!
