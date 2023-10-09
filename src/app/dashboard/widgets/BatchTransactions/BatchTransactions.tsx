@@ -131,6 +131,7 @@ export const BatchTransactions = () => {
     <div className='flex flex-col gap-6'>
       <div className='flex gap-2 items-center'>
         <Button
+          data-testid='sign-auto-send'
           onClick={signAndAutoSendBatchTransactions}
           disabled={hasPendingTransactions}
         >
@@ -139,6 +140,7 @@ export const BatchTransactions = () => {
         </Button>
 
         <Button
+          data-testid='send-transactions'
           onClick={executeBatchTransactions}
           disabled={hasPendingTransactions}
         >
@@ -147,6 +149,7 @@ export const BatchTransactions = () => {
         </Button>
 
         <Button
+          data-testid='swap-lock'
           onClick={executeSwapAndLockTransactions}
           disabled={hasPendingTransactions}
         >
