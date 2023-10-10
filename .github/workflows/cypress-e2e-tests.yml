@@ -11,8 +11,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Cypress run
         uses: cypress-io/github-action@v4
-        # with:
-        #   # build: yarn build
-        #   start: yarn start-devnet
-        #   wait-on: "http://localhost:3000"
+        with:
+          # build: yarn build
+          start: yarn start-devnet
+          wait-on: "http://localhost:3000"
        
