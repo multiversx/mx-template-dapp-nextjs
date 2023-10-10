@@ -1,6 +1,7 @@
 'use client';
 import { createContext, useState, useContext, useMemo } from 'react';
 import type { PropsWithChildren } from 'react';
+import { isWindowAvailable } from '@multiversx/sdk-dapp/utils/isWindowAvailable';
 
 interface BatchTransactionsContextType {
   sendBatchTransactionsOnDemand: boolean;
@@ -14,7 +15,12 @@ const BatchTransactionsContext = createContext<
 export const BatchTransactionsContextProvider = ({
   children
 }: PropsWithChildren) => {
-  const [sendBatchTransactionsOnDemand, setSendBatchTransactionsOnDemand] = useState(false);
+  const [sendBatchTransactionsOnDemand, setSendBatchTransactionsOnDemand] =
+    useState(
+      isWindowAvailable()
+        ? sessionStorage.getItem('sendBatchTransactionsOnDemand') === 'true'
+        : false
+    );
 
   const value: BatchTransactionsContextType = useMemo(
     () => ({
