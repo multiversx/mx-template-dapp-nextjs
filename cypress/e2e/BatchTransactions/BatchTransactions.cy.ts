@@ -8,7 +8,7 @@ describe('Batch Transaction', () => {
     signTransactions('sign-auto-send');
   });
 
-  it.only('should successfully sign 5 transactions for send-transactions', () => {
+  it('should successfully sign 5 transactions for send-transactions', () => {
     cy.login(walletIDEnum.unguardedWallet3, 'Connect');
 
     signTransactions('send-transactions');
