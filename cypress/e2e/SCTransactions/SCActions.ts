@@ -7,7 +7,7 @@ export const scTransaction = (type) => {
     if (btn.prop('disabled')) {
       return;
     } else {
-      cy.wait(1000);
+      cy.wait(2000);
       cy.getSelector(type).click();
       cy.getSelector(scSelectors.accesPass).type(userData.passsword);
       cy.getSelector(scSelectors.submitButton).click();
