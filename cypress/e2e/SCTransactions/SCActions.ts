@@ -1,8 +1,8 @@
-import { SCTransactionData, scSelectors } from './SCTransactionData';
+import { scSelectors } from './SCTransactionData';
 import { userData } from '../../assets/globalData';
 import { AssertionEnum } from '../../constants/enums';
 // Custom function to make Ping or Pong transactions
-export const scTransaction = (type) => {
+export const scTransaction = (type: string) => {
   cy.getSelector(type).then((btn) => {
     if (btn.prop('disabled')) {
       return;
@@ -28,7 +28,7 @@ export const checkPingDetails = () => {
     .should(AssertionEnum.contain, 'Data');
 };
 
-export const pingPongHandler = (type) => {
+export const pingPongHandler = (type: string) => {
   cy.getSelector(`btnPing${type}`).then((btn) => {
     if (btn.prop('disabled')) {
       scTransaction(`btnPong${type}`);
