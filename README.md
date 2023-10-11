@@ -70,6 +70,17 @@ npm run dev
 yarn dev
 ```
 
+To run a production build:
+    
+```bash
+npm run build
+npm run start
+# or 
+yarn build
+yarn start
+```
+
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/Index.tsx`. The page auto-updates as you edit the file.
