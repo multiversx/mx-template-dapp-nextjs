@@ -76,7 +76,7 @@ export const PingPongRaw = () => {
           <Button
             disabled={!hasPing || hasPendingTransactions}
             onClick={sendPingTransaction}
-            data-testid='btnPing'
+            data-testid='btnPingRaw'
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
             Ping
@@ -84,7 +84,7 @@ export const PingPongRaw = () => {
 
           <Button
             disabled={!pongAllowed || hasPing || hasPendingTransactions}
-            data-testid='btnPong'
+            data-testid='btnPongRaw'
             onClick={sendPongTransaction}
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />

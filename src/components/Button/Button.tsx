@@ -20,7 +20,7 @@ export const Button = ({
   return (
     <button
       id={id}
-      data-test-id={otherProps['data-testid']}
+      data-testid={otherProps['data-testid']}
       disabled={disabled}
       onClick={onClick}
       className={className}
