@@ -59,7 +59,11 @@ export const SignMessage = () => {
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex gap-2 items-start'>
-        <Button onClick={handleSubmit} disabled={!message}>
+        <Button
+          onClick={handleSubmit}
+          disabled={!message}
+          data-testid='signMsgBtn'
+        >
           <FontAwesomeIcon icon={faFileSignature} className='mr-1' />
           Sign
         </Button>

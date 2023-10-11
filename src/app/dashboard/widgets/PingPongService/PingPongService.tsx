@@ -104,7 +104,7 @@ export const PingPongService = () => {
           <Button
             disabled={!hasPing || hasPendingTransactions}
             onClick={onSendPingTransaction}
-            data-testid='btnPing'
+            data-testid='btnPingService'
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
             Ping
@@ -112,7 +112,7 @@ export const PingPongService = () => {
 
           <Button
             disabled={!pongAllowed || hasPing || hasPendingTransactions}
-            data-testid='btnPong'
+            data-testid='btnPongService'
             onClick={onSendPongTransaction}
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />
