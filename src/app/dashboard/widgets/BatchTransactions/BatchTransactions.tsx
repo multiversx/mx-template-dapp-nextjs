@@ -42,6 +42,7 @@ export const BatchTransactions = () => {
   // this process will not go through useSendSignedTransactions
   // it will automatically sign and send transactions
   const signAndAutoSendBatchTransactions = async () => {
+    sessionStorage.setItem(SessionEnum.sendBatchTransactionsOnDemand, 'false');
     setSendBatchTransactionsOnDemand(false);
 
     const payload = getBatchTransactions(address);
@@ -74,6 +75,8 @@ export const BatchTransactions = () => {
   };
 
   const executeTransactions = async (payload: BatchTransactionsType) => {
+    // Save in sessionStorage as on redirect from wallet provider, it will reset the context and it will not trigger the manual batch transactions
+    sessionStorage.setItem(SessionEnum.sendBatchTransactionsOnDemand, 'true');
     setSendBatchTransactionsOnDemand(true);
 
     const { transactions, order } = payload;
@@ -129,7 +132,7 @@ export const BatchTransactions = () => {
 
   return (
     <div className='flex flex-col gap-6'>
-      <div className='flex gap-2 items-center'>
+      <div className='flex flex-col md:flex-row gap-2 items-start'>
         <Button
           data-testid='sign-auto-send'
           onClick={signAndAutoSendBatchTransactions}
