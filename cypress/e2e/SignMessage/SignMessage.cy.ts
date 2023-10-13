@@ -1,4 +1,3 @@
-import { Routes } from 'react-router-dom';
 import { userData } from '../../assets/globalData';
 import { AssertionEnum, RoutesEnum, WalletIDEnum } from '../../constants/enums';
 import { scSelectors } from '../SCTransactions/SCTransactionData';

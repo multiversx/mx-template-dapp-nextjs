@@ -29,7 +29,7 @@ export const checkPingDetails = () => {
     .should(AssertionEnum.contain, 'Data');
 };
 
-export const pingPongHandler = (type) => {
+export const pingPongHandler = (type: string) => {
   cy.getSelector(`btnPing${type}`).then((btn) => {
     cy.wait(1500);
     if (btn.prop('disabled')) {
