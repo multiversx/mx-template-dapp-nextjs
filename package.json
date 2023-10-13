@@ -15,6 +15,7 @@
     "build-mainnet": "yarn run copy-mainnet-config & next build",
     "build-testnet": "yarn run copy-testnet-config & next build",
     "build-devnet": "yarn run copy-devnet-config & next build",
+    "preview": "next start",
     "test": "jest"
   },
   "dependencies": {
@@ -55,6 +56,8 @@
     "tailwindcss": "3.3.3",
     "ts-jest": "29.1.1",
     "utf-8-validate": "6.0.3",
-    "webpack-node-externals": "3.0.0"
+    "webpack-node-externals": "3.0.0",
+    "cypress": "13.3.0"
+
   }
 }
