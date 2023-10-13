@@ -1,22 +1,21 @@
 import { signTransactions } from './helpers';
-import { walletIDEnum } from '../../constants/enums';
+import { WalletIDEnum, GlobalSelectorsEnum } from '../../constants/enums';
 
 describe('Batch Transaction', () => {
+  beforeEach(() => {
+    cy.login(WalletIDEnum.unguardedWallet1, 'Connect');
+    cy.wait(5000);
+  });
   it('should successfully sign 5 transactions for auto-send batch', () => {
-    cy.login(walletIDEnum.unguardedWallet1, 'Connect');
-
-    signTransactions('sign-auto-send');
+    signTransactions(GlobalSelectorsEnum.signAutoSend);
   });
 
   it('should successfully sign 5 transactions for send-transactions', () => {
-    cy.login(walletIDEnum.unguardedWallet3, 'Connect');
-
-    signTransactions('send-transactions');
+    signTransactions(GlobalSelectorsEnum.sendTransactions);
   });
 
   it('should successfully sign 4 transactions for swap-lock', () => {
-    cy.login(walletIDEnum.unguardedWallet2, 'Connect');
-
-    signTransactions('swap-lock');
+    cy.wait(3000);
+    signTransactions(GlobalSelectorsEnum.swapLock);
   });
 });
