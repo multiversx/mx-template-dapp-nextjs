@@ -4,7 +4,7 @@ import { AssertionEnum } from '../../constants/enums';
 // Custom function to make Ping or Pong transactions
 export const scTransaction = (type: string) => {
   cy.getSelector(type).then((btn) => {
-    cy.wait(500);
+    cy.wait(1500);
     if (btn.prop('disabled')) {
       return;
     } else {
@@ -31,7 +31,7 @@ export const checkPingDetails = () => {
 
 export const pingPongHandler = (type) => {
   cy.getSelector(`btnPing${type}`).then((btn) => {
-    cy.wait(500);
+    cy.wait(1500);
     if (btn.prop('disabled')) {
       console.log('btn prop', btn.prop('disabled'));
       scTransaction(`btnPong${type}`);
