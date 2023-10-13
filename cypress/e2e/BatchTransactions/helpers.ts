@@ -1,7 +1,8 @@
 import { userData } from '../../assets/globalData';
+import { RoutesEnum } from '../../constants/enums';
 import { scSelectors } from '../SCTransactions/SCTransactionData';
 
-export const signTransactions = (selector: string) => {
+export const signTransactions = (selector) => {
   let i = selector === 'swap-lock' ? 1 : 0;
 
   const widgetInfo = [
@@ -23,7 +24,7 @@ export const signTransactions = (selector: string) => {
   cy.checkWidgetMsg(widgetInfo);
 };
 
-export const cancelTransactions = (selector: string) => {
+export const cancelTransactions = (selector) => {
   cy.getSelector(selector).click();
   cy.getSelector(scSelectors.accesPass).type(userData.passsword);
   cy.getSelector(scSelectors.submitButton).click();
