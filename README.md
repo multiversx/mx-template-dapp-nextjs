@@ -104,3 +104,43 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+### Known issues:
+
+`document is undefined`
+
+**Cause:**
+`sass transform` which is using the client API to inject the styles in DOM
+
+**Workaround:**
+
+For the `sdk-dapp components` it should be used a dynamic import syntax.
+
+Eg.
+```
+export const DappProvider = dynamic(
+  async () => {
+    return (await import('@multiversx/sdk-dapp/wrappers/DappProvider')).DappProvider;
+  },
+  { ssr: false }
+);
+...
+<DappProvider ... />
+```
+
+
+For the `sdk-dapp hooks` is necessary a specific import (directly to the .js file)
+
+Eg.
+
+Instead of this:
+
+`import { useExtensionLogin, useWebWalletLogin } from '@multiversx/sdk-dapp/hooks'`
+
+do this:
+
+```
+import { useExtensionLogin } from '@multiversx/sdk-dapp/hooks/login/useExtensionLogin'
+import { useWebWalletLogin } from '@multiversx/sdk-dapp/hooks/login/useWebWalletLogin'
+```
