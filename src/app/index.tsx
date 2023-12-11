@@ -29,6 +29,7 @@ const AppContent = ({ children }: PropsWithChildren) => {
         walletConnectV2ProjectId
       }}
       dappConfig={{
+        isSSR: true,
         shouldUseWebViewProvider: true,
         logoutRoute: RouteNamesEnum.unlock
       }}
