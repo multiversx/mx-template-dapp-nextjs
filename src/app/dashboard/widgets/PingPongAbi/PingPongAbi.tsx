@@ -14,18 +14,23 @@ import {
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType } from '@/types';
+import { SignedTransactionType, WidgetProps } from '@/types';
 import { useGetTimeToPong, useGetPingAmount } from './hooks';
+import { getCallbackUrl } from '@/utils/getCallbackUrl';
 
-export const PingPongAbi = () => {
+export const PingPongAbi = ({ anchor }: WidgetProps) => {
   const getTimeToPong = useGetTimeToPong();
   const pingAmount = useGetPingAmount();
   const { hasPendingTransactions } = useGetPendingTransactions();
+
   const {
     sendPingTransactionFromAbi,
     sendPongTransactionFromAbi,
     transactionStatus
-  } = useSendPingPongTransaction(SessionEnum.abiPingPongSessionId);
+  } = useSendPingPongTransaction({
+    type: SessionEnum.abiPingPongSessionId,
+    callbackUrl: getCallbackUrl({ anchor })
+  });
 
   const [stateTransactions, setStateTransactions] = useState<
     SignedTransactionType[] | null

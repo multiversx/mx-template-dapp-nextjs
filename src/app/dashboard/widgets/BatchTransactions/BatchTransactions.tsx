@@ -10,18 +10,20 @@ import { Button, OutputContainer, TransactionsOutput } from '@/components';
 import { sendTransactions } from '@/helpers';
 import { useGetAccountInfo, useGetPendingTransactions } from '@/hooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType } from '@/types';
+import { SignedTransactionType, WidgetProps } from '@/types';
 import { useBatchTransactionContext } from '@/wrappers';
 import { getBatchTransactions, getSwapAndLockTransactions } from './helpers';
 import { useSendSignedTransactions } from './hooks';
 import { BatchTransactionsType } from './types';
 import { sendBatchTransactions } from '@multiversx/sdk-dapp/services/transactions/sendBatchTransactions';
+import { getCallbackUrl } from '@/utils/getCallbackUrl';
 
-export const BatchTransactions = () => {
+export const BatchTransactions = ({ anchor }: WidgetProps) => {
   const { setSendBatchTransactionsOnDemand } = useBatchTransactionContext();
   const { address } = useGetAccountInfo();
   const { batches } = useGetBatches();
   const { hasPendingTransactions } = useGetPendingTransactions();
+  const callbackUrl = getCallbackUrl({ anchor });
 
   const [stateTransactions, setStateTransactions] = useState<
     SignedTransactionType[] | null
@@ -56,13 +58,13 @@ export const BatchTransactions = () => {
 
     const { batchId: currentBatchId, error } = await sendBatchTransactions({
       transactions: groupedTransactions,
-      callbackRoute: window.location.pathname,
       customTransactionInformation: { redirectAfterSign: true },
       transactionsDisplayInfo: {
         processingMessage: 'Processing transactions',
         errorMessage: 'An error has occurred during transaction execution',
         successMessage: 'Batch transactions successful'
-      }
+      },
+      callbackRoute: callbackUrl
     });
 
     if (error) {
@@ -84,8 +86,8 @@ export const BatchTransactions = () => {
     const { sessionId, error } = await sendTransactions({
       transactions,
       signWithoutSending: true,
-      callbackRoute: window.location.pathname,
-      customTransactionInformation: { redirectAfterSign: true }
+      customTransactionInformation: { redirectAfterSign: true },
+      callbackRoute: callbackUrl
     });
 
     if (error) {

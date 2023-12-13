@@ -3,3 +3,4 @@ export { parseAmount } from '@multiversx/sdk-dapp/utils/operations/parseAmount';
 export { getInterpretedTransaction } from '@multiversx/sdk-dapp/utils/transactions/getInterpretedTransaction';
 export { formatAmount } from '@multiversx/sdk-dapp/utils/operations/formatAmount';
 export { getWindowLocation } from '@multiversx/sdk-dapp/utils/window/getWindowLocation';
+export { getIsProviderEqualTo } from '@multiversx/sdk-dapp/utils/account/getIsProviderEqualTo';

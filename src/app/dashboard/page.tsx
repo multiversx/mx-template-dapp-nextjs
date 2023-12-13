@@ -11,13 +11,18 @@ import {
   Transactions
 } from './widgets';
 import { AuthRedirectWrapper } from '@/wrappers';
+import { ClientHooks } from '@/components/ClientHooks';
 
 type WidgetsType = {
   title: string;
-  widget: (props: { [key: string]: string | number }) => JSX.Element;
+  widget: (props: {
+    [key: string]: string | number | undefined;
+  }) => JSX.Element;
   description?: string;
   props?: { receiver?: string };
   reference: string;
+  anchor?: string;
+  isCallbackUrlRelative?: boolean;
 };
 
 const WIDGETS: WidgetsType[] = [
@@ -33,7 +38,8 @@ const WIDGETS: WidgetsType[] = [
     description:
       'Smart Contract interactions using manually formulated transactions',
     reference:
-      'https://docs.multiversx.com/sdk-and-tools/indices/es-index-transactions/'
+      'https://docs.multiversx.com/sdk-and-tools/indices/es-index-transactions/',
+    anchor: 'ping-pong-manual'
   },
   {
     title: 'Ping & Pong (ABI)',
@@ -41,20 +47,24 @@ const WIDGETS: WidgetsType[] = [
     description:
       'Smart Contract interactions using the ABI generated transactions',
     reference:
-      'https://docs.multiversx.com/sdk-and-tools/sdk-js/sdk-js-cookbook/#using-interaction-when-the-abi-is-available'
+      'https://docs.multiversx.com/sdk-and-tools/sdk-js/sdk-js-cookbook/#using-interaction-when-the-abi-is-available',
+    anchor: 'ping-pong-abi'
   },
   {
     title: 'Ping & Pong (Backend)',
     widget: PingPongService,
     description:
       'Smart Contract interactions using the backend generated transactions',
-    reference: 'https://github.com/multiversx/mx-ping-pong-service'
+    reference: 'https://github.com/multiversx/mx-ping-pong-service',
+    anchor: 'ping-pong-backend'
   },
   {
     title: 'Sign message',
     widget: SignMessage,
     description: 'Message signing using the connected account',
-    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account-1'
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account-1',
+    anchor: 'sign-message',
+    isCallbackUrlRelative: false
   },
   {
     title: 'Native auth',
@@ -69,7 +79,8 @@ const WIDGETS: WidgetsType[] = [
     description:
       'A secure authentication token can be used to interact with the backend',
     reference:
-      'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches'
+      'https://github.com/multiversx/mx-sdk-dapp#sending-transactions-synchronously-in-batches',
+    anchor: 'batch-transactions'
   },
   {
     title: 'Transactions (All)',
@@ -90,29 +101,34 @@ const WIDGETS: WidgetsType[] = [
 
 export default function Dashboard() {
   return (
-    <AuthRedirectWrapper>
-      <div className='flex flex-col gap-6 max-w-3xl w-full'>
-        {WIDGETS.map((element) => {
-          const {
-            title,
-            widget: MxWidget,
-            description,
-            props = {},
-            reference
-          } = element;
+    <>
+      <ClientHooks />
+      <AuthRedirectWrapper>
+        <div className='flex flex-col gap-6 max-w-3xl w-full'>
+          {WIDGETS.map((element) => {
+            const {
+              title,
+              widget: MxWidget,
+              description,
+              props = {},
+              reference,
+              anchor
+            } = element;
 
-          return (
-            <Card
-              key={title}
-              title={title}
-              description={description}
-              reference={reference}
-            >
-              <MxWidget {...props} />
-            </Card>
-          );
-        })}
-      </div>
-    </AuthRedirectWrapper>
+            return (
+              <Card
+                key={title}
+                title={title}
+                description={description}
+                reference={reference}
+                anchor={anchor}
+              >
+                <MxWidget anchor={anchor} {...props} />
+              </Card>
+            );
+          })}
+        </div>
+      </AuthRedirectWrapper>
+    </>
   );
 }

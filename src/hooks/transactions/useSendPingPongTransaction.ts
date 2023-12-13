@@ -13,7 +13,15 @@ import { IPlainTransactionObject } from '@/types/sdkCoreTypes';
 import { getChainId } from '@/utils/getChainId';
 import { smartContract } from '@/utils/smartContract';
 
-export const useSendPingPongTransaction = (type: SessionEnum) => {
+type PingPongTransactionProps = {
+  type: SessionEnum;
+  callbackUrl?: string;
+};
+
+export const useSendPingPongTransaction = ({
+  type,
+  callbackUrl
+}: PingPongTransactionProps) => {
   const [pingPongSessionId, setPingPongSessionId] = useState(
     sessionStorage.getItem(type)
   );
@@ -47,7 +55,8 @@ export const useSendPingPongTransaction = (type: SessionEnum) => {
         errorMessage: 'An error has occured during Ping',
         successMessage: 'Ping transaction successful'
       },
-      redirectAfterSign: false
+      redirectAfterSign: false,
+      callbackRoute: callbackUrl
     });
 
     sessionStorage.setItem(type, sessionId);
@@ -73,7 +82,8 @@ export const useSendPingPongTransaction = (type: SessionEnum) => {
         errorMessage: 'An error has occured during Pong',
         successMessage: 'Pong transaction successful'
       },
-      redirectAfterSign: false
+      redirectAfterSign: false,
+      callbackRoute: callbackUrl
     });
 
     sessionStorage.setItem(type, sessionId);
@@ -98,7 +108,8 @@ export const useSendPingPongTransaction = (type: SessionEnum) => {
         errorMessage: 'An error has occured during Ping',
         successMessage: 'Ping transaction successful'
       },
-      redirectAfterSign: false
+      redirectAfterSign: false,
+      callbackRoute: callbackUrl
     });
 
     sessionStorage.setItem(type, sessionId);
@@ -123,7 +134,8 @@ export const useSendPingPongTransaction = (type: SessionEnum) => {
         errorMessage: 'An error has occured during Pong',
         successMessage: 'Pong transaction successful'
       },
-      redirectAfterSign: false
+      redirectAfterSign: false,
+      callbackRoute: callbackUrl
     });
 
     sessionStorage.setItem(type, sessionId);
@@ -143,7 +155,8 @@ export const useSendPingPongTransaction = (type: SessionEnum) => {
         errorMessage: 'An error has occured during Ping',
         successMessage: 'Ping transaction successful'
       },
-      redirectAfterSign: false
+      redirectAfterSign: false,
+      callbackRoute: callbackUrl
     });
 
     sessionStorage.setItem(type, sessionId);
@@ -163,7 +176,8 @@ export const useSendPingPongTransaction = (type: SessionEnum) => {
         errorMessage: 'An error has occured during Pong',
         successMessage: 'Pong transaction successful'
       },
-      redirectAfterSign: false
+      redirectAfterSign: false,
+      callbackRoute: callbackUrl
     });
 
     sessionStorage.setItem(type, sessionId);
