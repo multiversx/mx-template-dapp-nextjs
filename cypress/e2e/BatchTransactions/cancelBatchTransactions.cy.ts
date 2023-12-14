@@ -6,11 +6,11 @@ describe('cancelTransactions', () => {
     cy.login(WalletIDEnum.unguardedWallet1, 'Connect');
     cy.wait(5000);
   });
-  it('should return transaction canceled for auto-send batch ', () => {
+  it.only('should return transaction canceled for auto-send batch ', () => {
     cancelTransactions('sign-auto-send');
   });
 
-  it('should return transaction canceled for swap-lock', () => {
+  it.only('should return transaction canceled for swap-lock', () => {
     cancelTransactions('swap-lock');
   });
 

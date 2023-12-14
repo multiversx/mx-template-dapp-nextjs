@@ -2,7 +2,7 @@
 import { pingPongHandler } from './SCActions';
 import { scSelectors } from './SCTransactionData';
 import { userData } from '../../assets/globalData';
-import { RoutesEnum, WalletIDEnum } from '../../constants/enums';
+import { WalletIDEnum } from '../../constants/enums';
 
 describe('Smart Contract Transactions', () => {
   afterEach(() => {
