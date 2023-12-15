@@ -17,7 +17,7 @@
     "build-devnet": "yarn run copy-devnet-config & next build",
     "preview": "next start",
     "test": "jest",
-    "cy:run": "node scripts/cypress.ts --spec cypress/e2e/BatchTransactions "
+    "cy:run": "node scripts/cypress.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.0",
