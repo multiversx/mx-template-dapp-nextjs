@@ -19,10 +19,10 @@ jobs:
         if: always()
         with:
             name: cypress-execution-report
-            path: cypress/reports
+            path: /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/mochawesome-report
             retention-days: 30      
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@master
         env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
             SLACK_USERNAME: cypress-report
