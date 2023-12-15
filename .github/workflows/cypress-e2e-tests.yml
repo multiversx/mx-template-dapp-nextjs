@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Cypress run
-        uses: npm run cy:run 
+        uses: npm run cy:run
         with:
           start: yarn start-devnet
           wait-on: "http://localhost:3002"
