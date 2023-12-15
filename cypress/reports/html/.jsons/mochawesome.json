@@ -1,0 +1,154 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-12-15T15:45:06.156Z",
+    "end": "2023-12-15T15:46:45.383Z",
+    "duration": 99227,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ad55331b-18f8-4d9f-8931-7fe547a0ea1c",
+      "title": "",
+      "fullFile": "cypress/e2e/BatchTransactions/BatchTransactions.cy.ts",
+      "file": "cypress/e2e/BatchTransactions/BatchTransactions.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2f8e1a9f-aed4-43a1-8cb0-cc50376650f6",
+          "title": "Batch Transaction",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should successfully sign 5 transactions for auto-send batch",
+              "fullTitle": "Batch Transaction should successfully sign 5 transactions for auto-send batch",
+              "timedOut": null,
+              "duration": 21877,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0,_helpers__WEBPACK_IMPORTED_MODULE_0__.signTransactions)(_constants_enums__WEBPACK_IMPORTED_MODULE_1__.GlobalSelectorsEnum.signAutoSend);",
+              "err": {},
+              "uuid": "854f65aa-7105-4ec9-a542-ad8675a1578b",
+              "parentUUID": "2f8e1a9f-aed4-43a1-8cb0-cc50376650f6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should successfully sign 5 transactions for send-transactions",
+              "fullTitle": "Batch Transaction should successfully sign 5 transactions for send-transactions",
+              "timedOut": null,
+              "duration": 20584,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0,_helpers__WEBPACK_IMPORTED_MODULE_0__.signTransactions)(_constants_enums__WEBPACK_IMPORTED_MODULE_1__.GlobalSelectorsEnum.sendTransactions);",
+              "err": {},
+              "uuid": "fc4b786c-7301-4440-8141-cde94d38f410",
+              "parentUUID": "2f8e1a9f-aed4-43a1-8cb0-cc50376650f6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should successfully sign 4 transactions for swap-lock",
+              "fullTitle": "Batch Transaction should successfully sign 4 transactions for swap-lock",
+              "timedOut": null,
+              "duration": 103,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(3000);\n(0,_helpers__WEBPACK_IMPORTED_MODULE_0__.signTransactions)(_constants_enums__WEBPACK_IMPORTED_MODULE_1__.GlobalSelectorsEnum.swapLock);",
+              "err": {
+                "message": "AssertionError: object tested must be an array, a map, an object, a set, a string, or a weakset, but object given\n\nBecause this error occurred during a `after each` hook we are skipping the remaining tests in the current suite: `Batch Transaction`",
+                "estack": "AssertionError: object tested must be an array, a map, an object, a set, a string, or a weakset, but object given\n\nBecause this error occurred during a `after each` hook we are skipping the remaining tests in the current suite: `Batch Transaction`\n    at Context.eval (webpack://multiversx-nextjs-dapp/./cypress/support/commands.ts:78:38)",
+                "diff": null
+              },
+              "uuid": "48ec9718-fe62-49e3-af2e-8307bcb3792c",
+              "parentUUID": "2f8e1a9f-aed4-43a1-8cb0-cc50376650f6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "854f65aa-7105-4ec9-a542-ad8675a1578b",
+            "fc4b786c-7301-4440-8141-cde94d38f410"
+          ],
+          "failures": [
+            "48ec9718-fe62-49e3-af2e-8307bcb3792c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 42564,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "E2E Report",
+        "inlineAssets": true,
+        "saveAllAttempts": true,
+        "mochaFile": "results/my-test-output-[hash].xml",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "reportDir": "cypress/reports/html/.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
