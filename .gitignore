@@ -42,3 +42,9 @@ yalc.lock
 
 .idea
 .yalc
+
+
+#cypress 
+cypress/reports/
+cypress/screenshots/
+cypress/videos/
