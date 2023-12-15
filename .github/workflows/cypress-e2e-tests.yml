@@ -14,10 +14,6 @@ jobs:
         run: yarn start-devnet
       - name: Cypress run
         run: npm run cy:run
-        # with:
-        #   start: yarn start-devnet
-        #   wait-on: "http://localhost:3000"
-          
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
         if: always()
@@ -32,4 +28,7 @@ jobs:
             SLACK_USERNAME: cypress-report
             SLACK_TITLE: E2E TESTS
             SLACK_MESSAGE: "Cypress report test"
+        with:
+              start: yarn start-devnet
+              wait-on: "http://localhost:3002"    
        
