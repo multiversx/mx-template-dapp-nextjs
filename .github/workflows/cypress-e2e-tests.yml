@@ -11,15 +11,15 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          start: yarn start-devnet
-          wait-on: "http://localhost:3002"
+          # start: yarn start-devnet
+          # wait-on: "http://localhost:3002"
           command: npm run cy:run
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
             name: cypress-execution-report
-            path: cypress/reports/mochawesome.html
+            path: cypress/reports
             retention-days: 30      
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
