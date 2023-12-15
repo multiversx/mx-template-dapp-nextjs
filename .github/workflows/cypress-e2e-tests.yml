@@ -8,11 +8,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install 
+        run: npm install
+      - name: Start app 
+        run: yarn start-devnet
       - name: Cypress run
-        uses: npm run cy:run
-        with:
-          start: yarn start-devnet
-          wait-on: "http://localhost:3002"
+        run: npm run cy:run
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
         if: always()
