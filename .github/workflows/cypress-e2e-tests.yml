@@ -19,8 +19,8 @@ jobs:
         if: always()
         with:
             name: cypress-execution-report
-            path: 
-               /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/mochawesome-report/mochawesome.html
+            path: |
+               /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/mochawesome-report/mochawesome.html,
                /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/cypress/screenshots
                /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/cypress/videos 
       - name: Slack Notification
