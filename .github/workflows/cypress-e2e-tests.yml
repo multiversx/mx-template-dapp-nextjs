@@ -19,8 +19,10 @@ jobs:
         if: always()
         with:
             name: cypress-execution-report
-            path: /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/mochawesome-report
-            retention-days: 30      
+            path: 
+               /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/mochawesome-report/
+               /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/cypress/screenshots
+               /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/cypress/videos 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
         env:
