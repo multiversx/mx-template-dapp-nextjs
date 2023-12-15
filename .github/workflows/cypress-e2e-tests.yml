@@ -12,6 +12,7 @@ jobs:
         run: npm install
       - name: Start app 
         run: yarn start-devnet
+       wait-on: "http://localhost:3002"
       - name: Cypress run
         run: npm run cy:run
       - name: Uploading artifact
