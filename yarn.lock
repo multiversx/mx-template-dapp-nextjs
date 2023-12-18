@@ -781,10 +781,10 @@
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-bls-wasm/-/sdk-bls-wasm-0.3.5.tgz#2e83308fdc7a0928c6d5a7f910d796fd8eb2d90b"
   integrity sha512-c0tIdQUnbBLSt6NYU+OpeGPYdL0+GV547HeHT8Xc0BKQ7Cj0v82QUoA2QRtWrR1G4MNZmLsIacZSsf6DrIS2Bw==
 
-"@multiversx/sdk-core@12.6.0":
-  version "12.6.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.6.0.tgz#10bd8f12f1449361b21aa2efd38861f45099b38b"
-  integrity sha512-aJjSn8EzaYXalUuvAuxOTPtv8GDbimJlSYNRLjCsToyfwGAyS9cRllmq2d1I2nlrR89YgAsOL9qp+sI5DA7yBw==
+"@multiversx/sdk-core@12.16.0":
+  version "12.16.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.16.0.tgz#100077580302d50868479fb0db3516f9f3802513"
+  integrity sha512-b2htlSeXVkZwrnEVAxoUgNe0oiiOheEjibEbxwNXqtWnsSI31fAtVXxXMersVgcliMJGjmtHkpFAItAucG3OSg==
   dependencies:
     "@multiversx/sdk-transaction-decoder" "1.0.2"
     bech32 "1.1.4"
@@ -795,10 +795,10 @@
     keccak "3.0.2"
     protobufjs "7.2.4"
 
-"@multiversx/sdk-core@12.9.0":
-  version "12.9.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.9.0.tgz#e5b4f0f485bda0c6e19fc774c60774fa078b1e12"
-  integrity sha512-NFmzTvL5rvKyTL8xIN/1HRGpNSHeOZUzHEQuvla3e6VxhPmfLkuB4JoVNmJ2EXCeZkBIx2ZqZHUtWdnDg2WbzQ==
+"@multiversx/sdk-core@12.17.0":
+  version "12.17.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-core/-/sdk-core-12.17.0.tgz#7c9a837efe87cc2cabac37c1af372f90d517f386"
+  integrity sha512-SdIdUMT4hVgcmNF2uNOZusrxwEJXFtllJ9YOQMJ4V0f1Ajq4fYGWv88OfNGGNaH/I0BAvMZKFsfVL4zgtVekmQ==
   dependencies:
     "@multiversx/sdk-transaction-decoder" "1.0.2"
     bech32 "1.1.4"
@@ -809,22 +809,22 @@
     keccak "3.0.2"
     protobufjs "7.2.4"
 
-"@multiversx/sdk-dapp@2.24.4":
-  version "2.24.4"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.24.4.tgz#e2d0a158528c20d4101b0a8f2183a90f8c79a7c5"
-  integrity sha512-OUCpTe85RtIOl8SJIP5VNhJlFPsicXGS4D9OrkpxVyW35XRLj8M5zUaVFnZ1TE85NaDIZ4VtPSE14p+eJPj2/w==
+"@multiversx/sdk-dapp@2.25.2":
+  version "2.25.2"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.25.2.tgz#64ce52b9c9c7adeff0ec24aa2d2bfeca0d188eb8"
+  integrity sha512-mWd25A/mznIXkJn6LmSMX8IotpJHCGixLjWO+4Lxok0cztnQ3pQWzimJ5Mfiu/k0eYJxv53X3C1YO11DnWvjWA==
   dependencies:
-    "@multiversx/sdk-core" "12.6.0"
+    "@multiversx/sdk-core" "12.16.0"
     "@multiversx/sdk-extension-provider" "3.0.0"
     "@multiversx/sdk-hw-provider" "6.4.0"
-    "@multiversx/sdk-native-auth-client" "1.0.5"
-    "@multiversx/sdk-network-providers" "1.5.0"
+    "@multiversx/sdk-native-auth-client" "1.0.6"
+    "@multiversx/sdk-network-providers" "2.2.0"
     "@multiversx/sdk-opera-provider" "1.0.0-alpha.1"
     "@multiversx/sdk-wallet" "4.2.0"
     "@multiversx/sdk-wallet-connect-provider" "4.0.4"
     "@multiversx/sdk-web-wallet-provider" "3.1.0"
     "@reduxjs/toolkit" "1.8.2"
-    axios "0.24.0"
+    axios "1.6.2"
     bignumber.js "9.x"
     linkify-react "4.0.2"
     linkifyjs "4.0.2"
@@ -868,30 +868,19 @@
     buffer "6.0.3"
     platform "1.3.6"
 
-"@multiversx/sdk-native-auth-client@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-native-auth-client/-/sdk-native-auth-client-1.0.5.tgz#9cd7a694548206fb86372e51d312fd1343c9f9b8"
-  integrity sha512-MA9KCNy2K0Irw+RMn01mxXB3Z+EcpMuUFBqr6ZhVQyxmXjujK+CHvlXH5TSADIm5Yw2SfGjFGdiqRu64lNVvuA==
+"@multiversx/sdk-native-auth-client@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-native-auth-client/-/sdk-native-auth-client-1.0.6.tgz#6e3a9e3aaeb48e1698998145e2b4a226894f6fb9"
+  integrity sha512-IGJZnanNYGv0CTA02qh402EJ5UbQ73J5tOjRenz2yQBNrqenJCfBJsEX5JJc5Quk/ppuZhl3GppQIBqsrGOidg==
   dependencies:
-    axios "0.24.0"
+    axios "^1.6.2"
 
-"@multiversx/sdk-network-providers@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-network-providers/-/sdk-network-providers-1.5.0.tgz#29e807d87b52f9d5668e747e042ef33c20065796"
-  integrity sha512-GgmpOfwdeK8QvBCVJ96/L2ATNax7/rdSDvPLlmppKHVuFAj56/EqGnrLuktNPRWBsZse+7DMoS38kGtN77AwJQ==
+"@multiversx/sdk-network-providers@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-network-providers/-/sdk-network-providers-2.2.0.tgz#2b8d5fbbc848dbeba38950db2f02340908dfcfd3"
+  integrity sha512-2n/+7Ap6S9rJGTiX38GCZ2TmY9zQ1U7o1DwnWpHNRJRxArSN/xzLrbcSKy8InMyc+4A+VHf5pV0Pk8NdPV6++w==
   dependencies:
-    axios "0.24.0"
-    bech32 "1.1.4"
-    bignumber.js "9.0.1"
-    buffer "6.0.3"
-    json-bigint "1.0.0"
-
-"@multiversx/sdk-network-providers@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-network-providers/-/sdk-network-providers-2.0.0.tgz#0cad999f1825315c601338e33867890d0fbe0f70"
-  integrity sha512-87QlwC2kaNtywDv2IVX/cavRfR4D5N7XgqOvsZTyMXRVbfWOUlDocrRr5BdvmC1gDdSOQH++nFEDHiMfnKmRng==
-  dependencies:
-    axios "0.24.0"
+    axios "1.6.1"
     bech32 "1.1.4"
     bignumber.js "9.0.1"
     buffer "6.0.3"
@@ -2317,12 +2306,23 @@ axe-core@=4.7.0:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.7.0.tgz#34ba5a48a8b564f67e103f0aa5768d76e15bbbbf"
   integrity sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==
 
-axios@0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
-  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
+axios@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.1.tgz#76550d644bf0a2d469a01f9244db6753208397d7"
+  integrity sha512-vfBmhDpKafglh0EldBEbVuoe7DyAavGSLWhuSm5ZSEKQnHhBf0xAAwybbNH1IkrJNGnS/VG4I5yxig1pCEXE4g==
   dependencies:
-    follow-redirects "^1.14.4"
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@1.6.2, axios@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.2.tgz#de67d42c755b571d3e698df1b6504cde9b0ee9f2"
+  integrity sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==
+  dependencies:
+    follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
 
 axobject-query@^3.2.1:
   version "3.2.1"
@@ -3850,7 +3850,7 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.9.tgz#7eb4c67ca1ba34232ca9d2d93e9886e611ad7daf"
   integrity sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==
 
-follow-redirects@^1.14.4:
+follow-redirects@^1.15.0:
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.3.tgz#fe2f3ef2690afce7e82ed0b44db08165b207123a"
   integrity sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==
@@ -6239,6 +6239,11 @@ proxy-from-env@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.0.0.tgz#33c50398f70ea7eb96d21f7b817630a55791c7ee"
   integrity sha512-F2JHgJQ1iqwnHDcQjVBsq3n/uoaFL+iPW/eAeL7kVxy/2RrWaN4WroKjjvbsoRtv0ftelNyC01bjRhn/bhcf4A==
+
+proxy-from-env@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
+  integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
 psl@^1.1.33:
   version "1.9.0"
