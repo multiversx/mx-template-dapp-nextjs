@@ -11,8 +11,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          # start: yarn start-devnet
-          # wait-on: "http://localhost:3002"
+          start: yarn start-devnet
+          wait-on: "http://localhost:3002"
           command: npm run cy:run
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
@@ -20,15 +20,15 @@ jobs:
         with:
             name: cypress-execution-report
             path: |
-               /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/mochawesome-report/mochawesome.html,
+               /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/mochawesome-report/mochawesome.html
                /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/cypress/screenshots
                /home/runner/work/mx-template-dapp-nextjs/mx-template-dapp-nextjs/cypress/videos 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@master
-        env:
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_USERNAME: cypress-report
-            SLACK_TITLE: E2E TESTS
-            SLACK_MESSAGE: "Cypress report test"
+        # env:
+        #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        #     SLACK_USERNAME: cypress-report
+        #     SLACK_TITLE: E2E TESTS
+        #     SLACK_MESSAGE: "Cypress report test"
       
        

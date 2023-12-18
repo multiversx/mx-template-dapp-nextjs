@@ -15,7 +15,7 @@ export default defineConfig({
   },
 
   e2e: {
-    baseUrl: 'https://template-dapp-nextjs.multiversx.com/',
+    baseUrl: 'http://localhost:3002',
     defaultCommandTimeout: 20000,
     responseTimeout: 20000,
     requestTimeout: 20000,
