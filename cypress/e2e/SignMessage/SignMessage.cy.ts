@@ -7,6 +7,9 @@ describe('Sign Message', () => {
     cy.login(WalletIDEnum.unguardedWallet1, 'Connect');
     cy.wait(5000);
   });
+  afterEach(() => {
+    cy.contains('Button', 'Close').click();
+  });
   it('should sign', () => {
     const widgetInfo = ['Signature', 'Encoded message', 'Decoded message'];
     cy.getSelector('signMsgBtn').should('be.disabled');
@@ -31,5 +34,6 @@ describe('Sign Message', () => {
     cy.getSelector(scSelectors.submitButton).click();
     cy.getSelector('closeBtn').click();
     cy.checkUrl(RoutesEnum.dashboard);
+    cy.contains('Transaction canceled');
   });
 });
