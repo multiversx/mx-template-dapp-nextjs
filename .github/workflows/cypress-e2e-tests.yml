@@ -12,7 +12,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           start: yarn start-devnet
-          wait-on: "http://localhost:3002"
+          wait-on: "http://localhost:3000"
           command: npm run cy:run
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
