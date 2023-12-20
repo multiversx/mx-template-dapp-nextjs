@@ -62,7 +62,7 @@ export default function App({ children }: { children: ReactNode }) {
   return (
     <AxiosInterceptorContext.Provider>
       <AxiosInterceptorContext.Interceptor
-        authenticatedDomanis={sampleAuthenticatedDomains}
+        authenticatedDomains={sampleAuthenticatedDomains}
       >
         <BatchTransactionsContextProvider>
           <AppContent>{children}</AppContent>
