@@ -1,4 +1,3 @@
-import { Card } from '@/components';
 import { contractAddress } from '@/config';
 import {
   Account,
@@ -12,20 +11,10 @@ import {
 } from './widgets';
 import { AuthRedirectWrapper } from '@/wrappers';
 import { ClientHooks } from '@/components/ClientHooks';
+import { Widget } from './components';
+import { WidgetType } from '@/types/widget.types';
 
-type WidgetsType = {
-  title: string;
-  widget: (props: {
-    [key: string]: string | number | undefined;
-  }) => JSX.Element;
-  description?: string;
-  props?: { receiver?: string };
-  reference: string;
-  anchor?: string;
-  isCallbackUrlRelative?: boolean;
-};
-
-const WIDGETS: WidgetsType[] = [
+const WIDGETS: WidgetType[] = [
   {
     title: 'Account',
     widget: Account,
@@ -63,8 +52,7 @@ const WIDGETS: WidgetsType[] = [
     widget: SignMessage,
     description: 'Message signing using the connected account',
     reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#account-1',
-    anchor: 'sign-message',
-    isCallbackUrlRelative: false
+    anchor: 'sign-message'
   },
   {
     title: 'Native auth',
@@ -105,28 +93,9 @@ export default function Dashboard() {
       <ClientHooks />
       <AuthRedirectWrapper>
         <div className='flex flex-col gap-6 max-w-3xl w-full'>
-          {WIDGETS.map((element) => {
-            const {
-              title,
-              widget: MxWidget,
-              description,
-              props = {},
-              reference,
-              anchor
-            } = element;
-
-            return (
-              <Card
-                key={title}
-                title={title}
-                description={description}
-                reference={reference}
-                anchor={anchor}
-              >
-                <MxWidget anchor={anchor} {...props} />
-              </Card>
-            );
-          })}
+          {WIDGETS.map((element) => (
+            <Widget key={element.title} {...element} />
+          ))}
         </div>
       </AuthRedirectWrapper>
     </>

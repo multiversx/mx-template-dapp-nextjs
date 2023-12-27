@@ -10,14 +10,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetSignMessageSession } from '@multiversx/sdk-dapp/hooks/signMessage/useGetSignMessageSession';
 import { Button } from '@/components/Button';
 import { OutputContainer } from '@/components/OutputContainer';
-import { useGetLastSignedMessageSession, useSignMessage } from '@/hooks';
+import { useSignMessage } from '@/hooks';
 import { SignedMessageStatusesEnum, WidgetProps } from '@/types';
 import { SignFailure, SignSuccess } from './components';
-import { getCallbackUrl } from '@/utils/getCallbackUrl';
 
-export const SignMessage = ({ anchor }: WidgetProps) => {
+export const SignMessage = ({ callbackRoute }: WidgetProps) => {
   const { sessionId, signMessage, onAbort } = useSignMessage();
-  const signedMessageInfo = useGetLastSignedMessageSession();
   const messageSession = useGetSignMessageSession(sessionId);
 
   const [message, setMessage] = useState('');
@@ -25,7 +23,7 @@ export const SignMessage = ({ anchor }: WidgetProps) => {
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault();
 
-    if (signedMessageInfo) {
+    if (messageSession) {
       onAbort();
     }
 
@@ -33,10 +31,9 @@ export const SignMessage = ({ anchor }: WidgetProps) => {
       return;
     }
 
-    const callbackUrl = getCallbackUrl({ anchor, relative: false });
     signMessage({
       message,
-      callbackRoute: callbackUrl
+      callbackRoute
     });
 
     setMessage('');
@@ -48,24 +45,23 @@ export const SignMessage = ({ anchor }: WidgetProps) => {
     onAbort();
   };
 
-  console.log({ messageSession, signedMessageInfo });
-  const isError =
-    [
-      SignedMessageStatusesEnum.cancelled,
-      SignedMessageStatusesEnum.failed
-    ].includes(signedMessageInfo?.status) && messageSession?.message;
+  const isError = messageSession
+    ? [
+        (SignedMessageStatusesEnum.cancelled, SignedMessageStatusesEnum.failed)
+      ].includes(messageSession.status) && messageSession?.message
+    : false;
 
   const isSuccess =
     messageSession?.message &&
-    signedMessageInfo?.status === SignedMessageStatusesEnum.signed;
+    messageSession?.status === SignedMessageStatusesEnum.signed;
 
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex gap-2 items-start'>
         <Button
+          data-testid='signMsgBtn'
           onClick={handleSubmit}
           disabled={!message}
-          data-testid='signMsgBtn'
         >
           <FontAwesomeIcon icon={faFileSignature} className='mr-1' />
           Sign

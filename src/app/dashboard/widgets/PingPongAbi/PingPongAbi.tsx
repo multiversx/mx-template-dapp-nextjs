@@ -4,33 +4,27 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import moment from 'moment';
-import {
-  Button,
-  OutputContainer,
-  PingPongOutput,
-  ContractAddress,
-  Label
-} from '@/components';
+import { Button } from '@/components/Button';
+import { ContractAddress } from '@/components/ContractAddress';
+import { Label } from '@/components/Label';
+import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { SessionEnum } from '@/localConstants';
 import { SignedTransactionType, WidgetProps } from '@/types';
 import { useGetTimeToPong, useGetPingAmount } from './hooks';
-import { getCallbackUrl } from '@/utils/getCallbackUrl';
 
-export const PingPongAbi = ({ anchor }: WidgetProps) => {
-  const getTimeToPong = useGetTimeToPong();
-  const pingAmount = useGetPingAmount();
+export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
   const { hasPendingTransactions } = useGetPendingTransactions();
-
+  const getTimeToPong = useGetTimeToPong();
   const {
     sendPingTransactionFromAbi,
     sendPongTransactionFromAbi,
     transactionStatus
   } = useSendPingPongTransaction({
-    type: SessionEnum.abiPingPongSessionId,
-    callbackUrl: getCallbackUrl({ anchor })
+    type: SessionEnum.abiPingPongSessionId
   });
+  const pingAmount = useGetPingAmount();
 
   const [stateTransactions, setStateTransactions] = useState<
     SignedTransactionType[] | null
@@ -48,12 +42,12 @@ export const PingPongAbi = ({ anchor }: WidgetProps) => {
     }
   };
 
-  const sendPingTransaction = async () => {
-    await sendPingTransactionFromAbi(pingAmount);
+  const onSendPingTransaction = async () => {
+    await sendPingTransactionFromAbi({ amount: pingAmount, callbackRoute });
   };
 
-  const sendPongTransaction = async () => {
-    await sendPongTransactionFromAbi();
+  const onSendPongTransaction = async () => {
+    await sendPongTransactionFromAbi({ callbackRoute });
   };
 
   const timeRemaining = moment()
@@ -83,8 +77,9 @@ export const PingPongAbi = ({ anchor }: WidgetProps) => {
         <div className='flex justify-start gap-2'>
           <Button
             disabled={!hasPing || hasPendingTransactions}
-            onClick={sendPingTransaction}
+            onClick={onSendPingTransaction}
             data-testid='btnPingAbi'
+            data-cy='transactionBtn'
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
@@ -94,7 +89,8 @@ export const PingPongAbi = ({ anchor }: WidgetProps) => {
           <Button
             disabled={!pongAllowed || hasPing || hasPendingTransactions}
             data-testid='btnPongAbi'
-            onClick={sendPongTransaction}
+            data-cy='transactionBtn'
+            onClick={onSendPongTransaction}
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />
