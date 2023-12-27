@@ -12,8 +12,10 @@ export const Widget = ({
   widget: MxWidget,
   props = {}
 }: WidgetType) => {
-  const { isWebWallet } = useIsWebProvider();
-  const callbackRoute = anchor ? getCallbackRoute({ anchor, isWebWallet }) : '';
+  const { isWebProvider } = useIsWebProvider();
+  const callbackRoute = anchor
+    ? getCallbackRoute({ anchor, isWebProvider })
+    : '';
 
   return (
     <Card

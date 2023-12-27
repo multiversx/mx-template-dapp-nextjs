@@ -34,7 +34,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
   const network = useGetNetworkConfig();
   const { batches } = useGetBatches();
   const { hasPendingTransactions } = useGetPendingTransactions();
-  const { isWebWallet } = useIsWebProvider();
+  const { isWebProvider } = useIsWebProvider();
   const [trackBatchId, setTrackBatchId] = useState(
     sessionStorage.getItem(SessionEnum.batchId)
   );
@@ -65,7 +65,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
 
   const executeSignAndAutoSendBatchTransactions = async () => {
     setSendBatchTransactionsOnDemand(false);
-    if (isWebWallet) {
+    if (isWebProvider) {
       setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'false');
     }
 
@@ -85,7 +85,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
 
   const executeBatchTransactions = async () => {
     setSendBatchTransactionsOnDemand(true);
-    if (isWebWallet) {
+    if (isWebProvider) {
       setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'true');
     }
 
@@ -106,7 +106,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
 
   const executeSwapAndLockTokens = async () => {
     setSendBatchTransactionsOnDemand(false);
-    if (isWebWallet) {
+    if (isWebProvider) {
       setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'false');
     }
 
