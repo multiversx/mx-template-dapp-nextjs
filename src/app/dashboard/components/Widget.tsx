@@ -2,8 +2,7 @@
 import { Card } from '@/components/Card';
 import { getCallbackRoute } from '@/utils/getCallbackRoute';
 import { WidgetType } from '@/types/widget.types';
-import { LoginMethodsEnum } from '@/types/sdkDappTypes';
-import { useGetAccountProvider } from '@/hooks/sdkDappHooks';
+import { useIsWebProvider } from '@/hooks';
 
 export const Widget = ({
   title,
@@ -13,8 +12,7 @@ export const Widget = ({
   widget: MxWidget,
   props = {}
 }: WidgetType) => {
-  const { providerType } = useGetAccountProvider();
-  const isWebWallet = providerType === LoginMethodsEnum.wallet;
+  const { isWebWallet } = useIsWebProvider();
   const callbackRoute = anchor ? getCallbackRoute({ anchor, isWebWallet }) : '';
 
   return (

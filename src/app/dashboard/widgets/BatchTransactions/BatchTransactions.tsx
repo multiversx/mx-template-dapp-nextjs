@@ -14,7 +14,8 @@ import {
 import {
   useGetAccountInfo,
   useGetNetworkConfig,
-  useGetPendingTransactions
+  useGetPendingTransactions,
+  useIsWebProvider
 } from '@/hooks';
 import { SessionEnum } from '@/localConstants/session';
 import { SignedTransactionType, WidgetProps } from '@/types';
@@ -33,6 +34,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
   const network = useGetNetworkConfig();
   const { batches } = useGetBatches();
   const { hasPendingTransactions } = useGetPendingTransactions();
+  const { isWebWallet } = useIsWebProvider();
   const [trackBatchId, setTrackBatchId] = useState(
     sessionStorage.getItem(SessionEnum.batchId)
   );
@@ -63,7 +65,9 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
 
   const executeSignAndAutoSendBatchTransactions = async () => {
     setSendBatchTransactionsOnDemand(false);
-    setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'false');
+    if (isWebWallet) {
+      setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'false');
+    }
 
     const { batchId } = await signAndAutoSendBatchTransactions({
       address,
@@ -81,7 +85,10 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
 
   const executeBatchTransactions = async () => {
     setSendBatchTransactionsOnDemand(true);
-    setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'true');
+    if (isWebWallet) {
+      setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'true');
+    }
+
     const { newBatchSessionId, sessionId } = await sendBatchTransactions({
       address,
       nonce: account.nonce,
@@ -99,7 +106,10 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
 
   const executeSwapAndLockTokens = async () => {
     setSendBatchTransactionsOnDemand(false);
-    setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'false');
+    if (isWebWallet) {
+      setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'false');
+    }
+
     const { batchId: currentBatchId } = await swapAndLockTokens({
       address,
       nonce: account.nonce,
