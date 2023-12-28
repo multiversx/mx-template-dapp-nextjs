@@ -1,5 +1,5 @@
 export * from './getBatchTransactions';
 export * from './getSwapAndLockTransactions';
-export * from './sendBatchTransactions';
+export * from './signWithoutSendingTransactions';
 export * from './signAndAutoSendBatchTransactions';
 export * from './swapAndLockTokens';
