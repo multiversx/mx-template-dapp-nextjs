@@ -12,7 +12,7 @@ import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { useGetLoginInfo } from '@/hooks/sdkDappHooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType, WidgetProps } from '@/types';
+import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
 import {
   useGetTimeToPong,
   useGetPingTransaction,
@@ -115,7 +115,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
             disabled={isPingDisabled}
             onClick={onSendPingTransaction}
             data-testid='btnPingService'
-            data-cy='transactionBtn'
+            data-cy={CypressEnums.transactionBtn}
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
             Ping
@@ -124,7 +124,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
           <Button
             disabled={isPongDisabled}
             data-testid='btnPongService'
-            data-cy='transactionBtn'
+            data-cy={CypressEnums.transactionBtn}
             onClick={onSendPongTransaction}
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />

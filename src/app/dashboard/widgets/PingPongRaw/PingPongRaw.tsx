@@ -10,7 +10,7 @@ import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType, WidgetProps } from '@/types';
+import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
 import { useGetTimeToPong, useGetPingAmount } from './hooks';
 
 // Raw transaction are being done by directly requesting to API instead of calling the smartcontract
@@ -79,7 +79,7 @@ export const PingPongRaw = ({ callbackRoute }: WidgetProps) => {
             disabled={isPingDisabled}
             onClick={onSendPingTransaction}
             data-testid='btnPingRaw'
-            data-cy='transactionBtn'
+            data-cy={CypressEnums.transactionBtn}
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
             Ping
@@ -88,7 +88,7 @@ export const PingPongRaw = ({ callbackRoute }: WidgetProps) => {
           <Button
             disabled={isPongDisabled}
             data-testid='btnPongRaw'
-            data-cy='transactionBtn'
+            data-cy={CypressEnums.transactionBtn}
             onClick={onSendPongTransaction}
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />

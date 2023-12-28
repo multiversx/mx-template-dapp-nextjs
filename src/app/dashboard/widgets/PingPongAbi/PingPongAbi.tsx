@@ -11,7 +11,7 @@ import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType, WidgetProps } from '@/types';
+import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
 import { useGetTimeToPong, useGetPingAmount } from './hooks';
 
 export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
@@ -81,7 +81,7 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
             disabled={isPingDisabled}
             onClick={onSendPingTransaction}
             data-testid='btnPingAbi'
-            data-cy='transactionBtn'
+            data-cy={CypressEnums.transactionBtn}
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
@@ -91,7 +91,7 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
           <Button
             disabled={isPongDisabled}
             data-testid='btnPongAbi'
-            data-cy='transactionBtn'
+            data-cy={CypressEnums.transactionBtn}
             onClick={onSendPongTransaction}
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
