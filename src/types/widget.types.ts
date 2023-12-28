@@ -1,9 +1,10 @@
+import { TransactionsPropsType } from '@/app/dashboard/widgets/Transactions/types';
+
 export type WidgetProps = {
   callbackRoute: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type WidgetType<T = any> = {
+export type WidgetType<T = WidgetProps & TransactionsPropsType> = {
   title: string;
   widget: (props: T) => JSX.Element;
   description?: string;

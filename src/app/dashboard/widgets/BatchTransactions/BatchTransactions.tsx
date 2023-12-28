@@ -22,7 +22,7 @@ import { SignedTransactionType, WidgetProps } from '@/types';
 import { useBatchTransactionContext } from '@/wrappers';
 import { useSendSignedTransactions } from './hooks';
 import {
-  sendBatchTransactions,
+  signWithoutSendingTransactions,
   signAndAutoSendBatchTransactions,
   swapAndLockTokens
 } from './helpers';
@@ -83,18 +83,19 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
     setTrackBatchId(batchId);
   };
 
-  const executeBatchTransactions = async () => {
+  const executeSignWithoutSending = async () => {
     setSendBatchTransactionsOnDemand(true);
     if (isWebProvider) {
       setToSessionStorage(SessionEnum.sendBatchTransactionsOnDemand, 'true');
     }
 
-    const { newBatchSessionId, sessionId } = await sendBatchTransactions({
-      address,
-      nonce: account.nonce,
-      chainID: network.chainID,
-      callbackRoute
-    });
+    const { newBatchSessionId, sessionId } =
+      await signWithoutSendingTransactions({
+        address,
+        nonce: account.nonce,
+        chainID: network.chainID,
+        callbackRoute
+      });
 
     if (!newBatchSessionId || !sessionId) {
       return;
@@ -137,7 +138,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
         </Button>
         <Button
           data-testid='send-transactions'
-          onClick={executeBatchTransactions}
+          onClick={executeSignWithoutSending}
           disabled={hasPendingTransactions}
         >
           <FontAwesomeIcon icon={faPaperPlane} className='mr-1' />

@@ -1,9 +1,9 @@
-import { getBatchTransactions } from '../helpers';
+import { getBatchTransactions } from '.';
 import { sendTransactions } from '@/helpers/sdkDappHelpers';
 import { SessionEnum } from '@/localConstants/session';
 import { SendTransactionProps } from '../types';
 
-export const sendBatchTransactions = async ({
+export const signWithoutSendingTransactions = async ({
   address,
   chainID,
   nonce,

@@ -71,12 +71,14 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
     setSecondsRemaining();
   }, [hasPendingTransactions]);
 
+  const isPingDisabled = !hasPing || hasPendingTransactions;
+  const isPongDisabled = !pongAllowed || hasPing || hasPendingTransactions;
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button
-            disabled={!hasPing || hasPendingTransactions}
+            disabled={isPingDisabled}
             onClick={onSendPingTransaction}
             data-testid='btnPingAbi'
             data-cy='transactionBtn'
@@ -87,7 +89,7 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
           </Button>
 
           <Button
-            disabled={!pongAllowed || hasPing || hasPendingTransactions}
+            disabled={isPongDisabled}
             data-testid='btnPongAbi'
             data-cy='transactionBtn'
             onClick={onSendPongTransaction}
