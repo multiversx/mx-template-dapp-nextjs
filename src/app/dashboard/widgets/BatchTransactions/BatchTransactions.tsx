@@ -157,7 +157,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
 
       <OutputContainer>
         {stateTransactions && (
-          <TransactionsOutput transactions={stateTransactions.flat()} />
+          <TransactionsOutput transactions={stateTransactions} />
         )}
       </OutputContainer>
     </div>
