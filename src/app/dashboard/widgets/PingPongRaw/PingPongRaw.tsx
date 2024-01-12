@@ -3,26 +3,25 @@ import { useEffect, useState } from 'react';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
-import {
-  Button,
-  ContractAddress,
-  OutputContainer,
-  PingPongOutput,
-  Label
-} from '@/components';
+import { Button } from '@/components/Button';
+import { ContractAddress } from '@/components/ContractAddress';
+import { Label } from '@/components/Label';
+import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType } from '@/types';
+import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
 import { useGetTimeToPong, useGetPingAmount } from './hooks';
 
 // Raw transaction are being done by directly requesting to API instead of calling the smartcontract
-export const PingPongRaw = () => {
+export const PingPongRaw = ({ callbackRoute }: WidgetProps) => {
   const getTimeToPong = useGetTimeToPong();
-  const pingAmount = useGetPingAmount();
   const { hasPendingTransactions } = useGetPendingTransactions();
-  const { onSendPingTransaction, onSendPongTransaction, transactionStatus } =
-    useSendPingPongTransaction(SessionEnum.rawPingPongSessionId);
+  const { sendPingTransaction, sendPongTransaction, transactionStatus } =
+    useSendPingPongTransaction({
+      type: SessionEnum.rawPingPongSessionId
+    });
+  const pingAmount = useGetPingAmount();
 
   const [stateTransactions, setStateTransactions] = useState<
     SignedTransactionType[] | null
@@ -40,12 +39,12 @@ export const PingPongRaw = () => {
     }
   };
 
-  const sendPingTransaction = async () => {
-    await onSendPingTransaction(pingAmount);
+  const onSendPingTransaction = async () => {
+    await sendPingTransaction({ amount: pingAmount, callbackRoute });
   };
 
-  const sendPongTransaction = async () => {
-    await onSendPongTransaction();
+  const onSendPongTransaction = async () => {
+    await sendPongTransaction({ callbackRoute });
   };
 
   const timeRemaining = moment()
@@ -69,23 +68,28 @@ export const PingPongRaw = () => {
     setSecondsRemaining();
   }, [hasPendingTransactions]);
 
+  const isPingDisabled = !hasPing || hasPendingTransactions;
+  const isPongDisabled = !pongAllowed || hasPing || hasPendingTransactions;
+
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button
-            disabled={!hasPing || hasPendingTransactions}
-            onClick={sendPingTransaction}
+            disabled={isPingDisabled}
+            onClick={onSendPingTransaction}
             data-testid='btnPingRaw'
+            data-cy={CypressEnums.transactionBtn}
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
             Ping
           </Button>
 
           <Button
-            disabled={!pongAllowed || hasPing || hasPendingTransactions}
+            disabled={isPongDisabled}
             data-testid='btnPongRaw'
-            onClick={sendPongTransaction}
+            data-cy={CypressEnums.transactionBtn}
+            onClick={onSendPongTransaction}
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />
             Pong

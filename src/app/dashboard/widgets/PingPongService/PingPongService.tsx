@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
 import { Button } from '@/components/Button';
 import { ContractAddress } from '@/components/ContractAddress';
+import { Label } from '@/components/Label';
 import { MissingNativeAuthError } from '@/components/MissingNativeAuthError';
 import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
-import { Label } from '@/components/Label';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { useGetLoginInfo } from '@/hooks/sdkDappHooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType } from '@/types';
+import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
 import {
   useGetTimeToPong,
   useGetPingTransaction,
@@ -20,7 +20,7 @@ import {
 } from './hooks';
 
 // The transactions are being done by directly requesting to template-dapp service
-export const PingPongService = () => {
+export const PingPongService = ({ callbackRoute }: WidgetProps) => {
   const [stateTransactions, setStateTransactions] = useState<
     SignedTransactionType[] | null
   >(null);
@@ -31,7 +31,9 @@ export const PingPongService = () => {
     sendPingTransactionFromService,
     sendPongTransactionFromService,
     transactionStatus
-  } = useSendPingPongTransaction(SessionEnum.abiPingPongServiceSessionId);
+  } = useSendPingPongTransaction({
+    type: SessionEnum.abiPingPongServiceSessionId
+  });
   const getTimeToPong = useGetTimeToPong();
   const getPingTransaction = useGetPingTransaction();
   const getPongTransaction = useGetPongTransaction();
@@ -59,7 +61,10 @@ export const PingPongService = () => {
       return;
     }
 
-    await sendPingTransactionFromService(pingTransaction);
+    await sendPingTransactionFromService({
+      transactions: [pingTransaction],
+      callbackRoute
+    });
   };
 
   const onSendPongTransaction = async () => {
@@ -69,7 +74,10 @@ export const PingPongService = () => {
       return;
     }
 
-    await sendPongTransactionFromService(pongTransaction);
+    await sendPongTransactionFromService({
+      transactions: [pongTransaction],
+      callbackRoute
+    });
   };
 
   const timeRemaining = moment()
@@ -97,22 +105,26 @@ export const PingPongService = () => {
     return <MissingNativeAuthError />;
   }
 
+  const isPingDisabled = !hasPing || hasPendingTransactions;
+  const isPongDisabled = !pongAllowed || hasPing || hasPendingTransactions;
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button
-            disabled={!hasPing || hasPendingTransactions}
+            disabled={isPingDisabled}
             onClick={onSendPingTransaction}
             data-testid='btnPingService'
+            data-cy={CypressEnums.transactionBtn}
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
             Ping
           </Button>
 
           <Button
-            disabled={!pongAllowed || hasPing || hasPendingTransactions}
+            disabled={isPongDisabled}
             data-testid='btnPongService'
+            data-cy={CypressEnums.transactionBtn}
             onClick={onSendPongTransaction}
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />

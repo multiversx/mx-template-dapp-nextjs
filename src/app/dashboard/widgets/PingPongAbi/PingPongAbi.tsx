@@ -4,28 +4,27 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import moment from 'moment';
-import {
-  Button,
-  OutputContainer,
-  PingPongOutput,
-  ContractAddress,
-  Label
-} from '@/components';
+import { Button } from '@/components/Button';
+import { ContractAddress } from '@/components/ContractAddress';
+import { Label } from '@/components/Label';
+import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
 import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType } from '@/types';
+import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
 import { useGetTimeToPong, useGetPingAmount } from './hooks';
 
-export const PingPongAbi = () => {
-  const getTimeToPong = useGetTimeToPong();
-  const pingAmount = useGetPingAmount();
+export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
   const { hasPendingTransactions } = useGetPendingTransactions();
+  const getTimeToPong = useGetTimeToPong();
   const {
     sendPingTransactionFromAbi,
     sendPongTransactionFromAbi,
     transactionStatus
-  } = useSendPingPongTransaction(SessionEnum.abiPingPongSessionId);
+  } = useSendPingPongTransaction({
+    type: SessionEnum.abiPingPongSessionId
+  });
+  const pingAmount = useGetPingAmount();
 
   const [stateTransactions, setStateTransactions] = useState<
     SignedTransactionType[] | null
@@ -43,12 +42,12 @@ export const PingPongAbi = () => {
     }
   };
 
-  const sendPingTransaction = async () => {
-    await sendPingTransactionFromAbi(pingAmount);
+  const onSendPingTransaction = async () => {
+    await sendPingTransactionFromAbi({ amount: pingAmount, callbackRoute });
   };
 
-  const sendPongTransaction = async () => {
-    await sendPongTransactionFromAbi();
+  const onSendPongTransaction = async () => {
+    await sendPongTransactionFromAbi({ callbackRoute });
   };
 
   const timeRemaining = moment()
@@ -72,14 +71,17 @@ export const PingPongAbi = () => {
     setSecondsRemaining();
   }, [hasPendingTransactions]);
 
+  const isPingDisabled = !hasPing || hasPendingTransactions;
+  const isPongDisabled = !pongAllowed || hasPing || hasPendingTransactions;
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button
-            disabled={!hasPing || hasPendingTransactions}
-            onClick={sendPingTransaction}
+            disabled={isPingDisabled}
+            onClick={onSendPingTransaction}
             data-testid='btnPingAbi'
+            data-cy={CypressEnums.transactionBtn}
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
@@ -87,9 +89,10 @@ export const PingPongAbi = () => {
           </Button>
 
           <Button
-            disabled={!pongAllowed || hasPing || hasPendingTransactions}
+            disabled={isPongDisabled}
             data-testid='btnPongAbi'
-            onClick={sendPongTransaction}
+            data-cy={CypressEnums.transactionBtn}
+            onClick={onSendPongTransaction}
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />

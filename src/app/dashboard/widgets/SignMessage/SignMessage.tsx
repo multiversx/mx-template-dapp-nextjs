@@ -10,13 +10,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetSignMessageSession } from '@multiversx/sdk-dapp/hooks/signMessage/useGetSignMessageSession';
 import { Button } from '@/components/Button';
 import { OutputContainer } from '@/components/OutputContainer';
-import { useGetLastSignedMessageSession, useSignMessage } from '@/hooks';
-import { SignedMessageStatusesEnum } from '@/types';
+import { useSignMessage } from '@/hooks';
+import { SignedMessageStatusesEnum, WidgetProps } from '@/types';
 import { SignFailure, SignSuccess } from './components';
 
-export const SignMessage = () => {
+export const SignMessage = ({ callbackRoute }: WidgetProps) => {
   const { sessionId, signMessage, onAbort } = useSignMessage();
-  const signedMessageInfo = useGetLastSignedMessageSession();
   const messageSession = useGetSignMessageSession(sessionId);
 
   const [message, setMessage] = useState('');
@@ -24,7 +23,7 @@ export const SignMessage = () => {
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault();
 
-    if (signedMessageInfo) {
+    if (messageSession) {
       onAbort();
     }
 
@@ -34,7 +33,7 @@ export const SignMessage = () => {
 
     signMessage({
       message,
-      callbackRoute: window.location.href
+      callbackRoute
     });
 
     setMessage('');
@@ -46,23 +45,23 @@ export const SignMessage = () => {
     onAbort();
   };
 
-  const isError =
-    [
-      SignedMessageStatusesEnum.cancelled,
-      SignedMessageStatusesEnum.failed
-    ].includes(signedMessageInfo?.status) && messageSession?.message;
+  const isError = messageSession
+    ? [
+        (SignedMessageStatusesEnum.cancelled, SignedMessageStatusesEnum.failed)
+      ].includes(messageSession.status) && messageSession?.message
+    : false;
 
   const isSuccess =
     messageSession?.message &&
-    signedMessageInfo?.status === SignedMessageStatusesEnum.signed;
+    messageSession?.status === SignedMessageStatusesEnum.signed;
 
   return (
     <div className='flex flex-col gap-6'>
-      <div className='flex flex gap-2 items-start'>
+      <div className='flex gap-2 items-start'>
         <Button
+          data-testid='signMsgBtn'
           onClick={handleSubmit}
           disabled={!message}
-          data-testid='signMsgBtn'
         >
           <FontAwesomeIcon icon={faFileSignature} className='mr-1' />
           Sign
@@ -86,7 +85,7 @@ export const SignMessage = () => {
         {!isSuccess && !isError && (
           <textarea
             placeholder='Write message here'
-            className='resize-none rounded-md w-full h-32 rounded-lg focus:outline-none focus:border-blue-500'
+            className='resize-none w-full h-32 rounded-lg focus:outline-none focus:border-blue-500'
             onChange={(event) => setMessage(event.currentTarget.value)}
           />
         )}
