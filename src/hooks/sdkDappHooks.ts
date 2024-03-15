@@ -1,4 +1,4 @@
-"use client";
+'use client';
 export { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
 export { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks/account/useGetAccountInfo';
 export { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';
@@ -16,3 +16,4 @@ export { useCheckBatch } from '@multiversx/sdk-dapp/hooks/transactions/batch/tra
 export { useSignTransactions } from '@multiversx/sdk-dapp/hooks/transactions/useSignTransactions';
 export { useBatchTransactionsTracker } from '@multiversx/sdk-dapp/hooks/transactions/batch/tracker/useBatchTransactionsTracker';
 export { useGetSignedTransactions } from '@multiversx/sdk-dapp/hooks/transactions/useGetSignedTransactions';
+export { useGetAccountProvider } from '@multiversx/sdk-dapp/hooks/account/useGetAccountProvider';

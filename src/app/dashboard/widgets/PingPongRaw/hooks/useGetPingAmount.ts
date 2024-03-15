@@ -13,7 +13,7 @@ const decodeAmount = (data: PingPongResponseType) => {
 };
 
 export const useGetPingAmount = () => {
-  const [pingAmount, setPingAmount] = useState<string>();
+  const [pingAmount, setPingAmount] = useState<string>('0');
   const { network } = useGetNetworkConfig();
 
   const getPingAmount = async () => {
@@ -27,7 +27,7 @@ export const useGetPingAmount = () => {
         }
       );
 
-      const amount = decodeAmount(data)
+      const amount = decodeAmount(data);
       setPingAmount(String(amount));
     } catch (err) {
       console.error('Unable to call getPingAmount - RAW', err);

@@ -12,8 +12,9 @@ import {
   ExtensionLoginButton,
   LedgerLoginButton,
   WalletConnectLoginButton,
-  WebWalletLoginButton,
-  OperaWalletLoginButton
+  WebWalletLoginButton as WebWalletUrlLoginButton,
+  OperaWalletLoginButton,
+  CrossWindowLoginButton
 } from '@/components';
 import { nativeAuth } from '@/config';
 import { AuthRedirectWrapper } from '@/wrappers';
@@ -26,16 +27,21 @@ type CommonPropsType =
   | LedgerLoginButtonPropsType
   | WalletConnectLoginButtonPropsType;
 
-const commonProps: CommonPropsType = {
-  callbackRoute: RouteNamesEnum.dashboard,
-  nativeAuth
-};
+// choose how you want to configure connecting to the web wallet
+const USE_WEB_WALLET_CROSS_WINDOW = true;
+
+const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
+  ? CrossWindowLoginButton
+  : WebWalletUrlLoginButton;
 
 export default function Unlock() {
   const router = useRouter();
-
-  const onLoginRedirect = () => {
-    router.push(RouteNamesEnum.dashboard);
+  const commonProps: CommonPropsType = {
+    callbackRoute: RouteNamesEnum.dashboard,
+    nativeAuth,
+    onLoginRedirect: () => {
+      router.push(RouteNamesEnum.dashboard);
+    }
   };
 
   return (
@@ -54,16 +60,10 @@ export default function Unlock() {
           <div className='flex flex-col md:flex-row'>
             <WalletConnectLoginButton
               loginButtonText='xPortal App'
-              onLoginRedirect={onLoginRedirect}
               {...commonProps}
             />
-            <LedgerLoginButton
-              loginButtonText='Ledger'
-              onLoginRedirect={onLoginRedirect}
-              {...commonProps}
-            />
+            <LedgerLoginButton loginButtonText='Ledger' {...commonProps} />
             <ExtensionLoginButton
-              onLoginRedirect={onLoginRedirect}
               loginButtonText='DeFi Wallet'
               {...commonProps}
             />
