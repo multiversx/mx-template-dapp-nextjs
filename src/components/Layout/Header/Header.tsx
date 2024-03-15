@@ -9,10 +9,18 @@ import mvxLogo from '../../../../public/assets/img/multiversx-logo.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { getWindowLocation } from '@/utils/sdkDappUtils';
+import { usePathname } from 'next/navigation';
 
 export const Header = () => {
   const router = useRouter();
   const isLoggedIn = useGetIsLoggedIn();
+  const pathname = usePathname();
+
+  const isUnlockRoute = Boolean(pathname === RouteNamesEnum.unlock);
+
+  const ConnectButton = isUnlockRoute ? null : (
+    <MxLink to={RouteNamesEnum.unlock}>Connect</MxLink>
+  );
 
   const onRedirect = () => {
     router.replace(RouteNamesEnum.unlock);
@@ -48,7 +56,7 @@ export const Header = () => {
               Close
             </Button>
           ) : (
-            <MxLink to={RouteNamesEnum.unlock}>Connect</MxLink>
+            ConnectButton
           )}
         </div>
       </nav>
