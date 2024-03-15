@@ -828,10 +828,10 @@
     keccak "3.0.2"
     protobufjs "7.2.4"
 
-"@multiversx/sdk-dapp@2.29.0-beta.6":
-  version "2.29.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.29.0-beta.6.tgz#1d4212e7f4b09acde6bf428bbbd59a317b2fb289"
-  integrity sha512-xPtnShTzphorei8JIcClZ2mLhFjeJphGfaRJk4NtxoDwNHxp2WlbchdxHsP6CZcQrR3wf2SjW/TZgOcCaQZe/g==
+"@multiversx/sdk-dapp@2.29.0-beta.7":
+  version "2.29.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.29.0-beta.7.tgz#3620a9586cb929ef0db827c8ddafae64b1c3df1a"
+  integrity sha512-uf9PzuMS8GfVXaMfGqpOv68GDgdnhP+ywL7LnJ4B5Xdv+OnT62eEDbRuXS5XUyGE0TkHPYa/EqXM+6PU6tO+9Q==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
     "@multiversx/sdk-core" "13.0.0-beta.4"
