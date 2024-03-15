@@ -22,6 +22,7 @@ import {
 } from '@/types/pingPong.types';
 import { newTransaction } from '@/helpers/sdkDappHelpers';
 import { Transaction } from '@/types/sdkCoreTypes';
+import { Address } from '@multiversx/sdk-core';
 
 type PingPongTransactionProps = {
   type: SessionEnum;
@@ -68,6 +69,7 @@ export const useSendPingPongTransaction = ({
         .withValue(amount ?? '0')
         .withGasLimit(60000000)
         .withChainID(getChainId())
+        .withSender(new Address(address))
         .buildTransaction();
 
       const sessionId = await signAndSendTransactions({
@@ -91,6 +93,7 @@ export const useSendPingPongTransaction = ({
         .withValue('0')
         .withGasLimit(60000000)
         .withChainID(getChainId())
+        .withSender(new Address(address))
         .buildTransaction();
 
       const sessionId = await signAndSendTransactions({
