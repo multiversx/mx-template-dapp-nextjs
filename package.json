@@ -16,7 +16,7 @@
     "build-testnet": "yarn run copy-testnet-config & next build",
     "build-devnet": "yarn run copy-devnet-config & next build",
     "preview": "next start",
-    "test": "jest --maxWorkers=2",
+    "test": "jest",
     "cy:run": "node scripts/cypress.ts"
   },
   "dependencies": {
