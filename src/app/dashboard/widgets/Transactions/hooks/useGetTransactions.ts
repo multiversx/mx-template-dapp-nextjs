@@ -5,7 +5,6 @@ import { useGetAccount, useGetNetworkConfig } from '@/hooks';
 import { ServerTransactionType } from '@/types';
 import { getInterpretedTransaction } from '@/utils';
 import { TransactionsPropsType } from '../types';
-import { Transaction } from '@multiversx/sdk-core/out';
 
 export const useGetTransactions = (payload?: TransactionsPropsType) => {
   const { address } = useGetAccount();
@@ -29,7 +28,7 @@ export const useGetTransactions = (payload?: TransactionsPropsType) => {
         ...(payload ?? {})
       });
 
-      const interpretedTransactions = data.map((transaction: Transaction) =>
+      const interpretedTransactions = data.map((transaction) =>
         getInterpretedTransaction({ transaction, address, explorerAddress })
       );
       setTransactions(interpretedTransactions);
