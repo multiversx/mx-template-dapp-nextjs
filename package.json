@@ -17,7 +17,8 @@
     "build-devnet": "yarn run copy-devnet-config & next build",
     "preview": "next start",
     "test": "jest",
-    "cy:run": "node scripts/cypress.ts"
+    "wdio-smoke": "wdio run wdio/wdio.conf.ts",
+    "smoke": "wdio run wdio/wdio.conf.ts --suite smoke"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.5.1",
@@ -48,8 +49,6 @@
     "@typescript-eslint/eslint-plugin": "6.7.4",
     "autoprefixer": "10.4.16",
     "bufferutil": "4.0.7",
-    "cypress": "13.3.0",
-    "cypress-mochawesome-reporter": "3.7.0",
     "eslint-config-prettier": "9.0.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
@@ -61,6 +60,13 @@
     "tailwindcss": "3.3.3",
     "ts-jest": "29.1.1",
     "utf-8-validate": "6.0.3",
-    "webpack-node-externals": "3.0.0"
+    "webpack-node-externals": "3.0.0",
+    "@wdio/local-runner": "^8.32.4",
+    "@wdio/mocha-framework": "^8.32.4",
+    "@wdio/spec-reporter": "^8.32.4",
+    "@wdio/cli": "^8.33.1",
+    "ts-node": "10.9.2",
+    "@wdio/concise-reporter": "8.32.4"
+
   }
 }
