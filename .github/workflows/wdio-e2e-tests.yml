@@ -22,6 +22,7 @@ jobs:
           cmd: install
 
       - name: Start Devnet
+        timeout-minutes: 1
         run: npm run start-devnet
 
       - name: Start WDIO
