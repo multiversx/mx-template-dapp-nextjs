@@ -22,7 +22,7 @@ jobs:
           cmd: install
 
       - name: Start Devnet
-        run: npm start-devnet
+        run: npm run start-devnet
 
       - name: Start WDIO
         run: npm run wdio-smoke
