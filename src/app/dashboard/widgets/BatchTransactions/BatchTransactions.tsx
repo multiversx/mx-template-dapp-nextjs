@@ -31,7 +31,7 @@ import { setToSessionStorage } from '@/helpers/sessionStorage';
 export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
   const { setSendBatchTransactionsOnDemand } = useBatchTransactionContext();
   const { address, account } = useGetAccountInfo();
-  const network = useGetNetworkConfig();
+  const { network } = useGetNetworkConfig();
   const { batches } = useGetBatches();
   const { hasPendingTransactions } = useGetPendingTransactions();
   const { isWebProvider } = useIsWebProvider();
@@ -72,7 +72,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
     const { batchId } = await signAndAutoSendBatchTransactions({
       address,
       nonce: account.nonce,
-      chainID: network.chainID,
+      chainID: network.chainId,
       callbackRoute
     });
 
@@ -93,7 +93,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
       await signWithoutSendingTransactions({
         address,
         nonce: account.nonce,
-        chainID: network.chainID,
+        chainID: network.chainId,
         callbackRoute
       });
 
@@ -114,7 +114,7 @@ export const BatchTransactions = ({ callbackRoute }: WidgetProps) => {
     const { batchId: currentBatchId } = await swapAndLockTokens({
       address,
       nonce: account.nonce,
-      chainID: network.chainID,
+      chainID: network.chainId,
       callbackRoute
     });
 

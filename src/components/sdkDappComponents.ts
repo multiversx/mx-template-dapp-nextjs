@@ -20,3 +20,4 @@ export { TransactionRow } from '@multiversx/sdk-dapp/UI/TransactionsTable/compon
 export { ACCOUNTS_ENDPOINT } from '@multiversx/sdk-dapp/apiCalls/endpoints';
 export { ExplorerLink } from '@multiversx/sdk-dapp/UI/ExplorerLink';
 export { TransactionsToastList } from '@multiversx/sdk-dapp/UI/TransactionsToastList/TransactionsToastList';
+export { MetamaskProxyButton } from '@multiversx/sdk-dapp/UI/metamaskProxy/MetamaskProxyLoginButton/MetamaskProxyButton';
