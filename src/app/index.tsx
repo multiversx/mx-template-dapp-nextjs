@@ -13,7 +13,8 @@ import {
   apiTimeout,
   walletConnectV2ProjectId,
   environment,
-  sampleAuthenticatedDomains
+  sampleAuthenticatedDomains,
+  metamaskSnapWalletAddress
 } from '@/config';
 import { BatchTransactionsContextProvider } from '@/wrappers';
 import { AxiosInterceptorContext } from '@multiversx/sdk-dapp/wrappers/AxiosInterceptorContext';
@@ -26,7 +27,8 @@ const AppContent = ({ children }: PropsWithChildren) => {
       customNetworkConfig={{
         name: 'customConfig',
         apiTimeout,
-        walletConnectV2ProjectId
+        walletConnectV2ProjectId,
+        metamaskSnapWalletAddress
       }}
       dappConfig={{
         isSSR: true,
