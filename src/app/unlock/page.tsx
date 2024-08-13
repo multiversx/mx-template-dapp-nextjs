@@ -14,7 +14,8 @@ import {
   WalletConnectLoginButton,
   WebWalletLoginButton as WebWalletUrlLoginButton,
   OperaWalletLoginButton,
-  CrossWindowLoginButton
+  CrossWindowLoginButton,
+  MetamaskProxyButton
 } from '@/components';
 import { nativeAuth } from '@/config';
 import { AuthRedirectWrapper } from '@/wrappers';
@@ -74,6 +75,10 @@ export default function Unlock() {
             <WebWalletLoginButton
               loginButtonText='Web Wallet'
               data-testid='webWalletLoginBtn'
+              {...commonProps}
+            />
+            <MetamaskProxyButton
+              loginButtonText='Metamask Proxy'
               {...commonProps}
             />
           </div>
