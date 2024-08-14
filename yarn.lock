@@ -919,10 +919,10 @@
   resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp-utils/-/sdk-dapp-utils-0.0.1.tgz#ba8bd9319649d45dea9a76beca1e03d957dea2cb"
   integrity sha512-fl3TdES93Jc4T559BI+QxNRGRUTabb7TiAXHKL9g6mbLD+silK+5euAoDpPBkbZpVFnfsXQssUVuyKBV4Ine6w==
 
-"@multiversx/sdk-dapp@2.38.3":
-  version "2.38.3"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.38.3.tgz#0b0ef2c780c605a9c44aa1fc5582108d6ee893cd"
-  integrity sha512-5YDaTdQ8OkZmFuNq1YBB4EQ6mrIvtwiky01QQNzYvERg4Zb0+yl+kFLbn7xsJizXsNqNLsPOH1SFqWh9IRuBXA==
+"@multiversx/sdk-dapp@2.38.4":
+  version "2.38.4"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-dapp/-/sdk-dapp-2.38.4.tgz#10fea9f22c170addb12ff250a340fb813e6cdffb"
+  integrity sha512-GRfsq6d9wofhzAHm1gxuRhhU3oogadWI6/iK9vEC0oTu60DZV2gLyn+9bEd+1uGKlcNo6NOCkQiELX9/kN8Nqw==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
     "@metamask/providers" "16.0.0"
@@ -930,7 +930,7 @@
     "@multiversx/sdk-extension-provider" "3.0.0"
     "@multiversx/sdk-hw-provider" "6.4.0"
     "@multiversx/sdk-metamask-provider" "0.0.5"
-    "@multiversx/sdk-metamask-proxy-provider" "0.3.1"
+    "@multiversx/sdk-metamask-proxy-provider" "0.3.2"
     "@multiversx/sdk-native-auth-client" "1.0.7"
     "@multiversx/sdk-opera-provider" "1.0.0-alpha.1"
     "@multiversx/sdk-wallet" "4.2.0"
@@ -991,10 +991,10 @@
     "@metamask/providers" "16.0.0"
     "@multiversx/sdk-core" "12.18.0"
 
-"@multiversx/sdk-metamask-proxy-provider@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@multiversx/sdk-metamask-proxy-provider/-/sdk-metamask-proxy-provider-0.3.1.tgz#caa6bc9648a7a036a0062b2d879eecaa44f8a054"
-  integrity sha512-es2IPHXfJt0QD2qqMkEVSUPZ/Sdh5BRjJzy10nG1rf+9Pe5HkFClQzIrh6hEAvKM6AqBpBU3wv6Tl3iFoQ+DTg==
+"@multiversx/sdk-metamask-proxy-provider@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@multiversx/sdk-metamask-proxy-provider/-/sdk-metamask-proxy-provider-0.3.2.tgz#907813f0695b8dbda5fbd2068e222d7516aefe11"
+  integrity sha512-U7i5bpJgAaF0qe21Conu5/fO1i7h6zMsaCdptr4on/r2VGFgWln7pg0nMdhTo6U89nKOADsQVVVxvRla7sg5vw==
   dependencies:
     "@types/jest" "^29.5.11"
     "@types/qs" "6.9.10"
