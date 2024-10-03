@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { OutputContainer, TransactionRow } from '@/components';
 import { useGetActiveTransactionsStatus } from '@/hooks';
+import { InterpretedTransactionType } from '@/types/sdkDappTypes';
 import { useGetTransactions } from './hooks';
 import { TransactionsPropsType } from './types';
 
@@ -53,7 +54,7 @@ export const Transactions = (props: TransactionsPropsType) => {
                 <TransactionRow
                   key={transaction.txHash}
                   className='mx-transactions text-gray-500'
-                  transaction={transaction}
+                  transaction={transaction as InterpretedTransactionType}
                 />
               ))}
             </tbody>
