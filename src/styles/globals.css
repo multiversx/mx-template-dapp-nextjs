@@ -22,3 +22,5 @@
 .mx-transactions td > div > a {
   @apply text-blue-600;
 }
+
+@import 'node_modules/@multiversx/sdk-dapp-liquidity/style.css';

@@ -1,3 +1,4 @@
+export * from './Deposit';
 export * from './PingPongAbi';
 export * from './Account';
 export * from './SignMessage';

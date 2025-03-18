@@ -1,5 +1,6 @@
 import { contractAddress } from '@/config';
 import {
+  Deposit,
   Account,
   PingPongAbi,
   SignMessage,
@@ -15,6 +16,12 @@ import { Widget } from './components';
 import { WidgetType } from '@/types/widget.types';
 
 const WIDGETS: WidgetType[] = [
+  {
+    title: 'Deposit',
+    widget: Deposit,
+    description: 'Deposit funds',
+    reference: 'https://docs.multiversx.com/sdk-and-tools/sdk-dapp/#deposit'
+  },
   {
     title: 'Account',
     widget: Account,
