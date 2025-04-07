@@ -1,12 +1,13 @@
 'use client';
-import {
-  TRANSACTIONS_ENDPOINT,
-  ACCOUNTS_ENDPOINT
-} from '@multiversx/sdk-dapp/apiCalls/endpoints';
+
 import { useGetNetworkConfig } from '@/hooks';
 import { SignedTransactionType } from '@/types';
-import { FormatAmount, ExplorerLink } from '@/components/sdkDappComponents';
+import {
+  MvxFormatAmount,
+  MvxExplorerLink
+} from '@/components/sdkDappCoreUIComponents';
 import { Label } from '@/components/Label';
+import { ACCOUNTS_ENDPOINT, TRANSACTIONS_ENDPOINT } from '@/localConstants';
 
 export const TransactionOutput = ({
   transaction
@@ -22,25 +23,25 @@ export const TransactionOutput = ({
     <div className='flex flex-col'>
       <p>
         <Label>Hash:</Label>
-        <ExplorerLink
+        <MvxExplorerLink
           page={`/${TRANSACTIONS_ENDPOINT}/${transaction.hash}`}
           className='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800'
         >
           {transaction.hash}
-        </ExplorerLink>
+        </MvxExplorerLink>
       </p>
       <p>
         <Label>Receiver:</Label>
-        <ExplorerLink
+        <MvxExplorerLink
           page={`/${ACCOUNTS_ENDPOINT}/${transaction.receiver}`}
           className='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800'
         >
           {transaction.receiver}
-        </ExplorerLink>
+        </MvxExplorerLink>
       </p>
       <p>
         <Label>Amount: </Label>
-        <FormatAmount
+        <MvxFormatAmount
           value={transaction.value}
           showLabel={transaction.value !== '0'}
           egldLabel={network.egldLabel}

@@ -1,18 +1,18 @@
-import { ACCOUNTS_ENDPOINT } from '@multiversx/sdk-dapp/apiCalls/endpoints';
 import { contractAddress } from '@/config';
-import { ExplorerLink } from '../sdkDappComponents';
+import { MvxExplorerLink } from '../sdkDappCoreUIComponents';
 import { Label } from '@/components/Label';
+import { ACCOUNTS_ENDPOINT } from '@/localConstants';
 
 export const ContractAddress = () => {
   return (
     <p>
       <Label>Contract: </Label>
-      <ExplorerLink
+      <MvxExplorerLink
         page={`/${ACCOUNTS_ENDPOINT}/${contractAddress}`}
         className='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800'
       >
         {contractAddress}
-      </ExplorerLink>
+      </MvxExplorerLink>
     </p>
   );
 };

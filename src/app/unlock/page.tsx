@@ -1,89 +1,64 @@
 'use client';
-import React from 'react';
+import { Button, MvxUnlockButton, MvxUnlockPanel } from '@/components';
+import { ProviderFactory } from '@/helpers';
+import { ExtendedProviders } from '@/initConfig';
 import { RouteNamesEnum } from '@/localConstants';
-import type {
-  ExtensionLoginButtonPropsType,
-  WebWalletLoginButtonPropsType,
-  OperaWalletLoginButtonPropsType,
-  LedgerLoginButtonPropsType,
-  WalletConnectLoginButtonPropsType
-} from '@multiversx/sdk-dapp/UI';
-import {
-  ExtensionLoginButton,
-  LedgerLoginButton,
-  WalletConnectLoginButton,
-  WebWalletLoginButton as WebWalletUrlLoginButton,
-  OperaWalletLoginButton,
-  CrossWindowLoginButton,
-  MetamaskLoginButton
-} from '@/components';
-import { nativeAuth } from '@/config';
-import { AuthRedirectWrapper } from '@/wrappers';
-import { useRouter } from 'next/navigation';
+import { IProviderFactory } from '@/types';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-type CommonPropsType =
-  | OperaWalletLoginButtonPropsType
-  | ExtensionLoginButtonPropsType
-  | WebWalletLoginButtonPropsType
-  | LedgerLoginButtonPropsType
-  | WalletConnectLoginButtonPropsType;
+const SHOW_ADVANCED_LOGIN_METHOD = true;
 
-// choose how you want to configure connecting to the web wallet
-const USE_WEB_WALLET_CROSS_WINDOW = true;
-
-const WebWalletLoginButton = USE_WEB_WALLET_CROSS_WINDOW
-  ? CrossWindowLoginButton
-  : WebWalletUrlLoginButton;
-
-export default function Unlock() {
+export const ConnectButton = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const commonProps: CommonPropsType = {
-    callbackRoute: RouteNamesEnum.dashboard,
-    nativeAuth,
-    onLoginRedirect: () => {
-      router.push(RouteNamesEnum.dashboard);
-    }
+
+  const handleLogin = async ({ type, anchor }: IProviderFactory) => {
+    const provider = await ProviderFactory.create({
+      type,
+      anchor
+    });
+    await provider?.login();
+    router.push(RouteNamesEnum.dashboard);
+  };
+
+  const handleOpenUnlockPanel = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseUnlockPanel = () => {
+    setIsOpen(false);
   };
 
   return (
-    <AuthRedirectWrapper requireAuth={false}>
-      <div className='flex justify-center items-center'>
-        <div
-          className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa]'
-          data-testid='unlockPage'
-        >
-          <div className='flex flex-col items-center gap-1'>
-            <h2 className='text-2xl'>Login</h2>
-
-            <p className='text-center text-gray-400'>Choose a login method</p>
-          </div>
-
-          <div className='flex flex-col md:flex-row'>
-            <WalletConnectLoginButton
-              loginButtonText='xPortal App'
-              {...commonProps}
+    <>
+      <Button onClick={handleOpenUnlockPanel}>Connect</Button>
+      <MvxUnlockPanel
+        isOpen={isOpen}
+        onLogin={({ detail }) =>
+          handleLogin({
+            type: detail.provider,
+            anchor: detail.anchor
+          })
+        }
+        onClose={handleCloseUnlockPanel}
+      >
+        {
+          // you can safely remove this if you don't need to implement a custom provider
+          SHOW_ADVANCED_LOGIN_METHOD && (
+            <MvxUnlockButton
+              buttonLabel='In Memory Provider'
+              onClick={() =>
+                handleLogin({
+                  type: ExtendedProviders.inMemoryProvider
+                })
+              }
             />
-            <LedgerLoginButton loginButtonText='Ledger' {...commonProps} />
-            <ExtensionLoginButton
-              loginButtonText='DeFi Wallet'
-              {...commonProps}
-            />
-            <OperaWalletLoginButton
-              loginButtonText='Opera Crypto Wallet - Beta'
-              {...commonProps}
-            />
-            <WebWalletLoginButton
-              loginButtonText='Web Wallet'
-              data-testid='webWalletLoginBtn'
-              {...commonProps}
-            />
-            <MetamaskLoginButton
-              loginButtonText='Metamask Proxy'
-              {...commonProps}
-            />
-          </div>
-        </div>
-      </div>
-    </AuthRedirectWrapper>
+          )
+        }
+      </MvxUnlockPanel>
+    </>
   );
-}
+};
+
+export default ConnectButton;

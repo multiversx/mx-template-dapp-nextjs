@@ -6,7 +6,7 @@ import { OutputContainer } from '@/components/OutputContainer';
 
 import { useGetLoginInfo, useGetNetworkConfig } from '@/hooks';
 import { useGetProfile } from './hooks';
-import { FormatAmount } from '@/components/sdkDappComponents';
+import { MvxFormatAmount } from '@/components/sdkDappCoreUIComponents';
 import { Username } from '../Account/components';
 
 export const NativeAuth = () => {
@@ -48,7 +48,7 @@ export const NativeAuth = () => {
 
       <div className='flex gap-1'>
         <Label>Balance:</Label>
-        <FormatAmount
+        <MvxFormatAmount
           value={profile?.balance ?? '0'}
           showLabel={profile?.balance !== '0'}
           egldLabel={network.egldLabel}
