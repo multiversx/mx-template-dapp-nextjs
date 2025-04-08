@@ -1,5 +1,5 @@
 'use client';
-import { FormatAmount, OutputContainer, Label } from '@/components';
+import { MvxFormatAmount, OutputContainer, Label } from '@/components';
 import { useGetAccountInfo, useGetNetworkConfig } from '@/hooks';
 import { Username } from './components';
 
@@ -24,7 +24,7 @@ export const Account = () => {
 
         <p>
           <Label>Balance: </Label>
-          <FormatAmount
+          <MvxFormatAmount
             value={account.balance}
             egldLabel={network.egldLabel}
             data-testid='balance'

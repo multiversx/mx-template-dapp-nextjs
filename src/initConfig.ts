@@ -9,6 +9,7 @@ import {
   EnvironmentsEnum
 } from './types';
 import { InMemoryProvider } from './provider/inMemoryProvider';
+import { safeWindow } from '@/utils';
 
 const ADDITIONAL_PROVIDERS = {
   inMemoryProvider: 'inMemoryProvider'
@@ -31,11 +32,9 @@ const providers: ICustomProvider<ProviderTypeEnum>[] = [
   }
 ];
 
-if (typeof window !== 'undefined') {
-  (window as any).multiversx = {};
-  // Option 1: Add providers using the `window.providers` array
-  (window as any).multiversx.providers = providers;
-}
+(safeWindow as any).multiversx = {};
+// Option 1: Add providers using the `window.providers` array
+(safeWindow as any).multiversx.providers = providers;
 
 export const config: InitAppType = {
   storage: { getStorageCallback: () => sessionStorage },

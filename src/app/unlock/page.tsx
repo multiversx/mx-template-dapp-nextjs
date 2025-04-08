@@ -4,7 +4,7 @@ import { ProviderFactory } from '@/helpers';
 import { ExtendedProviders } from '@/initConfig';
 import { RouteNamesEnum } from '@/localConstants';
 import { IProviderFactory } from '@/types';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const SHOW_ADVANCED_LOGIN_METHOD = true;

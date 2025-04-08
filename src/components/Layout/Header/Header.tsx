@@ -2,13 +2,13 @@
 import { Button } from '@/components/Button';
 import { MxLink } from '@/components/MxLink';
 import { environment } from '@/config';
-import { logout } from '@/helpers';
+// import { logout } from '@/helpers';
 import { useGetIsLoggedIn } from '@/hooks';
 import { RouteNamesEnum } from '@/localConstants';
 import mvxLogo from '../../../../public/assets/img/multiversx-logo.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { getWindowLocation } from '@/utils/sdkDappUtils';
+// import { getWindowLocation } from '@/utils/sdkDappUtils';
 import { usePathname } from 'next/navigation';
 
 export const Header = () => {
@@ -27,9 +27,10 @@ export const Header = () => {
   };
 
   const handleLogout = () => {
-    const { href } = getWindowLocation();
-    sessionStorage.clear();
-    logout(href, onRedirect, false);
+    console.log({ onRedirect });
+    // const { href } = getWindowLocation();
+    // sessionStorage.clear();
+    // logout(href, onRedirect, false);
   };
 
   return (

@@ -1,9 +1,9 @@
-import { LoginMethodsEnum } from '@/types/sdkDappTypes';
-import { useGetAccountProvider } from './sdkDappHooks';
+import { ProviderTypeEnum } from '@/types/sdkDappTypes';
+import { useGetLoginInfo } from './sdkDappHooks';
 
 export const useIsWebProvider = () => {
-  const { providerType } = useGetAccountProvider();
-  const isWebProvider = providerType === LoginMethodsEnum.wallet;
+  const { providerType } = useGetLoginInfo();
+  const isWebProvider = providerType === ProviderTypeEnum.webview;
 
   return { isWebProvider };
 };

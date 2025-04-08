@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react';
 import classNames from 'classnames';
-import { Loader } from '@/components/sdkDappCoreUIComponents';
 import { WithClassnameType } from '@/types';
 
 interface OutputContainerPropsType
@@ -20,7 +19,7 @@ export const OutputContainer = (props: OutputContainerPropsType) => {
       )}
       data-testid={props['data-testid']}
     >
-      {isLoading ? <Loader /> : children}
+      {isLoading ? null : children}
     </div>
   );
 };

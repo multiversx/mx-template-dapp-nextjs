@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useState, useContext, useMemo } from 'react';
 import type { PropsWithChildren } from 'react';
-import { isWindowAvailable } from '@multiversx/sdk-dapp/utils/isWindowAvailable';
+import { isWindowAvailable } from '@/helpers/isWindowAvailable';
 import { SessionEnum } from '@/localConstants';
 
 interface BatchTransactionsContextType {

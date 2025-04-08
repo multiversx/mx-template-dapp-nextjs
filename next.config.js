@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   distDir: 'build',
-  transpilePackages: ['@multiversx/sdk-dapp'],
+  transpilePackages: ['@multiversx/sdk-dapp-core-ui'],
   webpack: (config) => {
     config.resolve.fallback = { fs: false };
     config.externals.push('pino-pretty', 'lokijs', 'encoding', {

@@ -1,5 +1,5 @@
 import { trimUsernameDomain } from '@/helpers/sdkDappHelpers';
-import type { AccountType } from '@multiversx/sdk-dapp/types';
+import type { AccountType } from '@/types/sdkDappTypes';
 import { Label } from '@/components/Label';
 import { ProfileType } from '@/types';
 

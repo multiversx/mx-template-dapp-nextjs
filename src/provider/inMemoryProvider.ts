@@ -5,11 +5,11 @@ import {
   IProvider,
   Message,
   MessageComputer,
-  signTransactions,
   Transaction,
   UserSecretKey,
   UserSigner
 } from '@/types';
+import { signTransactions } from '@/helpers';
 import { LoginModal } from './LoginModal';
 
 const notInitializedError = (caller: string) => () => {

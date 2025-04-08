@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { getWindowLocation } from '@/utils/sdkDappUtils';
+// import { getWindowLocation } from '@/utils/sdkDappUtils';
 
 export const useScrollToElement = () => {
-  const { hash } = getWindowLocation();
+  const { hash } = window?.location;
 
   useEffect(() => {
     if (!hash) {
