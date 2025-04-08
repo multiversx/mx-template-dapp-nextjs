@@ -12,19 +12,17 @@ export const InitAppWrapper = ({ children }: PropsWithChildren) => {
         console.log({ config });
         await initApp(config);
         console.log('App initialized');
-        setIsInitialized(true); // Update state after initialization
+        setIsInitialized(true);
       } catch (error) {
         console.error('Failed to initialize app:', error);
-        // Optionally handle error state or fallback UI
       }
     };
 
     initializeApp();
-  }, []); // Runs only once when the component mounts
+  }, []);
 
-  // Optionally, show a loading indicator while initializing
   if (!isInitialized) {
-    return <div>Loading...</div>; // or any loading spinner
+    return <div>Loading...</div>;
   }
 
   return <>{children}</>;
