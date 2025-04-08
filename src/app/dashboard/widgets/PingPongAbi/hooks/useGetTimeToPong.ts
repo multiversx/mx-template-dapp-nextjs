@@ -1,33 +1,43 @@
-import { useGetAccount, useGetNetworkConfig } from '@/hooks';
+import { contractAddress } from '@/config';
 import {
   ProxyNetworkProvider,
   Address,
   AddressValue,
-  ContractFunction,
-  ResultsParser,
-  smartContract
-} from '@/utils';
-
-const resultsParser = new ResultsParser();
+  SmartContractController,
+  AbiRegistry,
+  useGetAccount,
+  useGetNetworkConfig
+} from '@/lib';
+import axios from 'axios';
 
 export const useGetTimeToPong = () => {
   const { network } = useGetNetworkConfig();
   const { address } = useGetAccount();
+  const proxy = new ProxyNetworkProvider(network.apiAddress);
 
   const getTimeToPong = async () => {
+    if (!address) {
+      return;
+    }
+
     try {
-      const query = smartContract.createQuery({
-        func: new ContractFunction('getTimeToPong'),
-        args: [new AddressValue(new Address(address))]
+      const response = await axios.get('src/contracts/ping-pong.abi.json');
+      const abi = AbiRegistry.create(response.data);
+
+      const scController = new SmartContractController({
+        chainID: network.chainId,
+        networkProvider: proxy,
+        abi
       });
-      const provider = new ProxyNetworkProvider(network.apiAddress);
-      const queryResponse = await provider.queryContract(query);
-      const endpointDefinition = smartContract.getEndpoint('getTimeToPong');
-      const { firstValue } = resultsParser.parseQueryResponse(
-        queryResponse,
-        endpointDefinition
-      );
-      const secondsRemaining: number = firstValue?.valueOf()?.toNumber();
+
+      const [result] = await scController.query({
+        contract: Address.newFromBech32(contractAddress),
+        function: 'getTimeToPong',
+        arguments: [new AddressValue(new Address(address))]
+      });
+
+      const value = result?.valueOf();
+      const secondsRemaining: number = Number(value);
 
       return secondsRemaining;
     } catch (err) {

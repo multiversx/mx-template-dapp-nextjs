@@ -1,5 +1,5 @@
 import { contractAddress } from '@/config';
-import { MvxExplorerLink } from '../sdkDappCoreUIComponents';
+import { MvxExplorerLink } from '@/lib';
 import { Label } from '@/components/Label';
 import { ACCOUNTS_ENDPOINT } from '@/localConstants';
 

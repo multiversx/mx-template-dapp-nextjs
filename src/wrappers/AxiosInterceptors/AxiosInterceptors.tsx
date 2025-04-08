@@ -1,7 +1,8 @@
+'use client';
 import { PropsWithChildren, useEffect } from 'react';
 import { sampleAuthenticatedDomains } from '@/config';
 import { setAxiosInterceptors } from '@/helpers';
-import { useGetLoginInfo } from '@/hooks';
+import { useGetLoginInfo } from '@/lib';
 
 export const AxiosInterceptors = ({ children }: PropsWithChildren) => {
   const { tokenLogin } = useGetLoginInfo();

@@ -1,5 +1,4 @@
-import { useGetNetworkConfig } from '@/hooks';
-import { MvxExplorerLink } from '@/components/sdkDappCoreUIComponents';
+import { useGetNetworkConfig, MvxExplorerLink } from '@/lib';
 import { getTransactionUrl, useTransactionOutcome } from '@/helpers';
 import { Label } from '@/components/Label';
 import { TRANSACTIONS_ENDPOINT } from '@/localConstants';

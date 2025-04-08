@@ -1,4 +1,3 @@
-'use client';
 export { useGetAccount } from '@multiversx/sdk-dapp-core/out/store/selectors/hooks/account/useGetAccount';
 export { useGetAccountInfo } from '@multiversx/sdk-dapp-core/out/store/selectors/hooks/account/useGetAccountInfo';
 export { useGetIsLoggedIn } from '@multiversx/sdk-dapp-core/out/store/selectors/hooks/account/useGetIsLoggedIn';

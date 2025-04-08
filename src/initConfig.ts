@@ -2,14 +2,15 @@
 import './styles/globals.css';
 
 import { walletConnectV2ProjectId } from './config';
+
+import { InMemoryProvider } from './provider/inMemoryProvider';
 import {
+  safeWindow,
   ICustomProvider,
   ProviderTypeEnum,
   InitAppType,
   EnvironmentsEnum
-} from './types';
-import { InMemoryProvider } from './provider/inMemoryProvider';
-import { safeWindow } from '@/utils';
+} from '@/lib';
 
 const ADDITIONAL_PROVIDERS = {
   inMemoryProvider: 'inMemoryProvider'

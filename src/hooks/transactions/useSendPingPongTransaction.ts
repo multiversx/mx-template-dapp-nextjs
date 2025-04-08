@@ -1,6 +1,6 @@
 'use client';
 import axios from 'axios';
-import { useGetAccount, useGetNetworkConfig } from '../sdkDappHooks';
+import { useGetAccount, useGetNetworkConfig } from '@/lib';
 import {
   AbiRegistry,
   Address,

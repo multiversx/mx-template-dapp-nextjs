@@ -4,7 +4,7 @@ import { MissingNativeAuthError } from '@/components/MissingNativeAuthError';
 import { Label } from '@/components/Label';
 import { OutputContainer } from '@/components/OutputContainer';
 
-import { useGetLoginInfo, useGetNetworkConfig } from '@/hooks';
+import { useGetLoginInfo, useGetNetworkConfig } from '@/lib';
 import { useGetProfile } from './hooks';
 import { MvxFormatAmount } from '@/components/sdkDappCoreUIComponents';
 import { Username } from '../Account/components';

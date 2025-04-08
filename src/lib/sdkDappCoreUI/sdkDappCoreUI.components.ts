@@ -1,4 +1,3 @@
-'use client';
 export {
   CopyButton as MvxCopyButton,
   ExplorerLink as MvxExplorerLink,
