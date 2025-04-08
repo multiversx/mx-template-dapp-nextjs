@@ -15,6 +15,7 @@
     "build-mainnet": "yarn run copy-mainnet-config & next build",
     "build-testnet": "yarn run copy-testnet-config & next build",
     "build-devnet": "yarn run copy-devnet-config & next build",
+    "build:css": "npx tailwindcss -i ./src/styles/globals.css -o ./src/styles/index.css",
     "preview": "next start",
     "test": "jest",
     "cy:run": "node scripts/cypress.ts"

@@ -9,7 +9,7 @@ import {
   SmartContractController,
   useGetNetworkConfig
 } from '@/lib';
-import axios from 'axios';
+import pingPongAbi from '@/contracts/ping-pong.abi.json';
 
 export const useGetPingAmount = () => {
   const { network } = useGetNetworkConfig();
@@ -19,8 +19,7 @@ export const useGetPingAmount = () => {
 
   const getPingAmount = async () => {
     try {
-      const response = await axios.get('src/contracts/ping-pong.abi.json');
-      const abi = AbiRegistry.create(response.data);
+      const abi = AbiRegistry.create(pingPongAbi);
 
       const scController = new SmartContractController({
         chainID: network.chainId,

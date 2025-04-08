@@ -6,23 +6,29 @@ import {
   SmartContractController,
   AbiRegistry,
   useGetAccount,
-  useGetNetworkConfig
+  useGetNetworkConfig,
+  useGetLoginInfo
 } from '@/lib';
-import axios from 'axios';
+import pingPongAbi from '@/contracts/ping-pong.abi.json';
 
 export const useGetTimeToPong = () => {
   const { network } = useGetNetworkConfig();
   const { address } = useGetAccount();
-  const proxy = new ProxyNetworkProvider(network.apiAddress);
+  const loginInfo = useGetLoginInfo();
 
   const getTimeToPong = async () => {
-    if (!address) {
+    if (!address || !loginInfo.tokenLogin?.nativeAuthToken) {
       return;
     }
 
     try {
-      const response = await axios.get('src/contracts/ping-pong.abi.json');
-      const abi = AbiRegistry.create(response.data);
+      const proxy = new ProxyNetworkProvider(network.apiAddress, {
+        headers: {
+          Authorization: `Bearer ${loginInfo.tokenLogin.nativeAuthToken}`
+        }
+      });
+
+      const abi = AbiRegistry.create(pingPongAbi);
 
       const scController = new SmartContractController({
         chainID: network.chainId,
@@ -30,12 +36,13 @@ export const useGetTimeToPong = () => {
         abi
       });
 
-      const [result] = await scController.query({
+      const result = await scController.query({
         contract: Address.newFromBech32(contractAddress),
         function: 'getTimeToPong',
         arguments: [new AddressValue(new Address(address))]
       });
 
+      console.log({ result });
       const value = result?.valueOf();
       const secondsRemaining: number = Number(value);
 

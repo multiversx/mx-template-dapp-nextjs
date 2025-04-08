@@ -1,5 +1,5 @@
 'use client';
-import { initApp } from '@/helpers';
+import { initAppSingleton } from './helpers';
 import { config } from '@/initConfig';
 import { PropsWithChildren, useEffect, useState } from 'react';
 
@@ -9,12 +9,10 @@ export const InitAppWrapper = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        console.log({ config });
-        await initApp(config);
-        console.log('App initialized');
+        await initAppSingleton(config);
         setIsInitialized(true);
-      } catch (error) {
-        console.error('Failed to initialize app:', error);
+      } catch (err) {
+        console.error(err);
       }
     };
 

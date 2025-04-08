@@ -1,9 +1,12 @@
 import { WithClassnameType } from '@/types';
-import { MvxFormatAmount } from '../../../sdkDappCoreUI/sdkDappCoreUI.components';
-import { MvxFormatAmountPropsType } from '../../../sdkDappCoreUI/sdkDappCoreUI.types';
-import { DECIMALS, DIGITS } from '../../../sdkDappUtils';
-import { FormatAmountController } from '../../sdkDapp.helpers';
-import { useGetNetworkConfig } from '../../sdkDapp.hooks';
+import {
+  MvxFormatAmount,
+  MvxFormatAmountPropsType,
+  DECIMALS,
+  DIGITS,
+  FormatAmountController,
+  useGetNetworkConfig
+} from '@/lib';
 
 interface FormatAmountPropsType
   extends Partial<MvxFormatAmountPropsType>,

@@ -1,5 +1,4 @@
 'use client';
-import axios from 'axios';
 import {
   useGetAccount,
   useGetNetworkConfig,
@@ -13,6 +12,7 @@ import {
 import { GAS_LIMIT, GAS_PRICE } from '@/localConstants';
 import { signAndSendTransactions } from '@/helpers/signAndSendTransactions';
 import { contractAddress } from '@/config';
+import pingPongAbi from '@/contracts/ping-pong.abi.json';
 
 const PING_TRANSACTION_INFO = {
   processingMessage: 'Processing Ping transaction',
@@ -31,8 +31,8 @@ export const useSendPingPongTransaction = () => {
   const { address } = useGetAccount();
 
   const getSmartContractFactory = async () => {
-    const response = await axios.get('src/contracts/ping-pong.abi.json');
-    const abi = AbiRegistry.create(response.data);
+    const abi = AbiRegistry.create(pingPongAbi);
+    console.log({ abi });
     const scFactory = new SmartContractTransactionsFactory({
       config: new TransactionsFactoryConfig({
         chainID: network.chainId
