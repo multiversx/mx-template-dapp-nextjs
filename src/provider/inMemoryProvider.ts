@@ -8,7 +8,7 @@ import {
   Transaction,
   UserSecretKey,
   UserSigner
-} from '@/types';
+} from '@/lib';
 import { signTransactions } from '@/helpers';
 import { LoginModal } from './LoginModal';
 

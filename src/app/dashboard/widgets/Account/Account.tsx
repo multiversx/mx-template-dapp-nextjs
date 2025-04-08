@@ -1,6 +1,6 @@
 'use client';
-import { MvxFormatAmount, OutputContainer, Label } from '@/components';
-import { useGetAccountInfo, useGetNetworkConfig } from '@/lib';
+import { OutputContainer, Label } from '@/components';
+import { useGetAccountInfo, useGetNetworkConfig, MvxFormatAmount } from '@/lib';
 import { Username } from './components';
 
 export const Account = () => {

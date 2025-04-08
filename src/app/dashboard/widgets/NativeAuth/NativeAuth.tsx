@@ -4,9 +4,8 @@ import { MissingNativeAuthError } from '@/components/MissingNativeAuthError';
 import { Label } from '@/components/Label';
 import { OutputContainer } from '@/components/OutputContainer';
 
-import { useGetLoginInfo, useGetNetworkConfig } from '@/lib';
+import { useGetLoginInfo, useGetNetworkConfig, MvxFormatAmount } from '@/lib';
 import { useGetProfile } from './hooks';
-import { MvxFormatAmount } from '@/components/sdkDappCoreUIComponents';
 import { Username } from '../Account/components';
 
 export const NativeAuth = () => {

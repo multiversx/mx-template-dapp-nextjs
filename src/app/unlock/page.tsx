@@ -1,15 +1,15 @@
 'use client';
-import { Button, MvxUnlockButton, MvxUnlockPanel } from '@/components';
+import { MvxUnlockButton, MvxUnlockPanel, IProviderFactory } from '@/lib';
+import { Button } from '@/components';
 import { ProviderFactory } from '@/helpers';
 import { ExtendedProviders } from '@/initConfig';
 import { RouteNamesEnum } from '@/localConstants';
-import { IProviderFactory } from '@/types';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const SHOW_ADVANCED_LOGIN_METHOD = true;
 
-export const ConnectButton = () => {
+export default function Unlock() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
@@ -59,6 +59,4 @@ export const ConnectButton = () => {
       </MvxUnlockPanel>
     </>
   );
-};
-
-export default ConnectButton;
+}

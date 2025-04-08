@@ -1,13 +1,15 @@
 'use client';
 import axios from 'axios';
-import { useGetAccount, useGetNetworkConfig } from '@/lib';
 import {
+  useGetAccount,
+  useGetNetworkConfig,
   AbiRegistry,
   Address,
   SmartContractTransactionsFactory,
   Transaction,
   TransactionsFactoryConfig
-} from '@/types';
+} from '@/lib';
+
 import { GAS_LIMIT, GAS_PRICE } from '@/localConstants';
 import { signAndSendTransactions } from '@/helpers/signAndSendTransactions';
 import { contractAddress } from '@/config';
