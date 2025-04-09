@@ -50,7 +50,7 @@ export const ConnectButton = () => {
           // you can safely remove this if you don't need to implement a custom provider
           SHOW_ADVANCED_LOGIN_METHOD && (
             <MvxUnlockButton
-              buttonLabel='In Memory Provider'
+              label='In Memory Provider'
               onClick={() =>
                 handleLogin({
                   type: ExtendedProviders.inMemoryProvider

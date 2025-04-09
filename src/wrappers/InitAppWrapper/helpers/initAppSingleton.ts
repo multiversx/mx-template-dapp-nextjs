@@ -1,5 +1,4 @@
-import { initApp } from '@/helpers';
-import { InitAppType } from '@/lib';
+import { InitAppType, initApp } from '@/lib';
 
 let initialized = false;
 

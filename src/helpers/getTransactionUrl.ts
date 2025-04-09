@@ -1,5 +1,8 @@
-import { WALLET_PROVIDER_SEND_TRANSACTION_URL } from './sdkDappHelpers';
-import { safeWindow, TokenTransfer } from '@/lib';
+import {
+  safeWindow,
+  TokenTransfer,
+  WALLET_PROVIDER_SEND_TRANSACTION_URL
+} from '@/lib';
 
 /**
  * For documentation, check out {@link https://docs.multiversx.com/wallet/webhooks#send-transaction-hook send transaciton hook}

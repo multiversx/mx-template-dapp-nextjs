@@ -31,8 +31,8 @@ export const Transaction = () => {
         <p>
           <Label>Hash:</Label>
           <MvxExplorerLink
-            page={`/${TRANSACTIONS_ENDPOINT}/${txData.txHash}`}
-            className='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800'
+            link={`/${TRANSACTIONS_ENDPOINT}/${txData.txHash}`}
+            class='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800 text-green-700'
           >
             {txData.txHash}
           </MvxExplorerLink>

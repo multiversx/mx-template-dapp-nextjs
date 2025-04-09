@@ -1,5 +1,4 @@
-import { trimUsernameDomain } from '@/helpers/sdkDappHelpers';
-import type { AccountType } from '@/types/sdkDappTypes';
+import { trimUsernameDomain, type AccountType } from '@/lib';
 import { Label } from '@/components/Label';
 import { ProfileType } from '@/types';
 

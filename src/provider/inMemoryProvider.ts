@@ -7,9 +7,9 @@ import {
   MessageComputer,
   Transaction,
   UserSecretKey,
-  UserSigner
+  UserSigner,
+  signTransactions
 } from '@/lib';
-import { signTransactions } from '@/helpers';
 import { LoginModal } from './LoginModal';
 
 const notInitializedError = (caller: string) => () => {

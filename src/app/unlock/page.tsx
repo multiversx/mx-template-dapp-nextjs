@@ -1,7 +1,11 @@
 'use client';
-import { MvxUnlockButton, MvxUnlockPanel, IProviderFactory } from '@/lib';
+import {
+  MvxUnlockButton,
+  MvxUnlockPanel,
+  IProviderFactory,
+  ProviderFactory
+} from '@/lib';
 import { Button } from '@/components';
-import { ProviderFactory } from '@/helpers';
 import { ExtendedProviders } from '@/initConfig';
 import { RouteNamesEnum } from '@/localConstants';
 import { useRouter } from 'next/navigation';
@@ -47,7 +51,7 @@ export default function Unlock() {
           // you can safely remove this if you don't need to implement a custom provider
           SHOW_ADVANCED_LOGIN_METHOD && (
             <MvxUnlockButton
-              buttonLabel='In Memory Provider'
+              label='In Memory Provider'
               onClick={() =>
                 handleLogin({
                   type: ExtendedProviders.inMemoryProvider

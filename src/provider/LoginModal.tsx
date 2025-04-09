@@ -50,7 +50,8 @@ interface ModalProps {
   needsAddress?: boolean;
 }
 
-const Modal = ({ onSubmit, onClose, needsAddress }: ModalProps) => {
+// Modal.tsx
+export const Modal = ({ onSubmit, onClose, needsAddress }: ModalProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -65,47 +66,40 @@ const Modal = ({ onSubmit, onClose, needsAddress }: ModalProps) => {
     onSubmit({ privateKey, address });
   };
 
-  return createPortal(
+  return (
     <div style={modalStyles.overlay}>
       <div style={modalStyles.modal}>
         <h2>Authenticate</h2>
         <form onSubmit={handleSubmit} style={modalStyles.form}>
           {needsAddress && (
             <div>
-              <label>
-                Address
-                <input
-                  style={modalStyles.input}
-                  type='text'
-                  name='address'
-                  autoFocus
-                  required
-                />
-              </label>
-            </div>
-          )}
-          <div>
-            <label>
-              Private Key
+              <label htmlFor='address'>Address</label>
               <input
                 style={modalStyles.input}
                 type='text'
-                name='privateKey'
-                autoFocus={!needsAddress}
+                name='address'
+                autoFocus
                 required
               />
-            </label>
+            </div>
+          )}
+          <div>
+            <label htmlFor='privateKey'>Private Key</label>
+            <input
+              style={modalStyles.input}
+              type='text'
+              name='privateKey'
+              autoFocus={!needsAddress}
+              required
+            />
           </div>
           <div style={modalStyles.buttonGroup}>
             <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={handleSubmit} type='submit'>
-              Submit
-            </Button>
+            <Button type='submit'>Submit</Button>
           </div>
         </form>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 };
 
@@ -146,11 +140,14 @@ export class LoginModal {
       };
 
       root.render(
-        <Modal
-          onSubmit={handleSubmit}
-          onClose={handleClose}
-          needsAddress={options?.needsAddress}
-        />
+        createPortal(
+          <Modal
+            onSubmit={handleSubmit}
+            onClose={handleClose}
+            needsAddress={options?.needsAddress}
+          />,
+          document.body
+        )
       );
     });
   }

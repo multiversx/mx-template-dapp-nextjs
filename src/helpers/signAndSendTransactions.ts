@@ -1,5 +1,9 @@
-import { Transaction, TransactionsDisplayInfoType } from '@/types';
-import { getAccountProvider, TransactionManager } from './sdkDappHelpers';
+import {
+  Transaction,
+  TransactionsDisplayInfoType,
+  getAccountProvider,
+  TransactionManager
+} from '@/lib';
 
 type SignAndSendTransactionsProps = {
   transactions: Transaction[];
