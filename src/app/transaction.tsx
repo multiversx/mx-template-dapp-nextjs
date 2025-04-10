@@ -1,3 +1,4 @@
+'use client';
 import { useGetNetworkConfig, MvxExplorerLink } from '@/lib';
 import { getTransactionUrl, useTransactionOutcome } from '@/helpers';
 import { Label } from '@/components/Label';

@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import {
   ITransactionsTableRow,
@@ -17,7 +18,7 @@ export const TransactionsTable = ({
 }: TransactionsTablePropsType) => {
   const { address } = useGetAccount();
   const { network } = useGetNetworkConfig();
-  const [processedTransaction, setProcessedTransactions] = useState<
+  const [processedTransactions, setProcessedTransactions] = useState<
     ITransactionsTableRow[]
   >([]);
 
@@ -39,5 +40,5 @@ export const TransactionsTable = ({
     );
   };
 
-  return <MvxTransactionsTable transactions={processedTransaction} />;
+  return <MvxTransactionsTable transactions={processedTransactions} />;
 };
