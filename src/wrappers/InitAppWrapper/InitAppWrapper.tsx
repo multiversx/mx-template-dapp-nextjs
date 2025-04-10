@@ -20,7 +20,7 @@ export const InitAppWrapper = ({ children }: PropsWithChildren) => {
   }, []);
 
   if (!isInitialized) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   return <>{children}</>;

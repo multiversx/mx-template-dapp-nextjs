@@ -10,9 +10,8 @@ export const ContractAddress = () => {
       <MvxExplorerLink
         link={`/${ACCOUNTS_ENDPOINT}/${contractAddress}`}
         class='border-b border-dotted border-gray-500 hover:border-solid hover:border-gray-800'
-      >
-        {contractAddress}
-      </MvxExplorerLink>
+        text={contractAddress}
+      />
     </p>
   );
 };
