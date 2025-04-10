@@ -970,10 +970,10 @@
     axios "^1.7.4"
     bip39 "3.1.0"
 
-"@multiversx/sdk-dapp-core-ui@0.0.0-alpha.10", "@multiversx/sdk-dapp-core-ui@>=0.0.0-alpha.10":
-  version "0.0.0-alpha.10"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core-ui/-/sdk-dapp-core-ui-0.0.0-alpha.10.tgz#617311c28589e5ff4d6d6482df510a4954c18e27"
-  integrity sha512-8xxb2YbOpJ7I/SK9/hvD8Chu/VHhzhi9bbg4Nla6FQnqcPOf37cN897FTecm0SZC0QpBauOhzd//BAwIZGYbgg==
+"@multiversx/sdk-dapp-core-ui@0.0.0-alpha.12", "@multiversx/sdk-dapp-core-ui@>=0.0.0-alpha.11":
+  version "0.0.0-alpha.12"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core-ui/-/sdk-dapp-core-ui-0.0.0-alpha.12.tgz#6951dc8b0c824a2027eaf54eb85d7302e8dd9767"
+  integrity sha512-kU6aPDP9knFobkeVJPL84x0t90yWFzZU832GlhULfdYxKarPswSRan1zUx6gz9zY42tuaZ3j6lII3Bqmz5Ep8w==
   dependencies:
     "@fortawesome/fontawesome-svg-core" ">= 6.7.2"
     "@fortawesome/free-solid-svg-icons" ">= 6.7.2"
@@ -983,10 +983,10 @@
     qrcode ">= 1.5.4"
     sass-embedded "^1.85.1"
 
-"@multiversx/sdk-dapp-core@0.0.0-alpha.17":
-  version "0.0.0-alpha.17"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core/-/sdk-dapp-core-0.0.0-alpha.17.tgz#a9fabe3b4c8e6e239a9337421cf5f807e88f23ec"
-  integrity sha512-qepEXMk3qqzIhoG8fbS/sf4UI1WYAzeO18CbMBBGyGQQU6qXBCAqieLXmEHehgvP3F5ocUjm8ajsJlcHmSTwlQ==
+"@multiversx/sdk-dapp-core@0.0.0-alpha.19":
+  version "0.0.0-alpha.19"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core/-/sdk-dapp-core-0.0.0-alpha.19.tgz#8cb1fca07f32157ad252c6de5212a802ce81fd95"
+  integrity sha512-nljT9cKUdwylakmFxrWLig51MWx+JtPYUduMoa81m200ThQBprp4LvSOTJOcmctUJNMupMS9srcrzNHzee61MQ==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
     "@multiversx/sdk-core" "^14.x"
@@ -1008,7 +1008,7 @@
     socket.io-client "4.7.5"
     zustand "4.4.7"
   optionalDependencies:
-    "@multiversx/sdk-dapp-core-ui" ">=0.0.0-alpha.10"
+    "@multiversx/sdk-dapp-core-ui" ">=0.0.0-alpha.11"
 
 "@multiversx/sdk-dapp-utils@1.0.6":
   version "1.0.6"
