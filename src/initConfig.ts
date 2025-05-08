@@ -27,9 +27,7 @@ const providers: ICustomProvider<ProviderTypeEnum>[] = [
   {
     name: ADDITIONAL_PROVIDERS.inMemoryProvider,
     type: ExtendedProviders.inMemoryProvider,
-    icon: '',
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    constructor: async (_address?: string) => new InMemoryProvider()
+    constructor: async (options) => new InMemoryProvider(options)
   }
 ];
 

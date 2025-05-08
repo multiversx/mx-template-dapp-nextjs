@@ -12,3 +12,4 @@ export { initApp } from '@multiversx/sdk-dapp-core/out/core/methods/initApp/init
 export { setAxiosInterceptors } from '@multiversx/sdk-dapp-core/out/utils/network/setAxiosInterceptors';
 export { signTransactions } from '@multiversx/sdk-dapp-core/out/core/providers/strategies/helpers/signTransactions/signTransactions';
 export { trimUsernameDomain } from '@multiversx/sdk-dapp-core/out/utils/account/trimUsernameDomain';
+export { UnlockPanelManager } from '@multiversx/sdk-dapp-core/out/core/managers/UnlockPanelManager';

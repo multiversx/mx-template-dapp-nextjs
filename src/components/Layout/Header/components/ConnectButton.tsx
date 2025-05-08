@@ -1,66 +1,21 @@
 'use client';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/Button';
-import { ExtendedProviders } from '@/initConfig';
-import {
-  IProviderFactory,
-  MvxUnlockButton,
-  MvxUnlockPanel,
-  ProviderFactory
-} from '@/lib';
+import { UnlockPanelManager } from '@/lib';
 import { RouteNamesEnum } from '@/localConstants';
 
-const SHOW_ADVANCED_LOGIN_METHOD = true;
-
 export const ConnectButton = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async ({ type, anchor }: IProviderFactory) => {
-    const provider = await ProviderFactory.create({
-      type,
-      anchor
-    });
-    await provider?.login();
-    router.push(RouteNamesEnum.dashboard);
-  };
-
   const handleOpenUnlockPanel = () => {
-    setIsOpen(true);
+    const unlockPanelManager = UnlockPanelManager.init({
+      loginHandler: () => {
+        router.push(RouteNamesEnum.dashboard);
+      }
+    });
+
+    unlockPanelManager.openUnlockPanel();
   };
 
-  const handleCloseUnlockPanel = () => {
-    setIsOpen(false);
-  };
-
-  return (
-    <>
-      <Button onClick={handleOpenUnlockPanel}>Connect</Button>
-      <MvxUnlockPanel
-        isOpen={isOpen}
-        onLogin={({ detail }) =>
-          handleLogin({
-            type: detail.provider,
-            anchor: detail.anchor
-          })
-        }
-        onClose={handleCloseUnlockPanel}
-      >
-        {
-          // you can safely remove this if you don't need to implement a custom provider
-          SHOW_ADVANCED_LOGIN_METHOD && (
-            <MvxUnlockButton
-              label='In Memory Provider'
-              onClick={() =>
-                handleLogin({
-                  type: ExtendedProviders.inMemoryProvider
-                })
-              }
-            />
-          )
-        }
-      </MvxUnlockPanel>
-    </>
-  );
+  return <Button onClick={handleOpenUnlockPanel}>Connect</Button>;
 };

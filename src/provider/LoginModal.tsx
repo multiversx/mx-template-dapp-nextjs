@@ -119,7 +119,10 @@ export class LoginModal {
     return LoginModal.instance;
   }
 
-  public showModal(options?: { needsAddress: boolean }): Promise<{
+  public showModal(options?: {
+    needsAddress: boolean;
+    anchor?: HTMLElement;
+  }): Promise<{
     privateKey: string;
     address: string;
   }> {
@@ -146,7 +149,7 @@ export class LoginModal {
             onClose={handleClose}
             needsAddress={options?.needsAddress}
           />,
-          document.body
+          options?.anchor ?? document.body
         )
       );
     });

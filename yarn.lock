@@ -947,7 +947,7 @@
   resolved "https://registry.npmjs.org/@multiversx/sdk-bls-wasm/-/sdk-bls-wasm-0.3.5.tgz#2e83308fdc7a0928c6d5a7f910d796fd8eb2d90b"
   integrity sha512-c0tIdQUnbBLSt6NYU+OpeGPYdL0+GV547HeHT8Xc0BKQ7Cj0v82QUoA2QRtWrR1G4MNZmLsIacZSsf6DrIS2Bw==
 
-"@multiversx/sdk-core@^14.x":
+"@multiversx/sdk-core@14.0.2":
   version "14.0.2"
   resolved "https://registry.npmjs.org/@multiversx/sdk-core/-/sdk-core-14.0.2.tgz#e910f94f930fdbbf7a9c8587022d9c41f8aa9318"
   integrity sha512-bVrKH23NSsfVyIZKujFrc8k+mBMM4pJDNe+8CHG3M0OUPi/kOVBev6VFmLpQyW9/t25VHU1lR6c4A/qhZOl1Mw==
@@ -970,26 +970,28 @@
     axios "^1.7.4"
     bip39 "3.1.0"
 
-"@multiversx/sdk-dapp-core-ui@0.0.0-alpha.12", "@multiversx/sdk-dapp-core-ui@>=0.0.0-alpha.11":
-  version "0.0.0-alpha.12"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core-ui/-/sdk-dapp-core-ui-0.0.0-alpha.12.tgz#6951dc8b0c824a2027eaf54eb85d7302e8dd9767"
-  integrity sha512-kU6aPDP9knFobkeVJPL84x0t90yWFzZU832GlhULfdYxKarPswSRan1zUx6gz9zY42tuaZ3j6lII3Bqmz5Ep8w==
+"@multiversx/sdk-dapp-core-ui@0.0.0-alpha.15", "@multiversx/sdk-dapp-core-ui@>=0.0.0-alpha.14":
+  version "0.0.0-alpha.15"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core-ui/-/sdk-dapp-core-ui-0.0.0-alpha.15.tgz#dc9c48b63ba0c44834f03f9b30c2e02246ad4826"
+  integrity sha512-rxC99uZrDA8C1sSXvBk3l7sbbownBTg6XxTflZoZR7eh7yRBG8s9z8PvWNGw9e7Y3Y/tGA/u6KqJUWOqsZ1Iuw==
   dependencies:
     "@fortawesome/fontawesome-svg-core" ">= 6.7.2"
     "@fortawesome/free-solid-svg-icons" ">= 6.7.2"
     "@multiversx/sdk-dapp-utils" ">= 1.0.4"
     "@stencil/react-output-target" "0.8.2"
     classnames ">= 2.5.1"
+    lodash.inrange "^3.3.0"
+    lodash.range "^3.2.0"
     qrcode ">= 1.5.4"
     sass-embedded "^1.85.1"
 
-"@multiversx/sdk-dapp-core@0.0.0-alpha.19":
-  version "0.0.0-alpha.19"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core/-/sdk-dapp-core-0.0.0-alpha.19.tgz#8cb1fca07f32157ad252c6de5212a802ce81fd95"
-  integrity sha512-nljT9cKUdwylakmFxrWLig51MWx+JtPYUduMoa81m200ThQBprp4LvSOTJOcmctUJNMupMS9srcrzNHzee61MQ==
+"@multiversx/sdk-dapp-core@0.0.0-alpha.21":
+  version "0.0.0-alpha.21"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-core/-/sdk-dapp-core-0.0.0-alpha.21.tgz#2125588ff0830027c860564c3369c3d9d613d7c5"
+  integrity sha512-pCVq3C/avbFqKfA+LXfQojml3nlnyphRqUI03rNh4MNY8k7yq64Rhm2KQ7NIozcBF/rT4+j9p1ctNTFxloTiFQ==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
-    "@multiversx/sdk-core" "^14.x"
+    "@multiversx/sdk-core" "14.0.2"
     "@multiversx/sdk-dapp-utils" "^2.x"
     "@multiversx/sdk-extension-provider" "5.0.0"
     "@multiversx/sdk-hw-provider" "8.0.0"
@@ -997,10 +999,10 @@
     "@multiversx/sdk-native-auth-client" "1.0.9"
     "@multiversx/sdk-wallet" "4.6.0"
     "@multiversx/sdk-wallet-connect-provider" "6.0.1"
-    "@multiversx/sdk-web-wallet-cross-window-provider" "3.0.0"
+    "@multiversx/sdk-web-wallet-cross-window-provider" "3.1.0"
     "@multiversx/sdk-web-wallet-iframe-provider" "3.0.0"
     "@multiversx/sdk-web-wallet-provider" "5.0.0"
-    "@multiversx/sdk-webview-provider" "3.0.0"
+    "@multiversx/sdk-webview-provider" "3.0.1"
     immer "10.1.1"
     lodash.isequal "4.5.0"
     lodash.isstring "4.0.1"
@@ -1008,7 +1010,7 @@
     socket.io-client "4.7.5"
     zustand "4.4.7"
   optionalDependencies:
-    "@multiversx/sdk-dapp-core-ui" ">=0.0.0-alpha.11"
+    "@multiversx/sdk-dapp-core-ui" ">=0.0.0-alpha.14"
 
 "@multiversx/sdk-dapp-utils@1.0.6":
   version "1.0.6"
@@ -1088,10 +1090,10 @@
     tweetnacl "1.0.3"
     uuid "8.3.2"
 
-"@multiversx/sdk-web-wallet-cross-window-provider@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-web-wallet-cross-window-provider/-/sdk-web-wallet-cross-window-provider-3.0.0.tgz#f7a3f5cf16e6a91ae9ac6f2a0a2e5d05f7b97379"
-  integrity sha512-D1y49UOdjAxqU7o8JqBlFnfZD+KvUDq+hU6qNEcJjgiQYo4eY3tFGbssxPnooXOCUNa4AUtUVyabQSupd4BEfQ==
+"@multiversx/sdk-web-wallet-cross-window-provider@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-web-wallet-cross-window-provider/-/sdk-web-wallet-cross-window-provider-3.1.0.tgz#d8942d17cbd20da3e0c9636c3e7b12ddaf47cc6e"
+  integrity sha512-O3FCpRal99Bxf9ESmGB+FD6D5AcIf6Kjo3A2FTwdyhCYu3m2lRtwoFsd+uXSo7FXoMWrlZJaQsdO8GYOo/HQhQ==
   dependencies:
     qs "6.11.2"
 
@@ -1111,10 +1113,10 @@
   dependencies:
     qs "6.10.3"
 
-"@multiversx/sdk-webview-provider@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-webview-provider/-/sdk-webview-provider-3.0.0.tgz#0daef613a9678f39d483c1551922cfc8466a8ea9"
-  integrity sha512-D/jFElZGj7pvM22MbrcKOj+p2Gvk5BgFqfPigzx3SWZlXS52rJlTNXXQ0sTzgGwWB7Tnm3w4A8/G/WBonbzxZQ==
+"@multiversx/sdk-webview-provider@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-webview-provider/-/sdk-webview-provider-3.0.1.tgz#7413c97756fb4438147f764fe093af4737f79626"
+  integrity sha512-Bw4h8lR3p6a8TdU0tCs0LmBYFxCfVzOkEL0kMtMOBxna/6DGTnvpuOmB33LeVPluHUw5jLlFHNCClQst916vuA==
 
 "@napi-rs/wasm-runtime@^0.2.8":
   version "0.2.8"
@@ -5787,6 +5789,11 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash.inrange@^3.3.0:
+  version "3.3.6"
+  resolved "https://registry.npmjs.org/lodash.inrange/-/lodash.inrange-3.3.6.tgz#dfdfe915f6e30e8056293707e2395dab88ea128d"
+  integrity sha512-NqOT/CVclLZKet0ALwg1joQ/XnfxePGf8L9WKvzOcTDAI0axG3Ej24qDGwLk0ejN4AVfFvs6vY5AWBB53o5piw==
+
 lodash.isempty@^4.4.0:
   version "4.4.0"
   resolved "https://registry.npmjs.org/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
@@ -5826,6 +5833,11 @@ lodash.once@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==
+
+lodash.range@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/lodash.range/-/lodash.range-3.2.0.tgz#f461e588f66683f7eadeade513e38a69a565a15d"
+  integrity sha512-Fgkb7SinmuzqgIhNhAElo0BL/R1rHCnhwSZf78omqSwvWqD0kD2ssOAutQonDKH/ldS8BxA72ORYI09qAY9CYg==
 
 lodash@^4.17.21:
   version "4.17.21"
