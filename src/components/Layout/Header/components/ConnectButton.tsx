@@ -7,13 +7,13 @@ import { RouteNamesEnum } from '@/localConstants';
 export const ConnectButton = () => {
   const router = useRouter();
 
-  const handleOpenUnlockPanel = () => {
-    const unlockPanelManager = UnlockPanelManager.init({
-      loginHandler: () => {
-        router.push(RouteNamesEnum.dashboard);
-      }
-    });
+  const unlockPanelManager = UnlockPanelManager.init({
+    loginHandler: () => {
+      router.push(RouteNamesEnum.dashboard);
+    }
+  });
 
+  const handleOpenUnlockPanel = () => {
     unlockPanelManager.openUnlockPanel();
   };
 

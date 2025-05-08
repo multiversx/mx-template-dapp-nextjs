@@ -21,7 +21,7 @@ export const AuthRedirectWrapper = ({
     }
 
     if (!isLoggedIn && requireAuth) {
-      redirect(RouteNamesEnum.unlock);
+      redirect(RouteNamesEnum.home);
     }
   }, [isLoggedIn, requireAuth]);
 
