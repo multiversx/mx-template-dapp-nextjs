@@ -2,6 +2,36 @@ import { renderHook } from '@testing-library/react';
 import axios from 'axios';
 import { useGetTimeToPong } from '../useGetTimeToPong';
 import { expect } from '@jest/globals';
+import { useGetLoginInfo } from '@/lib';
+
+jest.mock('@/lib', () => ({
+  useGetLoginInfo: jest.fn()
+}));
+
+jest.mock('@/config', () => ({
+  EnvironmentsEnum: {
+    devnet: 'devnet',
+    testnet: 'testnet',
+    mainnet: 'mainnet'
+  }
+}));
+
+jest.mock(
+  '@multiversx/sdk-dapp/out/store/selectors/hooks/network/useGetNetworkConfig',
+  () => ({
+    useGetNetworkConfig: jest.fn().mockReturnValue({
+      network: { apiAddress: 'https://devnet-api.multiversx.com' }
+    })
+  })
+);
+
+beforeEach(() => {
+  (useGetLoginInfo as jest.Mock).mockReturnValue({
+    tokenLogin: {
+      nativeAuthToken: 'mock-token'
+    }
+  });
+});
 
 describe('useGetTimeToPong', () => {
   it('should return 180 seconds', async () => {
