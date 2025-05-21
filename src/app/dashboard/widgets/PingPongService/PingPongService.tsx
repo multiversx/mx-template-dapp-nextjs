@@ -1,43 +1,38 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from 'moment';
-import { Button } from '@/components/Button';
-import { ContractAddress } from '@/components/ContractAddress';
-import { Label } from '@/components/Label';
-import { MissingNativeAuthError } from '@/components/MissingNativeAuthError';
-import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
-import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
-import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
-import { useGetLoginInfo } from '@/hooks/sdkDappHooks';
-import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
+import { useEffect, useState } from 'react';
 import {
-  useGetTimeToPong,
+  Button,
+  ContractAddress,
+  Label,
+  MissingNativeAuthError,
+  OutputContainer,
+  PingPongOutput
+} from '@/components';
+import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
+import { useSendPingPongTransaction } from '@/hooks';
+import { useGetLoginInfo, useGetPendingTransactions } from '@/lib';
+import {
   useGetPingTransaction,
-  useGetPongTransaction
+  useGetPongTransaction,
+  useGetTimeToPong
 } from './hooks';
 
 // The transactions are being done by directly requesting to template-dapp service
-export const PingPongService = ({ callbackRoute }: WidgetProps) => {
-  const [stateTransactions, setStateTransactions] = useState<
-    SignedTransactionType[] | null
-  >(null);
+export const PingPongService = () => {
   const [hasPing, setHasPing] = useState<boolean>(true);
   const [secondsLeft, setSecondsLeft] = useState<number>(0);
 
-  const {
-    sendPingTransactionFromService,
-    sendPongTransactionFromService,
-    transactionStatus
-  } = useSendPingPongTransaction({
-    type: SessionEnum.abiPingPongServiceSessionId
-  });
+  const { sendPingTransactionFromService, sendPongTransactionFromService } =
+    useSendPingPongTransaction();
   const getTimeToPong = useGetTimeToPong();
   const getPingTransaction = useGetPingTransaction();
   const getPongTransaction = useGetPongTransaction();
-  const { hasPendingTransactions } = useGetPendingTransactions();
+  const transactions = useGetPendingTransactions();
+  const hasPendingTransactions = transactions.length > 0;
+
   const { tokenLogin } = useGetLoginInfo();
 
   const setSecondsRemaining = async () => {
@@ -61,10 +56,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
       return;
     }
 
-    await sendPingTransactionFromService({
-      transactions: [pingTransaction],
-      callbackRoute
-    });
+    await sendPingTransactionFromService([pingTransaction]);
   };
 
   const onSendPongTransaction = async () => {
@@ -74,10 +66,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
       return;
     }
 
-    await sendPongTransactionFromService({
-      transactions: [pongTransaction],
-      callbackRoute
-    });
+    await sendPongTransactionFromService([pongTransaction]);
   };
 
   const timeRemaining = moment()
@@ -92,12 +81,6 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
   }, [hasPing]);
 
   useEffect(() => {
-    if (transactionStatus.transactions) {
-      setStateTransactions(transactionStatus.transactions);
-    }
-  }, [transactionStatus]);
-
-  useEffect(() => {
     setSecondsRemaining();
   }, [hasPendingTransactions]);
 
@@ -107,6 +90,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
 
   const isPingDisabled = !hasPing || hasPendingTransactions;
   const isPongDisabled = !pongAllowed || hasPing || hasPendingTransactions;
+
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex-col gap-2'>
@@ -115,7 +99,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
             disabled={isPingDisabled}
             onClick={onSendPingTransaction}
             data-testid='btnPingService'
-            data-cy={CypressEnums.transactionBtn}
+            data-cy='transactionBtn'
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
             Ping
@@ -124,7 +108,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
           <Button
             disabled={isPongDisabled}
             data-testid='btnPongService'
-            data-cy={CypressEnums.transactionBtn}
+            data-cy='transactionBtn'
             onClick={onSendPongTransaction}
           >
             <FontAwesomeIcon icon={faArrowDown} className='mr-1' />
@@ -134,7 +118,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
       </div>
 
       <OutputContainer>
-        {!stateTransactions && (
+        {!hasPendingTransactions && (
           <>
             <ContractAddress />
             {!pongAllowed && (
@@ -147,7 +131,7 @@ export const PingPongService = ({ callbackRoute }: WidgetProps) => {
           </>
         )}
         <PingPongOutput
-          transactions={stateTransactions}
+          transactions={transactions}
           pongAllowed={pongAllowed}
           timeRemaining={timeRemaining}
         />

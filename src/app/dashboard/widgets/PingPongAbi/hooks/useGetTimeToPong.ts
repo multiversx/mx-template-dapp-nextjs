@@ -1,37 +1,52 @@
-import { useGetAccount, useGetNetworkConfig } from '@/hooks';
+import { contractAddress } from '@/config';
 import {
   ProxyNetworkProvider,
   Address,
   AddressValue,
-  ContractFunction,
-  ResultsParser,
-  smartContract
-} from '@/utils';
-
-const resultsParser = new ResultsParser();
+  SmartContractController,
+  AbiRegistry,
+  useGetAccount,
+  useGetNetworkConfig,
+  useGetLoginInfo
+} from '@/lib';
+import pingPongAbi from '@/contracts/ping-pong.abi.json';
 
 export const useGetTimeToPong = () => {
   const { network } = useGetNetworkConfig();
   const { address } = useGetAccount();
+  const loginInfo = useGetLoginInfo();
 
   const getTimeToPong = async () => {
+    if (!address || !loginInfo.tokenLogin?.nativeAuthToken) {
+      return;
+    }
+
     try {
-      const query = smartContract.createQuery({
-        func: new ContractFunction('getTimeToPong'),
-        args: [new AddressValue(new Address(address))]
+      const proxy = new ProxyNetworkProvider(network.apiAddress, {
+        headers: {
+          Authorization: `Bearer ${loginInfo.tokenLogin.nativeAuthToken}`
+        }
       });
-      const provider = new ProxyNetworkProvider(network.apiAddress);
-      const queryResponse = await provider.queryContract(query);
-      const endpointDefinition = smartContract.getEndpoint('getTimeToPong');
-      const { firstValue } = resultsParser.parseQueryResponse(
-        queryResponse,
-        endpointDefinition
-      );
-      const secondsRemaining: number = firstValue?.valueOf()?.toNumber();
+
+      const abi = AbiRegistry.create(pingPongAbi);
+
+      const scController = new SmartContractController({
+        chainID: network.chainId,
+        networkProvider: proxy,
+        abi
+      });
+
+      const result = await scController.query({
+        contract: Address.newFromBech32(contractAddress),
+        function: 'getTimeToPong',
+        arguments: [new AddressValue(new Address(address))]
+      });
+
+      const secondsRemaining = Number(result.toString());
 
       return secondsRemaining;
-    } catch (err) {
-      console.error('Unable to call getTimeToPong', err);
+    } catch {
+      // skip
     }
   };
 

@@ -1,34 +1,29 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import moment from 'moment';
-import { Button } from '@/components/Button';
-import { ContractAddress } from '@/components/ContractAddress';
-import { Label } from '@/components/Label';
-import { OutputContainer, PingPongOutput } from '@/components/OutputContainer';
+import { useEffect, useState } from 'react';
+import {
+  Button,
+  ContractAddress,
+  Label,
+  OutputContainer,
+  PingPongOutput
+} from '@/components';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
-import { useGetPendingTransactions, useSendPingPongTransaction } from '@/hooks';
-import { SessionEnum } from '@/localConstants';
-import { SignedTransactionType, WidgetProps, CypressEnums } from '@/types';
-import { useGetTimeToPong, useGetPingAmount } from './hooks';
+import { useSendPingPongTransaction } from '@/hooks';
+import { useGetPendingTransactions } from '@/lib';
+import { useGetPingAmount, useGetTimeToPong } from './hooks';
 
-export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
-  const { hasPendingTransactions } = useGetPendingTransactions();
+export const PingPongAbi = () => {
+  const transactions = useGetPendingTransactions();
+  const hasPendingTransactions = transactions.length > 0;
+
   const getTimeToPong = useGetTimeToPong();
-  const {
-    sendPingTransactionFromAbi,
-    sendPongTransactionFromAbi,
-    transactionStatus
-  } = useSendPingPongTransaction({
-    type: SessionEnum.abiPingPongSessionId
-  });
+  const { sendPingTransactionFromAbi, sendPongTransactionFromAbi } =
+    useSendPingPongTransaction();
   const pingAmount = useGetPingAmount();
 
-  const [stateTransactions, setStateTransactions] = useState<
-    SignedTransactionType[] | null
-  >(null);
   const [hasPing, setHasPing] = useState<boolean>(true);
   const [secondsLeft, setSecondsLeft] = useState<number>(0);
 
@@ -43,11 +38,11 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
   };
 
   const onSendPingTransaction = async () => {
-    await sendPingTransactionFromAbi({ amount: pingAmount, callbackRoute });
+    await sendPingTransactionFromAbi(pingAmount);
   };
 
   const onSendPongTransaction = async () => {
-    await sendPongTransactionFromAbi({ callbackRoute });
+    await sendPongTransactionFromAbi();
   };
 
   const timeRemaining = moment()
@@ -62,26 +57,18 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
   }, [hasPing]);
 
   useEffect(() => {
-    if (transactionStatus.transactions) {
-      setStateTransactions(transactionStatus.transactions);
-    }
-  }, [transactionStatus]);
-
-  useEffect(() => {
     setSecondsRemaining();
   }, [hasPendingTransactions]);
 
-  const isPingDisabled = !hasPing || hasPendingTransactions;
-  const isPongDisabled = !pongAllowed || hasPing || hasPendingTransactions;
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex-col gap-2'>
         <div className='flex justify-start gap-2'>
           <Button
-            disabled={isPingDisabled}
+            disabled={!hasPing || hasPendingTransactions}
             onClick={onSendPingTransaction}
             data-testid='btnPingAbi'
-            data-cy={CypressEnums.transactionBtn}
+            data-cy='transactionBtn'
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
             <FontAwesomeIcon icon={faArrowUp} className='mr-1' />
@@ -89,9 +76,9 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
           </Button>
 
           <Button
-            disabled={isPongDisabled}
+            disabled={!pongAllowed || hasPing || hasPendingTransactions}
             data-testid='btnPongAbi'
-            data-cy={CypressEnums.transactionBtn}
+            data-cy='transactionBtn'
             onClick={onSendPongTransaction}
             className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 bg-blue-600 text-white hover:bg-blue-700 mr-0 disabled:bg-gray-200 disabled:text-black disabled:cursor-not-allowed'
           >
@@ -102,7 +89,7 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
       </div>
 
       <OutputContainer>
-        {!stateTransactions && (
+        {!hasPendingTransactions && (
           <>
             <ContractAddress />
             {!pongAllowed && (
@@ -116,7 +103,7 @@ export const PingPongAbi = ({ callbackRoute }: WidgetProps) => {
         )}
 
         <PingPongOutput
-          transactions={stateTransactions}
+          transactions={transactions}
           pongAllowed={pongAllowed}
           timeRemaining={timeRemaining}
         />

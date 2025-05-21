@@ -1,4 +1,6 @@
+import { Address, Message } from '@/lib';
 import { decodeMessage } from '../decodeMessage';
+import { expect } from '@jest/globals';
 
 const address =
   'erd1wh9c0sjr2xn8hzf02lwwcr4jk2s84tat9ud2kaq6zr7xzpvl9l5q8awmex';
@@ -10,9 +12,11 @@ const signedMessage = '0x68656c6c6f20776f726c64';
 describe('decodeMessage', () => {
   it('should decode message', async () => {
     const { decodedMessage, encodedMessage } = decodeMessage({
-      address,
       signature,
-      message: rawMessage
+      message: new Message({
+        address: new Address(address),
+        data: new Uint8Array(Buffer.from(rawMessage))
+      })
     });
 
     expect(decodedMessage).toBe(rawMessage);

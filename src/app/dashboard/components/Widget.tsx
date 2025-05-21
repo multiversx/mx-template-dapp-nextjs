@@ -1,8 +1,7 @@
 'use client';
-import { Card } from '@/components/Card';
-import { getCallbackRoute } from '@/utils/getCallbackRoute';
+import { Card } from '@/components';
 import { WidgetType } from '@/types/widget.types';
-import { useIsWebProvider } from '@/hooks';
+import { TransactionsPropsType } from '../widgets/Transactions/types';
 
 export const Widget = ({
   title,
@@ -11,12 +10,7 @@ export const Widget = ({
   anchor,
   widget: MxWidget,
   props = {}
-}: WidgetType) => {
-  const { isWebProvider } = useIsWebProvider();
-  const callbackRoute = anchor
-    ? getCallbackRoute({ anchor, isWebProvider })
-    : '';
-
+}: WidgetType<TransactionsPropsType>) => {
   return (
     <Card
       title={title}
@@ -24,7 +18,7 @@ export const Widget = ({
       reference={reference}
       anchor={anchor}
     >
-      <MxWidget callbackRoute={callbackRoute} {...props} />
+      <MxWidget {...props} />
     </Card>
   );
 };

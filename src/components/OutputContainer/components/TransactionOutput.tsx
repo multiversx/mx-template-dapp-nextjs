@@ -1,12 +1,14 @@
 'use client';
+import { Label } from '@/components';
 import {
+  ACCOUNTS_ENDPOINT,
+  ExplorerLink,
+  FormatAmount,
+  SignedTransactionType,
   TRANSACTIONS_ENDPOINT,
-  ACCOUNTS_ENDPOINT
-} from '@multiversx/sdk-dapp/apiCalls/endpoints';
-import { useGetNetworkConfig } from '@/hooks';
-import { SignedTransactionType } from '@/types';
-import { FormatAmount, ExplorerLink } from '@/components/sdkDappComponents';
-import { Label } from '@/components/Label';
+  useGetNetworkConfig
+} from '@/lib';
+import { DataTestIdsEnum } from '@/localConstants';
 
 export const TransactionOutput = ({
   transaction
@@ -14,7 +16,6 @@ export const TransactionOutput = ({
   transaction: SignedTransactionType;
 }) => {
   const { network } = useGetNetworkConfig();
-
   const decodedData = transaction.data
     ? Buffer.from(transaction.data, 'base64').toString('ascii')
     : 'N/A';
@@ -38,20 +39,23 @@ export const TransactionOutput = ({
           {transaction.receiver}
         </ExplorerLink>
       </p>
+
       <p>
         <Label>Amount: </Label>
         <FormatAmount
           value={transaction.value}
           showLabel={transaction.value !== '0'}
           egldLabel={network.egldLabel}
-          data-testid='balance'
+          data-testid={DataTestIdsEnum.balance}
         />
       </p>
       <p>
-        <Label>Gas price: </Label> {transaction.gasPrice}
+        <Label>Gas price: </Label>
+        {transaction.gasPrice}
       </p>
       <p>
-        <Label>Gas limit: </Label> {transaction.gasLimit}
+        <Label>Gas limit: </Label>
+        {transaction.gasLimit}
       </p>
       <p className='whitespace-nowrap'>
         <Label>Data: </Label> {decodedData}
