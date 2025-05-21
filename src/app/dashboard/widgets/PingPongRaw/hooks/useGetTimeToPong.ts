@@ -29,7 +29,7 @@ export const useGetTimeToPong = () => {
 
   const getTimeToPong = async () => {
     try {
-      const args = new AddressValue(new Address(address)).valueOf().hex();
+      const args = new AddressValue(new Address(address)).valueOf().toHex();
       const { data } = await axios.post<PingPongResponseType>(
         `${network.apiAddress}/vm-values/query`,
         {

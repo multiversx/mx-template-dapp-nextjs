@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import axios from 'axios';
 import { useGetTimeToPong } from '../useGetTimeToPong';
+import { expect } from '@jest/globals';
 
 describe('useGetTimeToPong', () => {
   it('should return 180 seconds', async () => {
