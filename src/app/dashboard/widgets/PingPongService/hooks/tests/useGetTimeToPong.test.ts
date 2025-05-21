@@ -25,15 +25,15 @@ jest.mock(
   })
 );
 
-beforeEach(() => {
-  (useGetLoginInfo as jest.Mock).mockReturnValue({
-    tokenLogin: {
-      nativeAuthToken: 'mock-token'
-    }
-  });
-});
-
 describe('useGetTimeToPong', () => {
+  beforeEach(() => {
+    (useGetLoginInfo as jest.Mock).mockReturnValue({
+      tokenLogin: {
+        nativeAuthToken: 'mock-token'
+      }
+    });
+  });
+
   it('should return 180 seconds', async () => {
     jest.spyOn(axios, 'get').mockResolvedValueOnce({
       data: {
