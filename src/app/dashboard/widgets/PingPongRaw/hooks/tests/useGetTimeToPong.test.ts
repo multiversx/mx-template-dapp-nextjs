@@ -29,7 +29,6 @@ describe('useGetTimeToPong', () => {
     const { result } = renderHook(() => useGetTimeToPong());
     const timeToPong = await result.current();
 
-    console.log('AAAA', { timeToPong });
     // Assert the result is correct based on your mock data
     expect(timeToPong).toBe(180);
   });

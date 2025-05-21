@@ -10,7 +10,6 @@ import {
   Transactions
 } from './widgets';
 import { AuthRedirectWrapper } from '@/wrappers';
-import { ClientHooks } from '@/components/ClientHooks';
 import { Widget } from './components';
 import { WidgetType } from '@/types/widget.types';
 
@@ -89,15 +88,12 @@ const WIDGETS: WidgetType[] = [
 
 export default function Dashboard() {
   return (
-    <>
-      <ClientHooks />
-      <AuthRedirectWrapper>
-        <div className='flex flex-col gap-6 max-w-3xl w-full'>
-          {WIDGETS.map((element) => (
-            <Widget key={element.title} {...element} />
-          ))}
-        </div>
-      </AuthRedirectWrapper>
-    </>
+    <AuthRedirectWrapper>
+      <div className='flex flex-col gap-6 max-w-3xl w-full'>
+        {WIDGETS.map((element) => (
+          <Widget key={element.title} {...element} />
+        ))}
+      </div>
+    </AuthRedirectWrapper>
   );
 }
