@@ -1,13 +1,17 @@
 import { renderHook } from '@testing-library/react';
 import axios from 'axios';
 import { useGetTimeToPong } from '../useGetTimeToPong';
+import { expect } from '@jest/globals';
 
 beforeEach(() => {
-  jest.mock('@multiversx/sdk-dapp/hooks/useGetNetworkConfig', () => ({
-    useGetNetworkConfig: jest.fn().mockReturnValue({
-      network: { apiAddress: 'https://devnet-api.multiversx.com' }
+  jest.mock(
+    '@multiversx/sdk-dapp/out/store/selectors/hooks/network/useGetNetworkConfig',
+    () => ({
+      useGetNetworkConfig: jest.fn().mockReturnValue({
+        network: { apiAddress: 'https://devnet-api.multiversx.com' }
+      })
     })
-  }));
+  );
 });
 
 describe('useGetTimeToPong', () => {
@@ -16,7 +20,7 @@ describe('useGetTimeToPong', () => {
       data: {
         data: {
           data: {
-            returnData: ['tA=='] // 180 converted from b64 to hexa and from hexa to decimal
+            returnData: 180 // 180 converted from b64 to hexa and from hexa to decimal
           }
         }
       }
@@ -24,6 +28,8 @@ describe('useGetTimeToPong', () => {
 
     const { result } = renderHook(() => useGetTimeToPong());
     const timeToPong = await result.current();
+
+    console.log('AAAA', { timeToPong });
     // Assert the result is correct based on your mock data
     expect(timeToPong).toBe(180);
   });
@@ -45,20 +51,12 @@ describe('useGetTimeToPong', () => {
     expect(timeToPong).toBe(0);
   });
 
-  it('should return null', async () => {
-    jest.spyOn(axios, 'post').mockResolvedValueOnce({
-      data: {
-        data: {
-          data: {
-            returnData: []
-          }
-        }
-      }
-    });
+  it('should return null on axios error', async () => {
+    jest.spyOn(axios, 'get').mockRejectedValueOnce(new Error('Network error'));
 
     const { result } = renderHook(() => useGetTimeToPong());
     const timeToPong = await result.current();
-    // Assert the result is correct based on your mock data
-    expect(timeToPong).toBe(null);
+
+    expect(timeToPong).toBeNull();
   });
 });

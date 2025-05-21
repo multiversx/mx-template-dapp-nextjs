@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import axios from 'axios';
 import { useGetPingTransaction } from '../useGetPingTransaction';
+import { expect } from '@jest/globals';
 
 const pingTransaction = {
   nonce: 10705,
@@ -11,7 +12,24 @@ const pingTransaction = {
   gasLimit: 6000000,
   data: 'cGluZw==',
   chainID: 'D',
-  version: 1
+  version: 1,
+  guardian: {
+    bech32: '',
+    pubkey: ''
+  },
+  guardianSignature: {
+    data: [],
+    type: 'Buffer'
+  },
+  options: 0,
+  receiverUsername: '',
+  relayer: { bech32: '', pubkey: '' },
+  relayerSignature: {
+    data: [],
+    type: 'Buffer'
+  },
+  senderUsername: '',
+  signature: { data: [], type: 'Buffer' }
 };
 
 describe('useGetPingTransaction', () => {

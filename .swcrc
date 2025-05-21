@@ -22,10 +22,6 @@
     }
   },
   "module": {
-    "type": "commonjs",
-    "strict": false,
-    "strictMode": true,
-    "lazy": false,
-    "noInterop": false
+    "type": "es6"
   }
 }

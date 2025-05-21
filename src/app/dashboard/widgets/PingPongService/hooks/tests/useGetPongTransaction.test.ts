@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import axios from 'axios';
 import { useGetPongTransaction } from '../useGetPongTransaction';
+import { expect } from '@jest/globals';
 
 const pongTransaction = {
   nonce: 10702,
@@ -14,7 +15,23 @@ const pongTransaction = {
   version: 1
 };
 
+jest.mock('@/lib', () => ({
+  useGetLoginInfo: jest.fn()
+}));
+
+jest.mock('@/config', () => ({
+  EnvironmentsEnum: {
+    devnet: 'devnet',
+    testnet: 'testnet',
+    mainnet: 'mainnet'
+  }
+}));
+
 describe('useGetPongTransaction', () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   it('should return Pong transaction', async () => {
     jest.spyOn(axios, 'post').mockResolvedValueOnce({
       data: pongTransaction
