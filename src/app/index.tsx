@@ -1,12 +1,12 @@
 'use client';
-import { type ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import {
   AxiosInterceptors,
   BatchTransactionsContextProvider
 } from '@/wrappers';
 
-export default function App({ children }: { children: ReactNode }) {
+export default function App({ children }: PropsWithChildren) {
   return (
     <AxiosInterceptors>
       <BatchTransactionsContextProvider>
