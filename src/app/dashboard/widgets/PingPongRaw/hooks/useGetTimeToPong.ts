@@ -1,8 +1,12 @@
 import axios from 'axios';
 import BigNumber from 'bignumber.js';
 import { contractAddress } from '@/config';
-import { useGetNetworkConfig, useGetAccount } from '@/hooks';
-import { Address, AddressValue } from '@/utils';
+import {
+  Address,
+  AddressValue,
+  useGetAccount,
+  useGetNetworkConfig
+} from '@/lib';
 import { PingPongResponseType } from '../types';
 
 const decodeTime = (data: PingPongResponseType) => {
@@ -25,7 +29,7 @@ export const useGetTimeToPong = () => {
 
   const getTimeToPong = async () => {
     try {
-      const args = new AddressValue(new Address(address)).valueOf().hex();
+      const args = new AddressValue(new Address(address)).valueOf().toHex();
       const { data } = await axios.post<PingPongResponseType>(
         `${network.apiAddress}/vm-values/query`,
         {
@@ -35,8 +39,8 @@ export const useGetTimeToPong = () => {
         }
       );
 
-      return decodeTime(data)
-    } catch (err) {
+      return decodeTime(data);
+    } catch {
       return null;
     }
   };

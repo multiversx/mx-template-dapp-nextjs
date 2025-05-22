@@ -1,5 +1,5 @@
 import { ContractAddress } from '@/components/ContractAddress';
-import { SignedTransactionType } from '@/types';
+import { SignedTransactionType } from '@/lib';
 import { TransactionsOutput } from './TransactionsOutput';
 import { Label } from '@/components/Label';
 

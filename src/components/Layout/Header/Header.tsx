@@ -1,42 +1,29 @@
 'use client';
-import { Button } from '@/components/Button';
-import { MxLink } from '@/components/MxLink';
+import { useRouter } from 'next/navigation';
+import { Button, MxLink } from '@/components';
 import { environment } from '@/config';
-import { logout } from '@/helpers';
-import { useGetIsLoggedIn } from '@/hooks';
+import { getAccountProvider, useGetIsLoggedIn } from '@/lib';
 import { RouteNamesEnum } from '@/localConstants';
 import mvxLogo from '../../../../public/assets/img/multiversx-logo.svg';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { getWindowLocation } from '@/utils/sdkDappUtils';
-import { usePathname } from 'next/navigation';
+import { ConnectButton } from './components';
+import { NotificationsButton } from './components/NotificationsButton';
 
 export const Header = () => {
-  const router = useRouter();
   const isLoggedIn = useGetIsLoggedIn();
-  const pathname = usePathname();
+  const router = useRouter();
+  const provider = getAccountProvider();
 
-  const isUnlockRoute = Boolean(pathname === RouteNamesEnum.unlock);
-
-  const ConnectButton = isUnlockRoute ? null : (
-    <MxLink to={RouteNamesEnum.unlock}>Connect</MxLink>
-  );
-
-  const onRedirect = () => {
-    router.replace(RouteNamesEnum.unlock);
-  };
-
-  const handleLogout = () => {
-    const { href } = getWindowLocation();
-    sessionStorage.clear();
-    logout(href, onRedirect, false);
+  const handleLogout = async () => {
+    await provider.logout();
+    router.push(RouteNamesEnum.home);
   };
 
   return (
     <header className='flex flex-row align-center justify-between pl-6 pr-6 pt-6'>
       <MxLink
-        to={isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home}
         className='flex items-center justify-between'
+        to={isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home}
       >
         <Image src={mvxLogo} alt='logo' className='w-full h-6' />
       </MxLink>
@@ -48,16 +35,19 @@ export const Header = () => {
             <p className='text-gray-600'>{environment}</p>
           </div>
 
-          {isLoggedIn ? (
-            <Button
-              onClick={handleLogout}
-              className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 text-gray-600 hover:bg-slate-100 mx-0'
-            >
-              Close
-            </Button>
-          ) : (
-            ConnectButton
+          {isLoggedIn && (
+            <>
+              <NotificationsButton />
+              <Button
+                onClick={handleLogout}
+                className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 text-gray-600 hover:bg-slate-100 mx-0'
+              >
+                Close
+              </Button>
+            </>
           )}
+
+          {!isLoggedIn && <ConnectButton />}
         </div>
       </nav>
     </header>

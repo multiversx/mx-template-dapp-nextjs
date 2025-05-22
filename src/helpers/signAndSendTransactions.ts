@@ -1,26 +1,27 @@
-import { Transaction, TransactionsDisplayInfoType } from '@/types';
-
-import { refreshAccount, sendTransactions } from './sdkDappHelpers';
+import {
+  Transaction,
+  TransactionsDisplayInfoType,
+  getAccountProvider,
+  TransactionManager
+} from '@/lib';
 
 type SignAndSendTransactionsProps = {
   transactions: Transaction[];
-  callbackRoute: string;
-  transactionsDisplayInfo: TransactionsDisplayInfoType;
+  transactionsDisplayInfo?: TransactionsDisplayInfoType;
 };
 
 export const signAndSendTransactions = async ({
   transactions,
-  callbackRoute,
   transactionsDisplayInfo
 }: SignAndSendTransactionsProps) => {
-  await refreshAccount();
+  const provider = getAccountProvider();
+  const txManager = TransactionManager.getInstance();
 
-  const { sessionId } = await sendTransactions({
-    transactions,
-    transactionsDisplayInfo,
-    redirectAfterSign: false,
-    callbackRoute
+  const signedTransactions = await provider.signTransactions(transactions);
+  const sentTransactions = await txManager.send(signedTransactions);
+  const sessionId = await txManager.track(sentTransactions, {
+    transactionsDisplayInfo
   });
 
-  return sessionId;
+  return { sentTransactions, sessionId };
 };

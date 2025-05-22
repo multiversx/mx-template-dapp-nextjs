@@ -1,4 +1,4 @@
-import { isWindowAvailable } from '@/utils/sdkDappUtils';
+import { isWindowAvailable } from '@/helpers/isWindowAvailable';
 
 const getFromSessionStorage = (key: string) => {
   if (!isWindowAvailable()) {
