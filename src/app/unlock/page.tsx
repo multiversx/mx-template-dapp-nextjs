@@ -11,6 +11,9 @@ export default function Unlock() {
   const unlockPanelManager = UnlockPanelManager.init({
     loginHandler: () => {
       router.push(RouteNamesEnum.dashboard);
+    },
+    closeCallback: () => {
+      router.replace(RouteNamesEnum.home);
     }
   });
 
