@@ -61,13 +61,7 @@ export const PingPongService = () => {
       return;
     }
 
-    const pingTx = new Transaction({
-      ...pingTransaction,
-      receiver: new Address(pingTransaction.receiver),
-      sender: new Address(pingTransaction.sender)
-    });
-    console.log({ pingTx });
-    await sendPingTransactionFromService([pingTx]);
+    await sendPingTransactionFromService([pingTransaction]);
   };
 
   const onSendPongTransaction = async () => {
