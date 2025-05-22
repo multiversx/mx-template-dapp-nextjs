@@ -13,7 +13,12 @@ import {
 } from '@/components';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useSendPingPongTransaction } from '@/hooks';
-import { useGetLoginInfo, useGetPendingTransactions } from '@/lib';
+import {
+  Address,
+  Transaction,
+  useGetLoginInfo,
+  useGetPendingTransactions
+} from '@/lib';
 import {
   useGetPingTransaction,
   useGetPongTransaction,
@@ -56,7 +61,13 @@ export const PingPongService = () => {
       return;
     }
 
-    await sendPingTransactionFromService([pingTransaction]);
+    const pingTx = new Transaction({
+      ...pingTransaction,
+      receiver: new Address(pingTransaction.receiver),
+      sender: new Address(pingTransaction.sender)
+    });
+    console.log({ pingTx });
+    await sendPingTransactionFromService([pingTx]);
   };
 
   const onSendPongTransaction = async () => {
