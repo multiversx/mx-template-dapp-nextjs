@@ -13,12 +13,7 @@ import {
 } from '@/components';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
 import { useSendPingPongTransaction } from '@/hooks';
-import {
-  Address,
-  Transaction,
-  useGetLoginInfo,
-  useGetPendingTransactions
-} from '@/lib';
+import { useGetLoginInfo, useGetPendingTransactions } from '@/lib';
 import {
   useGetPingTransaction,
   useGetPongTransaction,
