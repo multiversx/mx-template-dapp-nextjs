@@ -42,10 +42,12 @@ export const useGetTimeToPong = () => {
         arguments: [new AddressValue(new Address(address))]
       });
 
-      const secondsRemaining = Number(result.toString());
+      const time = result.toString();
+      const secondsRemaining = time ? Number(result.toString()) : null;
 
       return secondsRemaining;
-    } catch {
+    } catch (err) {
+      console.log(err);
       // skip
     }
   };

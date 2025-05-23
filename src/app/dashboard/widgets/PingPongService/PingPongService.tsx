@@ -22,8 +22,8 @@ import {
 
 // The transactions are being done by directly requesting to template-dapp service
 export const PingPongService = () => {
-  const [hasPing, setHasPing] = useState<boolean>(true);
-  const [secondsLeft, setSecondsLeft] = useState<number>(0);
+  const [hasPing, setHasPing] = useState(true);
+  const [secondsLeft, setSecondsLeft] = useState(0);
 
   const { sendPingTransactionFromService, sendPongTransactionFromService } =
     useSendPingPongTransaction();
