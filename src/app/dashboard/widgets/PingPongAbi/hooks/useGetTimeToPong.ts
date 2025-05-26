@@ -46,8 +46,7 @@ export const useGetTimeToPong = () => {
       const secondsRemaining = time ? Number(result.toString()) : null;
 
       return secondsRemaining;
-    } catch (err) {
-      console.log(err);
+    } catch {
       // skip
     }
   };
