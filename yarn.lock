@@ -968,10 +968,10 @@
     axios "^1.7.4"
     bip39 "3.1.0"
 
-"@multiversx/sdk-dapp-ui@0.0.0", "@multiversx/sdk-dapp-ui@>=0.0.0":
-  version "0.0.0"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-ui/-/sdk-dapp-ui-0.0.0.tgz"
-  integrity sha512-uMCJmZQ8wB7Pcd1iGeJphUvtyY8M7KgI17aAZCHpFvMIC5vPOoDA3oBw77x3G8aOHpkX+6N2h/T3ubC7FRfrGQ==
+"@multiversx/sdk-dapp-ui@>=0.0.4", "@multiversx/sdk-dapp-ui@^0.x":
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-ui/-/sdk-dapp-ui-0.0.4.tgz#ca9afc762a32865a7fa6316f7b50d9a0937b0714"
+  integrity sha512-8Zp/VYmBtsYOam3Z8SgKupzb1USA4WNAiOoEVjhGThCOO7nLoK6Y+W0xWSUMN0wVOqMzdxjS69iSIR3U2ZdRHA==
   dependencies:
     "@fortawesome/fontawesome-svg-core" ">= 6.7.2"
     "@fortawesome/free-solid-svg-icons" ">= 6.7.2"
@@ -988,10 +988,10 @@
   resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-utils/-/sdk-dapp-utils-2.0.0.tgz"
   integrity sha512-NcaQUgXrjDqjKJgbUj1eM11ID7sDJRVFamjEA/VO4qquP8jBOrSeW0ltvppHElZGC/A14tNDERPbZQkrLIa2KQ==
 
-"@multiversx/sdk-dapp@5.0.0-alpha.0":
-  version "5.0.0-alpha.0"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp/-/sdk-dapp-5.0.0-alpha.0.tgz"
-  integrity sha512-QzGeHW0FZ8RDqZP2unC2wgZtE2eKcRqCaIaV4S1jcgCiyx0plWukSkj8zXoPMIxetS8BJQjL+MfSSQwHwt3t+Q==
+"@multiversx/sdk-dapp@^5.x":
+  version "5.0.0-alpha.1"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp/-/sdk-dapp-5.0.0-alpha.1.tgz#5e35d8d08dccab57eb5a76d3042957ffcdf82096"
+  integrity sha512-9GatImHp/dFef08GpJmZ2CMBuG7MlgMtMf3ShVTyyyrswAeUqq+DZ7NeSG3nhax3WTOrJeeE3v11nPL2FVwuTA==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
     "@multiversx/sdk-core" "14.0.2"
@@ -1017,7 +1017,7 @@
     socket.io-client "4.7.5"
     zustand "4.4.7"
   optionalDependencies:
-    "@multiversx/sdk-dapp-ui" ">=0.0.0"
+    "@multiversx/sdk-dapp-ui" ">=0.0.4"
 
 "@multiversx/sdk-extension-provider@5.0.0":
   version "5.0.0"
