@@ -12,7 +12,7 @@ export default function Unlock() {
     loginHandler: () => {
       router.push(RouteNamesEnum.dashboard);
     },
-    closeCallback: () => {
+    onClose: () => {
       router.replace(RouteNamesEnum.home);
     }
   });
