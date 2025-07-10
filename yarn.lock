@@ -945,10 +945,10 @@
   resolved "https://registry.npmjs.org/@multiversx/sdk-bls-wasm/-/sdk-bls-wasm-0.3.5.tgz"
   integrity sha512-c0tIdQUnbBLSt6NYU+OpeGPYdL0+GV547HeHT8Xc0BKQ7Cj0v82QUoA2QRtWrR1G4MNZmLsIacZSsf6DrIS2Bw==
 
-"@multiversx/sdk-core@14.0.2":
-  version "14.0.2"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-core/-/sdk-core-14.0.2.tgz"
-  integrity sha512-bVrKH23NSsfVyIZKujFrc8k+mBMM4pJDNe+8CHG3M0OUPi/kOVBev6VFmLpQyW9/t25VHU1lR6c4A/qhZOl1Mw==
+"@multiversx/sdk-core@14.2.3":
+  version "14.2.3"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-core/-/sdk-core-14.2.3.tgz#688c8f6c966f01c5dc2f1b6157d5d492e8f6e0e7"
+  integrity sha512-h52YIJ3udMyQSNX1QaZKbm7YpwIFvRI78QEJTes0UoboAUt5Vx5bTc8kZt8Lrfks7FKHEPaUeMdLochUcQbQ4Q==
   dependencies:
     "@multiversx/sdk-transaction-decoder" "1.0.2"
     "@noble/ed25519" "1.7.3"
@@ -968,14 +968,15 @@
     axios "^1.7.4"
     bip39 "3.1.0"
 
-"@multiversx/sdk-dapp-ui@>=0.0.4", "@multiversx/sdk-dapp-ui@^0.x":
-  version "0.0.4"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-ui/-/sdk-dapp-ui-0.0.4.tgz#ca9afc762a32865a7fa6316f7b50d9a0937b0714"
-  integrity sha512-8Zp/VYmBtsYOam3Z8SgKupzb1USA4WNAiOoEVjhGThCOO7nLoK6Y+W0xWSUMN0wVOqMzdxjS69iSIR3U2ZdRHA==
+"@multiversx/sdk-dapp-ui@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-ui/-/sdk-dapp-ui-0.0.8.tgz#ed494ab781ef17d6dd45f13a9396161957910eda"
+  integrity sha512-bLNrq5lrnqcV4QH9lNqcfySTqyM1j5aiPZtZu639r4JmGa7XLCyutHgFFMsD5EN5ULW31UfDXKZ2hM/ecMiljQ==
   dependencies:
     "@fortawesome/fontawesome-svg-core" ">= 6.7.2"
     "@fortawesome/free-solid-svg-icons" ">= 6.7.2"
     "@multiversx/sdk-dapp-utils" ">= 1.0.4"
+    "@rollup/plugin-image" "^3.0.3"
     "@stencil/react-output-target" "0.8.2"
     classnames ">= 2.5.1"
     lodash.inrange "^3.3.0"
@@ -983,30 +984,49 @@
     qrcode ">= 1.5.4"
     sass-embedded "^1.85.1"
 
-"@multiversx/sdk-dapp-utils@2.0.0", "@multiversx/sdk-dapp-utils@>= 1.0.4", "@multiversx/sdk-dapp-utils@^2.x":
+"@multiversx/sdk-dapp-ui@>=0.0.8":
+  version "0.0.11"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-ui/-/sdk-dapp-ui-0.0.11.tgz#69e149dcbba8bb47bb04b693f1408bcb95ddd62d"
+  integrity sha512-FI+Kjri8rf+XEUIr2ne2AKW0QnkQyzdSjlG6cAOn/LnwPinfx9mP4jyTWQjdgglvO7p2/RjHPz8iL0AOVDQedA==
+  dependencies:
+    "@fortawesome/fontawesome-svg-core" ">= 6.7.2"
+    "@fortawesome/free-solid-svg-icons" ">= 6.7.2"
+    "@rollup/plugin-image" "^3.0.3"
+    "@stencil/react-output-target" "0.8.2"
+    classnames ">= 2.5.1"
+    lodash.inrange "^3.3.0"
+    lodash.range "^3.2.0"
+    qrcode ">= 1.5.4"
+    sass-embedded "^1.85.1"
+
+"@multiversx/sdk-dapp-utils@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-utils/-/sdk-dapp-utils-2.0.2.tgz#a82252ca166ba24462e925c5a8d249fd8e166906"
+  integrity sha512-qxkYV3qtLxY6nckXsxtYZJ8zLY0zalpxgLQfYWaz2uOjEswraky/2PLxSaws1ts0YP3PPc0SrKIDfN9wVOA7EQ==
+
+"@multiversx/sdk-dapp-utils@>= 1.0.4":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@multiversx/sdk-dapp-utils/-/sdk-dapp-utils-2.0.0.tgz"
   integrity sha512-NcaQUgXrjDqjKJgbUj1eM11ID7sDJRVFamjEA/VO4qquP8jBOrSeW0ltvppHElZGC/A14tNDERPbZQkrLIa2KQ==
 
-"@multiversx/sdk-dapp@^5.x":
-  version "5.0.0-alpha.1"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp/-/sdk-dapp-5.0.0-alpha.1.tgz#5e35d8d08dccab57eb5a76d3042957ffcdf82096"
-  integrity sha512-9GatImHp/dFef08GpJmZ2CMBuG7MlgMtMf3ShVTyyyrswAeUqq+DZ7NeSG3nhax3WTOrJeeE3v11nPL2FVwuTA==
+"@multiversx/sdk-dapp@5.0.0-alpha.14":
+  version "5.0.0-alpha.14"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-dapp/-/sdk-dapp-5.0.0-alpha.14.tgz#102684666fdfe46c7016651d22af32c0d62269ee"
+  integrity sha512-PhYz9p7sRFVi5nkEP7rwwh6mJobr1yiFpoi3+pvQnBU7x8IhpZE5zlMKZ4EaXfoE/4Mx1Ztl9nIeg0WHLfPTkw==
   dependencies:
     "@lifeomic/axios-fetch" "3.0.1"
-    "@multiversx/sdk-core" "14.0.2"
-    "@multiversx/sdk-dapp-utils" "^2.x"
     "@multiversx/sdk-extension-provider" "5.0.0"
     "@multiversx/sdk-hw-provider" "8.0.0"
     "@multiversx/sdk-metamask-provider" "2.0.0"
     "@multiversx/sdk-native-auth-client" "1.0.9"
     "@multiversx/sdk-wallet" "4.6.0"
     "@multiversx/sdk-wallet-connect-provider" "6.0.1"
-    "@multiversx/sdk-web-wallet-cross-window-provider" "3.1.0"
-    "@multiversx/sdk-web-wallet-iframe-provider" "3.0.0"
+    "@multiversx/sdk-web-wallet-cross-window-provider" "3.1.1"
+    "@multiversx/sdk-web-wallet-iframe-provider" "3.0.3"
     "@multiversx/sdk-web-wallet-provider" "5.0.0"
-    "@multiversx/sdk-webview-provider" "3.0.1"
+    "@multiversx/sdk-webview-provider" "3.1.1"
     immer "10.1.1"
+    linkifyjs "4.3.1"
     lodash.isempty "4.4.0"
     lodash.isequal "4.5.0"
     lodash.isstring "4.0.1"
@@ -1017,7 +1037,7 @@
     socket.io-client "4.7.5"
     zustand "4.4.7"
   optionalDependencies:
-    "@multiversx/sdk-dapp-ui" ">=0.0.4"
+    "@multiversx/sdk-dapp-ui" ">=0.0.8"
 
 "@multiversx/sdk-extension-provider@5.0.0":
   version "5.0.0"
@@ -1087,17 +1107,17 @@
     tweetnacl "1.0.3"
     uuid "8.3.2"
 
-"@multiversx/sdk-web-wallet-cross-window-provider@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-web-wallet-cross-window-provider/-/sdk-web-wallet-cross-window-provider-3.1.0.tgz"
-  integrity sha512-O3FCpRal99Bxf9ESmGB+FD6D5AcIf6Kjo3A2FTwdyhCYu3m2lRtwoFsd+uXSo7FXoMWrlZJaQsdO8GYOo/HQhQ==
+"@multiversx/sdk-web-wallet-cross-window-provider@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-web-wallet-cross-window-provider/-/sdk-web-wallet-cross-window-provider-3.1.1.tgz#62534fb4a2cadfc173a54d4d85343a7b1be98226"
+  integrity sha512-1hw9Z7HwceQXk6XpOIvYSwmIxDrdoIhUNzLP4VGvsVHJcLw7mqbhA+txXqqevCgB61VmHBV6FNLRWp6U6JvgEw==
   dependencies:
     qs "6.11.2"
 
-"@multiversx/sdk-web-wallet-iframe-provider@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-web-wallet-iframe-provider/-/sdk-web-wallet-iframe-provider-3.0.0.tgz"
-  integrity sha512-qEPARy3iMsmnOiRKBsAN2PCXP1l1kHpNn+8MvVFmdHC6jt5mdyKJw5Dj7CgReoLeuHwUtGDp5OGjUUGk6Cf9gg==
+"@multiversx/sdk-web-wallet-iframe-provider@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-web-wallet-iframe-provider/-/sdk-web-wallet-iframe-provider-3.0.3.tgz#cdef2a425f191a745a6276dd19c441e36e570a26"
+  integrity sha512-lxIFSoutQJD3fIxW/YpEW4/7U6VUoHjVSeOlwgQJr/MmkuURJKpWezPForvPur17tYsxTHmnwWOdD5Ja8OEAtA==
   dependencies:
     "@types/jest" "^29.5.11"
     "@types/qs" "6.9.10"
@@ -1110,10 +1130,10 @@
   dependencies:
     qs "6.10.3"
 
-"@multiversx/sdk-webview-provider@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/@multiversx/sdk-webview-provider/-/sdk-webview-provider-3.0.1.tgz"
-  integrity sha512-Bw4h8lR3p6a8TdU0tCs0LmBYFxCfVzOkEL0kMtMOBxna/6DGTnvpuOmB33LeVPluHUw5jLlFHNCClQst916vuA==
+"@multiversx/sdk-webview-provider@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/@multiversx/sdk-webview-provider/-/sdk-webview-provider-3.1.1.tgz#35124895353e269f418fa8f4d06e441b5f62b419"
+  integrity sha512-HwGL0m4DAirw087MZyGUcq1mWR1tTzommpdhMhhPQLNeeUJT+uZKTIAbBEHef7wehxSPp15QVCrI6uoOOPN+jA==
 
 "@napi-rs/wasm-runtime@^0.2.9":
   version "0.2.10"
@@ -1339,6 +1359,23 @@
   version "1.1.0"
   resolved "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
+
+"@rollup/plugin-image@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/@rollup/plugin-image/-/plugin-image-3.0.3.tgz#025b557180bae20f2349ff5130ef2114169feaac"
+  integrity sha512-qXWQwsXpvD4trSb8PeFPFajp8JLpRtqqOeNYRUKnEQNHm7e5UP7fuSRcbjQAJ7wDZBbnJvSdY5ujNBQd9B1iFg==
+  dependencies:
+    "@rollup/pluginutils" "^5.0.1"
+    mini-svg-data-uri "^1.4.4"
+
+"@rollup/pluginutils@^5.0.1":
+  version "5.2.0"
+  resolved "https://registry.npmjs.org/@rollup/pluginutils/-/pluginutils-5.2.0.tgz#eac25ca5b0bdda4ba735ddaca5fbf26bd435f602"
+  integrity sha512-qWJ2ZTbmumwiLFomfzTyt5Kng4hwPi9rwCYN4SHb6eaRU1KNO4ccxINHr/VhH4GgPlt1XfSTLX2LBTme8ne4Zw==
+  dependencies:
+    "@types/estree" "^1.0.0"
+    estree-walker "^2.0.2"
+    picomatch "^4.0.2"
 
 "@rtsao/scc@^1.1.0":
   version "1.1.0"
@@ -1630,6 +1667,11 @@
   integrity sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==
   dependencies:
     "@types/ms" "*"
+
+"@types/estree@^1.0.0":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.8.tgz#958b91c991b1867ced318bedea0e215ee050726e"
+  integrity sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==
 
 "@types/graceful-fs@^4.1.3":
   version "4.1.9"
@@ -4042,6 +4084,11 @@ estraverse@^5.1.0, estraverse@^5.2.0, estraverse@^5.3.0:
   resolved "https://registry.npmjs.org/estraverse/-/estraverse-5.3.0.tgz"
   integrity sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==
 
+estree-walker@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
+  integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
+
 esutils@^2.0.2:
   version "2.0.3"
   resolved "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz"
@@ -5806,6 +5853,11 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
+linkifyjs@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.npmjs.org/linkifyjs/-/linkifyjs-4.3.1.tgz#1f246ebf4be040002accd1f4535b6af7c7e37898"
+  integrity sha512-DRSlB9DKVW04c4SUdGvKK5FR6be45lTU9M76JnngqPeeGDqPwYc0zdUErtsNVMtxPXgUWV4HbXbnC4sNyBxkYg==
+
 listr2@^3.8.3:
   version "3.14.0"
   resolved "https://registry.npmjs.org/listr2/-/listr2-3.14.0.tgz"
@@ -6023,6 +6075,11 @@ mimic-fn@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/mimic-fn/-/mimic-fn-2.1.0.tgz"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
+
+mini-svg-data-uri@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.npmjs.org/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
