@@ -1,9 +1,8 @@
 'use client';
-import { useGetNetworkConfig, MvxExplorerLink } from '@/lib';
+import { useGetNetworkConfig, MvxExplorerLink, getExplorerLink } from '@/lib';
 import { getTransactionUrl, useTransactionOutcome } from '@/helpers';
 import { Label } from '@/components/Label';
 import { TRANSACTIONS_ENDPOINT } from '@/localConstants';
-import { getExplorerLink } from '@multiversx/sdk-dapp/out/utils/transactions/getExplorerLink';
 
 export const Transaction = () => {
   const { network } = useGetNetworkConfig();

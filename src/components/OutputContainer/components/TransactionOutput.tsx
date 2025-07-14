@@ -5,6 +5,7 @@ import {
   DECIMALS,
   DIGITS,
   FormatAmountController,
+  getExplorerLink,
   MvxExplorerLink,
   MvxFormatAmount,
   SignedTransactionType,
@@ -12,7 +13,6 @@ import {
   useGetAccountInfo,
   useGetNetworkConfig
 } from '@/lib';
-import { getExplorerLink } from '@multiversx/sdk-dapp/out/utils/transactions/getExplorerLink';
 
 export const TransactionOutput = ({
   transaction
