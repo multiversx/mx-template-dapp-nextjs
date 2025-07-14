@@ -9,7 +9,8 @@ import {
   ICustomProvider,
   ProviderTypeEnum,
   InitAppType,
-  EnvironmentsEnum
+  EnvironmentsEnum,
+  ProviderType
 } from '@/lib';
 
 const ADDITIONAL_PROVIDERS = {
@@ -23,7 +24,7 @@ export const ExtendedProviders = {
 
 const DEFAULT_TOAST_LIEFTIME = 5000;
 
-const providers: ICustomProvider<ProviderTypeEnum>[] = [
+const providers: ICustomProvider<ProviderType>[] = [
   {
     name: ADDITIONAL_PROVIDERS.inMemoryProvider,
     type: ExtendedProviders.inMemoryProvider,
@@ -48,7 +49,9 @@ export const config: InitAppType = {
         walletConnectV2ProjectId
       }
     },
-    successfulToastLifetime: DEFAULT_TOAST_LIEFTIME
+    transactionTracking: {
+      successfulToastLifetime: DEFAULT_TOAST_LIEFTIME
+    }
   }
 
   // Option 2: Add providers using the config `customProviders` array

@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { Button, MxLink } from '@/components';
 import { environment } from '@/config';
-import { getAccountProvider, useGetIsLoggedIn } from '@/lib';
+import { useGetIsLoggedIn } from '@/lib';
 import { RouteNamesEnum } from '@/localConstants';
 import mvxLogo from '../../../../public/assets/img/multiversx-logo.svg';
 import Image from 'next/image';
@@ -12,11 +12,9 @@ import { NotificationsButton } from './components/NotificationsButton';
 export const Header = () => {
   const isLoggedIn = useGetIsLoggedIn();
   const router = useRouter();
-  const provider = getAccountProvider();
 
-  const handleLogout = async () => {
-    await provider.logout();
-    router.push(RouteNamesEnum.home);
+  const onClick = async () => {
+    router.push(RouteNamesEnum.logout);
   };
 
   return (
@@ -39,7 +37,7 @@ export const Header = () => {
             <>
               <NotificationsButton />
               <Button
-                onClick={handleLogout}
+                onClick={onClick}
                 className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 text-gray-600 hover:bg-slate-100 mx-0'
               >
                 Close
