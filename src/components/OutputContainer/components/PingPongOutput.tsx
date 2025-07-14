@@ -14,7 +14,7 @@ export const PingPongOutput = ({
   pongAllowed,
   transactions
 }: PingPongOutputType) => {
-  if (!transactions) {
+  if (!transactions || transactions.length === 0) {
     return null;
   }
 

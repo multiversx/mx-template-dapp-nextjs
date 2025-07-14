@@ -13,3 +13,4 @@ export { setAxiosInterceptors } from '@multiversx/sdk-dapp/out/utils/network/set
 export { signTransactions } from '@multiversx/sdk-dapp/out/providers/strategies/helpers/signTransactions/signTransactions';
 export { trimUsernameDomain } from '@multiversx/sdk-dapp/out/utils/account/trimUsernameDomain';
 export { UnlockPanelManager } from '@multiversx/sdk-dapp/out/managers/UnlockPanelManager';
+export { getExplorerLink } from '@multiversx/sdk-dapp/out/utils/transactions/getExplorerLink';
