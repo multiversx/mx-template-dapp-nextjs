@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev | npx local-ssl-proxy --source 3002 --target 3000",
-    "build": "yarn build-devnet",
+    "build": "yarn build:devnet",
     "lint": "next lint",
     "start:devnet": "yarn run copy-devnet-config & yarn dev",
     "start:testnet": "yarn run copy-testnet-config & yarn dev",
