@@ -1,18 +1,18 @@
 # **MultiversX dApp based on Next.js and @multiversx/sdk-dapp**
 
-See [Template dApp Next.js](https://template-dapp-nextjs.multiversx.com/) for live demo.
+See [Template dApp Next.js](https://mx-template-dapp-nextjs-tawny.vercel.app/) for live demo.
 
 ### Setup next.config.js.
 
 See [documentation](https://nextjs.org/docs/pages/api-reference/next-config-js/transpilePackages)
 
 ```js
-   /** @type {import('next').NextConfig} */
-   const nextConfig = {
-      transpilePackages: ['@multiversx/sdk-dapp']
-   };
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ['@multiversx/sdk-dapp-ui']
+};
 
-   module.exports = nextConfig;
+module.exports = nextConfig;
 ```
 
 ---
