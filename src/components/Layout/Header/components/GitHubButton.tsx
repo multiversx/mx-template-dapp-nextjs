@@ -1,7 +1,7 @@
-import { GITHUB_REPO_URL } from '@/localConstants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { GITHUB_REPO_URL } from '@/config';
 
 export const GitHubButton = () => {
   return (
