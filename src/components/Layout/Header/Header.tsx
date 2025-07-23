@@ -32,9 +32,10 @@ export const Header = () => {
             <p className='text-gray-600'>{environment}</p>
           </div>
 
+          <GitHubButton />
+
           {isLoggedIn && (
             <>
-              <GitHubButton />
               <NotificationsButton />
               <Button
                 onClick={onClick}
