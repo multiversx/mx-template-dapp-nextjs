@@ -6,8 +6,7 @@ import { useGetIsLoggedIn } from '@/lib';
 import { RouteNamesEnum } from '@/localConstants';
 import mvxLogo from '../../../../public/assets/img/multiversx-logo.svg';
 import Image from 'next/image';
-import { ConnectButton } from './components';
-import { NotificationsButton } from './components/NotificationsButton';
+import { ConnectButton, GitHubButton, NotificationsButton } from './components';
 
 export const Header = () => {
   const isLoggedIn = useGetIsLoggedIn();
@@ -32,6 +31,8 @@ export const Header = () => {
             <div className='w-2 h-2 rounded-full bg-green-500' />
             <p className='text-gray-600'>{environment}</p>
           </div>
+
+          <GitHubButton />
 
           {isLoggedIn && (
             <>
