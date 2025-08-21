@@ -7,3 +7,6 @@ export * from './Layout';
 export * from './MissingNativeAuthError';
 export * from './Label';
 export * from './TransactionsTable';
+export * from './AddressComponent';
+export * from './Logo';
+export * from './Tooltip';
