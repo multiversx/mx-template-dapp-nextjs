@@ -1,7 +1,7 @@
 'use client';
 import { Card } from '@/components';
 import { WidgetType } from '@/types/widget.types';
-import { TransactionsPropsType } from '../widgets/Transactions/types';
+import { TransactionsPropsType } from '../../widgets/Transactions/types';
 
 export const Widget = ({
   title,
