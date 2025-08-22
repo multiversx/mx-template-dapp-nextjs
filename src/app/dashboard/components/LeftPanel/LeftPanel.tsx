@@ -12,7 +12,7 @@ import { RouteNamesEnum } from '@/localConstants';
 
 import { Account, SideMenu } from './components';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import iconExpand from '@/assets/img/expand-up-down.svg';
 
 // prettier-ignore
 const styles = {
@@ -56,6 +56,8 @@ export const LeftPanel = ({
     router.push(RouteNamesEnum.home);
   };
 
+  const IconExpand = iconExpand;
+
   return (
     <div
       className={classNames(styles.leftPanelContainer, {
@@ -72,13 +74,7 @@ export const LeftPanel = ({
             size='xl'
           />
         ) : (
-          <Image
-            src='/assets/img/expand-up-down.svg'
-            alt=''
-            width={20}
-            height={20}
-            className={styles.leftPanelMobileHeaderIconOpen}
-          />
+          <IconExpand className={styles.leftPanelMobileHeaderIconOpen} />
         )}
       </div>
 

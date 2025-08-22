@@ -7,6 +7,11 @@ import {
   GET_XPORTAL,
   WALLET_ADDRESS
 } from '@/localConstants';
+import ledgerIcon from '@/assets/img/ledger-icon.svg';
+import metamaskIcon from '@/assets/img/metamask-icon.svg';
+import passkeyIcon from '@/assets/img/passkey-icon.svg';
+import webWalletIcon from '@/assets/img/web-wallet-icon.svg';
+import xPortalIcon from '@/assets/img/xportal-icon.svg';
 
 import { ConnectCard, ExtensionConnect } from './components';
 
@@ -26,7 +31,7 @@ export const HowToConnectComponent = () => {
 
   const connectCards = [
     {
-      icon: '/assets/img/metamask-icon.svg',
+      icon: metamaskIcon,
       title: 'Metamask Snap',
       description:
         'Explore the entire MultiversX ecosystem with Metamask! Securely manage, swap and transfer your assets.',
@@ -36,7 +41,7 @@ export const HowToConnectComponent = () => {
         : CHROME_METAMASK_EXTENSION_LINK
     },
     {
-      icon: '/assets/img/passkey-icon.svg',
+      icon: passkeyIcon,
       title: 'Passkey',
       description:
         'Passkeys offer a more secure and user-friendly way to authenticate and sign transactions.',
@@ -44,7 +49,7 @@ export const HowToConnectComponent = () => {
       linkDownloadAddress: WALLET_ADDRESS
     },
     {
-      icon: '/assets/img/xportal-icon.svg',
+      icon: xPortalIcon,
       title: 'xPortal Wallet',
       description:
         'The easiest way to invest, spend globally with a crypto card and earn yield across DeFi and stablecoins.',
@@ -52,7 +57,7 @@ export const HowToConnectComponent = () => {
       linkDownloadAddress: GET_XPORTAL
     },
     {
-      icon: '/assets/img/ledger-icon.svg',
+      icon: ledgerIcon,
       title: 'Ledger',
       description:
         'You can safely store your EGLD by installing the MultiversX EGLD app on your Ledger Nano S or Ledger Nano X device',
@@ -60,7 +65,7 @@ export const HowToConnectComponent = () => {
       linkDownloadAddress: GET_LEDGER
     },
     {
-      icon: '/assets/img/web-wallet-icon.svg',
+      icon: webWalletIcon,
       title: 'MultiversX Web Wallet',
       description:
         'Store, swap, and transfer tokens or NFTs. Connect to Web3 apps on MultiversX blockchain.',

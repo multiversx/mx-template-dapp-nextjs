@@ -1,6 +1,5 @@
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 
 // prettier-ignore
 const styles = {
@@ -26,24 +25,27 @@ export const ConnectCard = ({
   description,
   linkTitle,
   linkDownloadAddress
-}: ConnectCardPropsType) => (
-  <div className={styles.connectCardContainer}>
-    <Image src={icon} alt='' width={54} height={54} />
+}: ConnectCardPropsType) => {
+  const Icon = icon;
+  return (
+    <div className={styles.connectCardContainer}>
+      <Icon />
 
-    <div className={styles.connectCardText}>
-      <h2 className={styles.connectCardTitle}>{title}</h2>
+      <div className={styles.connectCardText}>
+        <h2 className={styles.connectCardTitle}>{title}</h2>
 
-      <p className={styles.connectCardDescription}>{description}</p>
+        <p className={styles.connectCardDescription}>{description}</p>
+      </div>
+
+      <a
+        href={linkDownloadAddress}
+        target='_blank'
+        className={styles.connectCardLink}
+      >
+        <span className={styles.connectCardLinkTitle}>{linkTitle}</span>
+
+        <FontAwesomeIcon icon={faArrowRightLong} />
+      </a>
     </div>
-
-    <a
-      href={linkDownloadAddress}
-      target='_blank'
-      className={styles.connectCardLink}
-    >
-      <span className={styles.connectCardLinkTitle}>{linkTitle}</span>
-
-      <FontAwesomeIcon icon={faArrowRightLong} />
-    </a>
-  </div>
-);
+  );
+};

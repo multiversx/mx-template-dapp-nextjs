@@ -112,7 +112,7 @@ export default function Dashboard() {
         className={classNames(styles.dashboardContent, {
           [styles.dashboardContentMobilePanelOpen]: isMobilePanelOpen
         })}
-        style={{ backgroundImage: 'url(src/assets/img/background.svg)' }}
+        style={{ backgroundImage: 'url(/assets/img/background.svg)' }}
       >
         <DashboardHeader />
 

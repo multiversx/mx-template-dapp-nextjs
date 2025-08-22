@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { ReactNode, useState } from 'react';
+import xLogo from '@/assets/img/x-logo.svg';
 
 import { Label } from '@/components';
 import {
@@ -20,7 +21,6 @@ import {
 
 import { Username } from './components';
 import { useGetUserHerotag } from './hooks/useGetUserHerotag';
-import Image from 'next/image';
 
 // prettier-ignore
 const styles = {
@@ -37,7 +37,7 @@ const styles = {
   connectedAccountInfoTextValue: 'connected-account-info-text-value text-primary transition-all duration-200 ease-out text-base',
   connectedAccountDetailsIcon: 'connected-account-details-icon w-6 h-6',
   connectedAccountDetailsHerotag: 'connected-account-details-herotag rounded-full',
-  connectedAccountDetailsXLogo: 'connected-account-details-xlogo fill-primary w-6 h-6 transition-all duration-200 ease-out',
+  connectedAccountDetailsXLogo: 'connected-account-details-xlogo fill-primary transition-all duration-200 ease-out',
   connectedAccountDetailsTrimAddress: 'w-max'
 } satisfies Record<string, string>;
 
@@ -66,6 +66,7 @@ export const Account = () => {
   };
 
   const [herotag, profileUrl] = useGetUserHerotag(address);
+  const XLogo = xLogo;
 
   const accountDetails: AccountDetailsType[] = [
     {
@@ -110,15 +111,7 @@ export const Account = () => {
       value: account.shard
     },
     {
-      icon: (
-        <Image
-          src='/assets/img/x-logo.svg'
-          alt=''
-          width={24}
-          height={24}
-          className={styles.connectedAccountDetailsXLogo}
-        />
-      ),
+      icon: <XLogo className={styles.connectedAccountDetailsXLogo} />,
       label: 'Balance',
       value: (
         <MvxFormatAmount

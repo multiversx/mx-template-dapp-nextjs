@@ -1,21 +1,28 @@
-import { trimUsernameDomain, type AccountType } from '@/lib';
-import { Label } from '@/components/Label';
+import { useGetUserHerotag } from '@/app/dashboard/components/LeftPanel/components/Account/hooks/useGetUserHerotag';
+import { AccountType, trimUsernameDomain } from '@/lib';
+import { DataTestIdsEnum } from '@/localConstants';
 import { ProfileType } from '@/types';
 
-export const Username = (props: {
-  account: AccountType | ProfileType | null;
-}) => {
-  const { account } = props;
+// prettier-ignore
+const styles = {
+  usernameContainer: 'username-container flex gap-0.5',
+  herotag: 'herotag text-accent transition-all duration-200 ease-out'
+} satisfies Record<string, string>;
 
-  if (!account) {
-    return null;
-  }
+export const Username = (props: {
+  account?: AccountType | ProfileType | null;
+  address: string;
+}) => {
+  const { address } = props;
+
+  const [herotag] = useGetUserHerotag(address);
 
   return (
-    <p>
-      <Label>Herotag: </Label>
-      <span daata-testid='heroTag'>
-        {account.username ? trimUsernameDomain(account.username) : 'N/A'}
+    <p className={styles.usernameContainer}>
+      <span className={styles.herotag}>{herotag ? '@' : ''}</span>
+
+      <span data-testid={DataTestIdsEnum.heroTag}>
+        {herotag ? trimUsernameDomain(herotag) : 'N/A'}
       </span>
     </p>
   );

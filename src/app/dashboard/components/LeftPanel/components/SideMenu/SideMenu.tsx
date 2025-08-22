@@ -9,10 +9,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { FunctionComponent, SVGProps, useState } from 'react';
 
 import { ItemsIdentifiersEnum } from '@/app/dashboard/dashboard.types';
-import Image from 'next/image';
+import abiIcon from '@/assets/img/ping-pong-abi.svg';
+import backendIcon from '@/assets/img/ping-pong-backend.svg';
+import batchIcon from '@/assets/img/batch-tx.svg';
 
 // prettier-ignore
 const styles = {
@@ -33,7 +35,7 @@ interface SideMenuPropsType {
 }
 interface MenuItemsType {
   title: string;
-  icon?: IconDefinition | string;
+  icon?: IconDefinition | FunctionComponent<SVGProps<SVGSVGElement>>;
   id: ItemsIdentifiersEnum;
 }
 
@@ -45,12 +47,12 @@ const menuItems: MenuItemsType[] = [
   },
   {
     title: 'Ping & Pong (ABI)',
-    icon: '/assets/img/ping-pong-abi.svg',
+    icon: abiIcon,
     id: ItemsIdentifiersEnum.pingPongAbi
   },
   {
     title: 'Ping & Pong (Backend)',
-    icon: '/assets/img/ping-pong-backend.svg',
+    icon: backendIcon,
     id: ItemsIdentifiersEnum.pingPongService
   },
   {
@@ -65,7 +67,7 @@ const menuItems: MenuItemsType[] = [
   },
   {
     title: 'Batch Transactions',
-    icon: '/assets/img/batch-tx.svg',
+    icon: batchIcon,
     id: ItemsIdentifiersEnum.batchTransactions
   },
   {
@@ -100,13 +102,13 @@ export const SideMenu = ({ setIsOpen }: SideMenuPropsType) => {
       setActiveItem(id);
     }
   };
+  const setItemIcon = (
+    icon: IconDefinition | FunctionComponent<SVGProps<SVGSVGElement>>
+  ) => {
+    if ('iconName' in icon) return <FontAwesomeIcon icon={icon} />;
 
-  const setItemIcon = (icon: IconDefinition | string) => {
-    if (typeof icon === 'string') {
-      return <Image src={icon} alt='' width={20} height={20} />;
-    }
-
-    return <FontAwesomeIcon icon={icon} />;
+    const IconComponent = icon;
+    return <IconComponent />;
   };
 
   return (

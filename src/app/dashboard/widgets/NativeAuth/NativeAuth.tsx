@@ -1,36 +1,51 @@
-'use client';
 import { useEffect } from 'react';
-import { MissingNativeAuthError } from '@/components/MissingNativeAuthError';
-import { Label } from '@/components/Label';
-import { OutputContainer } from '@/components/OutputContainer';
 
+import { Label, MissingNativeAuthError, OutputContainer } from '@/components';
 import {
-  useGetLoginInfo,
-  useGetNetworkConfig,
-  MvxFormatAmount,
-  FormatAmountController,
+  // ACCOUNTS_ENDPOINT,
+  DECIMALS,
   DIGITS,
-  DECIMALS
+  FormatAmountController,
+  // MvxDataWithExplorerLink,
+  MvxFormatAmount,
+  useGetAccount,
+  useGetLoginInfo,
+  useGetNetworkConfig
 } from '@/lib';
+
 import { useGetProfile } from './hooks';
+import { ItemsIdentifiersEnum } from '../../dashboard.types';
 import { Username } from '../Account/components';
 
+// prettier-ignore
+const styles = {
+  nativeAuthContainer: 'native-auth-container flex flex-col gap-8',
+  nativeAuthAddressContainer: 'native-auth-address-container flex flex-col gap-2',
+  nativeAuthAddress: 'native-auth-address flex justify-between w-full',
+  nativeAuthDetails: 'native-auth-details flex gap-8 w-full',
+  nativeAuthDetailContainer: 'native-auth-detail-container flex flex-col gap-2 sm:w-1/3',
+  nativeAuthAmount: 'native-auth-amount flex gap-1',
+  nativeAuthMissingProfile: 'native-auth-missing-profile flex items-center gap-1'
+} satisfies Record<string, string>;
+
 export const NativeAuth = () => {
-  const { tokenLogin, isLoggedIn } = useGetLoginInfo();
-  const { isLoading, profile, getProfile } = useGetProfile();
   const { network } = useGetNetworkConfig();
+  const { tokenLogin, isLoggedIn } = useGetLoginInfo();
+  const account = useGetAccount();
+  const { isLoading, profile, getProfile } = useGetProfile();
 
   const { isValid, valueDecimal, valueInteger, label } =
     FormatAmountController.getData({
       digits: DIGITS,
       decimals: DECIMALS,
       egldLabel: network.egldLabel,
-      input: profile?.balance ?? '0'
+      input: account.balance
     });
 
   useEffect(() => {
     // On page refresh, tokenInfo is null which implies that we do not have access to loginInfo data
     if (isLoggedIn && tokenLogin?.nativeAuthToken) {
+      // native auth network call example
       getProfile();
     }
   }, [isLoggedIn]);
@@ -42,7 +57,7 @@ export const NativeAuth = () => {
   if (!profile && !isLoading) {
     return (
       <OutputContainer>
-        <div className='flex items-center gap-1'>
+        <div className={styles.nativeAuthMissingProfile}>
           <p>Unable to load profile</p>
         </div>
       </OutputContainer>
@@ -50,26 +65,56 @@ export const NativeAuth = () => {
   }
 
   return (
-    <OutputContainer isLoading={isLoading}>
-      <p>
-        <Label>Address:</Label> {profile?.address ?? 'N/A'}
-      </p>
+    <div
+      id={ItemsIdentifiersEnum.nativeAuth}
+      className={styles.nativeAuthContainer}
+    >
+      <div className={styles.nativeAuthAddressContainer}>
+        <Label>Address</Label>
 
-      <Username account={profile} />
-      <p>
-        <Label>Shard: </Label> {profile?.shard ?? 'N/A'}
-      </p>
-
-      <div className='flex gap-1'>
-        <Label>Balance:</Label>
-        <MvxFormatAmount
-          isValid={isValid}
-          valueDecimal={valueDecimal}
-          valueInteger={valueInteger}
-          label={label}
-          data-testid='balance'
-        />
+        <OutputContainer isLoading={isLoading}>
+          {/* <MvxDataWithExplorerLink
+            withTooltip={true}
+            data={profile?.address ?? 'N/A'}
+            className={styles.nativeAuthAddress}
+            explorerLink={`/${ACCOUNTS_ENDPOINT}/${profile?.address}`}
+          /> */}
+        </OutputContainer>
       </div>
-    </OutputContainer>
+
+      <div className={styles.nativeAuthDetails}>
+        <div className={styles.nativeAuthDetailContainer}>
+          <Label>Herotag</Label>
+
+          <OutputContainer isLoading={isLoading}>
+            <Username address={profile?.address || ''} />
+          </OutputContainer>
+        </div>
+
+        <div className={styles.nativeAuthDetailContainer}>
+          <Label>Shard</Label>
+
+          <OutputContainer isLoading={isLoading}>
+            <p>{profile?.shard ?? 'N/A'}</p>
+          </OutputContainer>
+        </div>
+
+        <div className={styles.nativeAuthDetailContainer}>
+          <Label>Balance</Label>
+
+          <OutputContainer isLoading={isLoading}>
+            <div className={styles.nativeAuthAmount}>
+              <MvxFormatAmount
+                isValid={isValid}
+                valueInteger={valueInteger}
+                valueDecimal={valueDecimal}
+                label={label}
+                data-testid='balance'
+              />
+            </div>
+          </OutputContainer>
+        </div>
+      </div>
+    </div>
   );
 };

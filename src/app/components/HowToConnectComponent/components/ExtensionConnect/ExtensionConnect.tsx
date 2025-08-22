@@ -7,8 +7,17 @@ import {
   CHROME_EXTENSION_LINK,
   FIREFOX_ADDON_LINK
 } from '@/localConstants';
+import chromeLogo from '@/assets/img/chrome-logo.svg';
+import firefoxLogo from '@/assets/img/firefox-logo.svg';
+import arcLogo from '@/assets/img/arc-logo.svg';
+import braveLogo from '@/assets/img/brave-logo.svg';
+import walletBraveLogo from '@/assets/img/wallet-brave-logo.svg';
+import walletChromeLogo from '@/assets/img/wallet-chrome-logo.svg';
+import walletFirefoxLogo from '@/assets/img/wallet-firefox-logo.svg';
+import walletIcon from '@/assets/img/web-wallet-icon.svg';
 
 import { BrowserFrame } from './components';
+import { FunctionComponent, SVGProps } from 'react';
 
 // prettier-ignore
 const styles = {
@@ -27,59 +36,35 @@ const styles = {
 } satisfies Record<string, string>;
 
 interface BrowserLogo {
-  icon: string;
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
 }
 
 const browserLogos: BrowserLogo[] = [
-  { icon: '/assets/img/chrome-logo.svg' },
-  { icon: '/assets/img/firefox-logo.svg' },
-  { icon: '/assets/img/arc-logo.svg' },
-  { icon: '/assets/img/brave-logo.svg' }
+  { icon: chromeLogo },
+  { icon: firefoxLogo },
+  { icon: arcLogo },
+  { icon: braveLogo }
 ];
 
 export const ExtensionConnect = () => {
   const detectedBrowser = getDetectedBrowser();
   console.log('here', detectedBrowser);
   const isFirefox = detectedBrowser === BrowserEnum.Firefox;
+  const WalletChromeLogo = walletChromeLogo;
+  const WalletFirefoxLogo = walletFirefoxLogo;
+  const WalletBraveLogo = walletBraveLogo;
+  const WalletIcon = walletIcon;
 
   const getBrowserIcon = (browser?: BrowserEnum) => {
     switch (browser) {
       case BrowserEnum.Firefox:
-        return (
-          <Image
-            src='/assets/img/wallet-firefox-logo.svg'
-            alt='icon'
-            width={46}
-            height={44}
-          />
-        );
+        return <WalletFirefoxLogo />;
       case BrowserEnum.Brave:
-        return (
-          <Image
-            src='/assets/img/wallet-brave-logo.svg'
-            alt='icon'
-            width={46}
-            height={44}
-          />
-        );
+        return <WalletBraveLogo />;
       case BrowserEnum.Chrome:
-        return (
-          <Image
-            src='/assets/img/wallet-chrome-logo.svg'
-            alt='icon'
-            width={46}
-            height={44}
-          />
-        );
+        return <WalletChromeLogo />;
       default:
-        return (
-          <Image
-            src='/assets/img/web-wallet-icon.svg'
-            alt='icon'
-            width={46}
-            height={44}
-          />
-        );
+        return <WalletIcon />;
     }
   };
 
@@ -114,8 +99,8 @@ export const ExtensionConnect = () => {
           </a>
 
           <div className={styles.extensionCardLogos}>
-            {browserLogos.map(({ icon }, index) => (
-              <Image key={index} src={icon} alt='icon' width={28} height={28} />
+            {browserLogos.map(({ icon: Icon }, index) => (
+              <Icon key={index} />
             ))}
           </div>
         </div>

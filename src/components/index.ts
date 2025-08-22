@@ -10,3 +10,4 @@ export * from './TransactionsTable';
 export * from './AddressComponent';
 export * from './Logo';
 export * from './Tooltip';
+export * from './PingPongComponent';
