@@ -9,6 +9,11 @@ const nextConfig = {
       'utf-8-validate': 'utf-8-validate'
     });
 
+    config.module.rules.push({
+      test: /\.svg$/i,
+      use: ['@svgr/webpack']
+    });
+
     return config;
   }
 };

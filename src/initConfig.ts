@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import './styles/globals.css';
+import './styles/tailwind.css';
 
 import { walletConnectV2ProjectId } from './config';
 
@@ -51,7 +52,8 @@ export const config: InitAppType = {
     },
     transactionTracking: {
       successfulToastLifetime: DEFAULT_TOAST_LIEFTIME
-    }
+    },
+    theme: 'mvx:dark-theme'
   }
 
   // Option 2: Add providers using the config `customProviders` array

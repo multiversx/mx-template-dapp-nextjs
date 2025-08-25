@@ -1,53 +1,168 @@
 'use client';
+
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import {
+  faBell,
+  faPowerOff,
+  faWallet,
+  IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import // MvxCopyButton
+// MvxDataWithExplorerLink
+'@multiversx/sdk-dapp-ui/react';
+import { MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, MxLink } from '@/components';
-import { environment } from '@/config';
-import { useGetIsLoggedIn } from '@/lib';
+import { AddressComponent, Button, Logo, Tooltip } from '@/components';
+import { environment, GITHUB_REPO_URL } from '@/config';
+import {
+  // ACCOUNTS_ENDPOINT,
+  getAccountProvider,
+  NotificationsFeedManager,
+  useGetAccountInfo,
+  useGetIsLoggedIn
+} from '@/lib';
 import { RouteNamesEnum } from '@/localConstants';
-import mvxLogo from '../../../../public/assets/img/multiversx-logo.svg';
-import Image from 'next/image';
-import { ConnectButton, GitHubButton, NotificationsButton } from './components';
+import { ThemeTooltip } from './components';
+
+// prettier-ignore
+const styles = {
+  header: 'header flex items-center justify-between px-4 h-16 md:h-20 md:px-10',
+  headerLogo: 'header-logo cursor-pointer transition-opacity duration-200 hover:opacity-75',
+  headerNavigation: 'header-navigation flex items-center gap-2 lg:gap-4',
+  headerNavigationButtons: 'header-navigation-buttons flex gap-2 lg:gap-4',
+  headerNavigationButton: 'header-navigation-button flex justify-center items-center w-8 lg:w-10 h-8 lg:h-10 rounded-xl cursor-pointer relative after:rounded-xl after:absolute after:bg-btn-variant hover:after:bg-btn-hover after:transition-all after:duration-200 after:ease-out after:left-0 after:right-0 after:top-0 after:bottom-0 after:pointer-events-none hover:after:opacity-100',
+  headerNavigationButtonIcon: 'header-navigation-button-icon flex justify-center relative text-xs lg:text-base z-1 items-center text-tertiary transition-all duration-200 ease-out',
+  headerNavigationButtonTooltip: 'header-navigation-button-tooltip p-1 leading-none whitespace-nowrap text-tertiary transition-all duration-200 ease-out',
+  headerNavigationNetwork: 'header-navigation-network h-8 border border-secondary rounded-xl lg:h-10 relative w-22 flex items-center justify-center leading-none capitalize text-tertiary before:absolute before:rounded-full before:w-2 before:lg:w-2.5 before:h-2 before:lg:h-2.5 before:bg-btn-primary before:z-2 before:-top-0.25 before:lg:-top-0.5 before:-left-0.25 before:lg:-left-0.5 after:absolute after:bg-primary after:rounded-lg after:opacity-40 after:left-0 after:right-0 after:top-0 after:bottom-0 after:pointer-events-none transition-all duration-200 ease-out',
+  headerNavigationNetworkLabel: 'header-navigation-network-label relative z-1',
+  headerNavigationConnect: 'header-navigation-connect h-8 lg:h-10',
+  walletContainer: 'wallet-container hidden lg:!flex !rounded-full gap-3 w-fit pl-3.5 pr-3 py-1.5 bg-primary border border-secondary text-primary transition-all duration-200 ease-out',
+  walletInfo: 'flex gap-2 items-center justify-center',
+  walletIcon: 'text-accent transition-all duration-200 ease-out',
+  logoutButton: 'text-center text-link hover:text-primary transition-all duration-200 ease-out cursor-pointer'
+} satisfies Record<string, string>;
+
+interface HeaderBrowseButtonType {
+  handleClick: (event: MouseEvent<HTMLDivElement>) => void;
+  icon: IconDefinition;
+  isVisible: boolean;
+  label: string;
+}
 
 export const Header = () => {
+  const { address } = useGetAccountInfo();
+
   const isLoggedIn = useGetIsLoggedIn();
+  const provider = getAccountProvider();
   const router = useRouter();
 
-  const onClick = async () => {
-    router.push(RouteNamesEnum.logout);
+  const handleLogout = async (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    await provider.logout();
+    router.push(RouteNamesEnum.home);
+  };
+
+  const handleGitHubBrowsing = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    window.open(GITHUB_REPO_URL);
+  };
+
+  const handleLogIn = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    router.push(RouteNamesEnum.unlock);
+  };
+
+  const handleNotificationsBrowsing = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    NotificationsFeedManager.getInstance().openNotificationsFeed();
+  };
+
+  const headerBrowseButtons: HeaderBrowseButtonType[] = [
+    {
+      label: 'GitHub',
+      handleClick: handleGitHubBrowsing,
+      icon: faGithub as IconDefinition,
+      isVisible: true
+    },
+    {
+      label: 'Notifications',
+      handleClick: handleNotificationsBrowsing,
+      icon: faBell,
+      isVisible: isLoggedIn
+    }
+  ];
+
+  const handleLogoClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    router.push(isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home);
   };
 
   return (
-    <header className='flex flex-row align-center justify-between pl-6 pr-6 pt-6'>
-      <MxLink
-        className='flex items-center justify-between'
-        to={isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home}
-      >
-        <Image src={mvxLogo} alt='logo' className='w-full h-6' />
-      </MxLink>
+    <header className={styles.header}>
+      <div onClick={handleLogoClick} className={styles.headerLogo}>
+        <Logo hideTextOnMobile={true} />
+      </div>
 
-      <nav className='h-full w-full text-sm sm:relative sm:left-auto sm:top-auto sm:flex sm:w-auto sm:flex-row sm:justify-end sm:bg-transparent'>
-        <div className='flex justify-end container mx-auto items-center gap-2'>
-          <div className='flex gap-1 items-center'>
-            <div className='w-2 h-2 rounded-full bg-green-500' />
-            <p className='text-gray-600'>{environment}</p>
-          </div>
+      <nav className={styles.headerNavigation}>
+        <ThemeTooltip />
 
-          <GitHubButton />
-
-          {isLoggedIn && (
-            <>
-              <NotificationsButton />
-              <Button
-                onClick={onClick}
-                className='inline-block rounded-lg px-3 py-2 text-center hover:no-underline my-0 text-gray-600 hover:bg-slate-100 mx-0'
-              >
-                Close
-              </Button>
-            </>
-          )}
-
-          {!isLoggedIn && <ConnectButton />}
+        <div className={styles.headerNavigationButtons}>
+          {headerBrowseButtons.map((headerBrowseButton) => (
+            <Tooltip
+              key={`header-${headerBrowseButton.label}-button`}
+              position='bottom'
+              trigger={() =>
+                headerBrowseButton.isVisible && (
+                  <div
+                    onClick={headerBrowseButton.handleClick}
+                    className={styles.headerNavigationButton}
+                  >
+                    <FontAwesomeIcon
+                      className={styles.headerNavigationButtonIcon}
+                      icon={headerBrowseButton.icon}
+                    />
+                  </div>
+                )
+              }
+            >
+              <div className={styles.headerNavigationButtonTooltip}>
+                {headerBrowseButton.label}
+              </div>
+            </Tooltip>
+          ))}
         </div>
+
+        <div className={styles.headerNavigationNetwork}>
+          <div className={styles.headerNavigationNetworkLabel}>
+            {environment}
+          </div>
+        </div>
+
+        {/* <MvxCopyButton
+          text={address}
+          iconClass='w-6 h-6 fill-primary hover:fill-red-500 hover:!opacity-100'
+        /> */}
+
+        {/* <MvxDataWithExplorerLink
+          data={address}
+          explorerLink={`/${ACCOUNTS_ENDPOINT}/${address}`}
+        /> */}
+
+        {isLoggedIn && (
+          <div className={styles.walletContainer}>
+            <div className={styles.walletInfo}>
+              <FontAwesomeIcon icon={faWallet} className={styles.walletIcon} />
+              <AddressComponent address={address} isHeader />
+            </div>
+
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              <FontAwesomeIcon icon={faPowerOff} />
+            </button>
+          </div>
+        )}
+
+        {!isLoggedIn && <Button onClick={handleLogIn}>Connect</Button>}
       </nav>
     </header>
   );

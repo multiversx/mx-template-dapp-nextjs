@@ -95,7 +95,7 @@ export const Modal = ({ onSubmit, onClose, needsAddress }: ModalProps) => {
           </div>
           <div style={modalStyles.buttonGroup}>
             <Button onClick={onClose}>Cancel</Button>
-            <Button type='submit'>Submit</Button>
+            <Button>Submit</Button>
           </div>
         </form>
       </div>
