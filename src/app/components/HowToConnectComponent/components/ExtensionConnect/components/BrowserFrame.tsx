@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import xLogo from '@/assets/img/x.svg';
 
 // prettier-ignore
 const styles = {
@@ -13,28 +13,32 @@ browserFrameScreenBg: 'browser-frame-screen-bg w-full h-[330px] bg-primary round
 browserFrameScreen: 'browser-frame-screen bg-secondary w-full h-full rounded-2xl transition-all duration-200 ease-out'
 } satisfies Record<string, string>;
 
-export const BrowserFrame = () => (
-  <div className={styles.browserFrameContainer}>
-    <div className={styles.browserFrameTopBar}>
-      <div className={styles.browserFrameTopBarLeft}>
-        {[...Array(3)].map((_, index) => (
-          <span key={index} className={styles.browserFrameTopBarLeftDot} />
-        ))}
-      </div>
+export const BrowserFrame = () => {
+  const XLogo = xLogo;
 
-      <div className={styles.browserFrameTopBarRight}>
-        <Image src={'/assets/img/x.svg'} alt='' width={16} height={16} />
-
-        <div className={styles.browserFrameTopBarRightDots}>
+  return (
+    <div className={styles.browserFrameContainer}>
+      <div className={styles.browserFrameTopBar}>
+        <div className={styles.browserFrameTopBarLeft}>
           {[...Array(3)].map((_, index) => (
-            <span key={index} className={styles.browserFrameTopBarRightDot} />
+            <span key={index} className={styles.browserFrameTopBarLeftDot} />
           ))}
         </div>
+
+        <div className={styles.browserFrameTopBarRight}>
+          <XLogo />
+
+          <div className={styles.browserFrameTopBarRightDots}>
+            {[...Array(3)].map((_, index) => (
+              <span key={index} className={styles.browserFrameTopBarRightDot} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.browserFrameScreenBg}>
+        <div className={styles.browserFrameScreen} />
       </div>
     </div>
-
-    <div className={styles.browserFrameScreenBg}>
-      <div className={styles.browserFrameScreen} />
-    </div>
-  </div>
-);
+  );
+};

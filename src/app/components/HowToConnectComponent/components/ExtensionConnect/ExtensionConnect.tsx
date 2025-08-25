@@ -1,6 +1,5 @@
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import { getDetectedBrowser } from '@/helpers/getDetectedBrowser';
 import {
   BrowserEnum,
@@ -15,6 +14,8 @@ import walletBraveLogo from '@/assets/img/wallet-brave-logo.svg';
 import walletChromeLogo from '@/assets/img/wallet-chrome-logo.svg';
 import walletFirefoxLogo from '@/assets/img/wallet-firefox-logo.svg';
 import walletIcon from '@/assets/img/web-wallet-icon.svg';
+import circles from '@/assets/img/circles.svg';
+import extensionImage from '@/assets/img/extension-image.png';
 
 import { BrowserFrame } from './components';
 import { FunctionComponent, SVGProps } from 'react';
@@ -54,6 +55,7 @@ export const ExtensionConnect = () => {
   const WalletFirefoxLogo = walletFirefoxLogo;
   const WalletBraveLogo = walletBraveLogo;
   const WalletIcon = walletIcon;
+  const Circles = circles;
 
   const getBrowserIcon = (browser?: BrowserEnum) => {
     switch (browser) {
@@ -107,23 +109,11 @@ export const ExtensionConnect = () => {
       </div>
 
       <div className={styles.extensionCardImage}>
-        <Image
-          src='/assets/img/circles.svg'
-          alt=''
-          width={32}
-          height={32}
-          className={styles.extensionCardCircles}
-        />
+        <Circles className={styles.extensionCardCircles} />
 
         <BrowserFrame />
 
-        <Image
-          src='/assets/img/extension-image.png'
-          alt=''
-          width={220}
-          height={220}
-          className={styles.extensionCardScreen}
-        />
+        <img src={extensionImage.src} className={styles.extensionCardScreen} />
       </div>
     </div>
   );
