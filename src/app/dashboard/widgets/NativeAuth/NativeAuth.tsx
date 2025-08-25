@@ -15,7 +15,7 @@ import {
 
 import { useGetProfile } from './hooks';
 import { ItemsIdentifiersEnum } from '../../dashboard.types';
-import { Username } from '../Account/components';
+import { Username } from '../../components/LeftPanel/components/Account/components';
 
 // prettier-ignore
 const styles = {
