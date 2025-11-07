@@ -32,6 +32,7 @@
     "classnames": "2.3.2",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.3",
+    "bignumber.js": "^9.x",
     "moment": "2.29.4",
     "next": "13.5.4",
     "next-transpile-modules": "10.0.1",
