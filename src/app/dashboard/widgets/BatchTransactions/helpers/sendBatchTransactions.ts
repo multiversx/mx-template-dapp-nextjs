@@ -10,7 +10,7 @@ export const sendBatchTransactions = async ({
 }: TransactionProps) => {
   const provider = getAccountProvider();
 
-  const transactionsToSign = getBatchTransactions({
+  const transactionsToSign = await getBatchTransactions({
     address,
     chainID,
     nonce
