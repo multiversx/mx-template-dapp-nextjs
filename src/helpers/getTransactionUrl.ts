@@ -13,7 +13,9 @@ export const getTransactionUrl = (walletAddress: string) => {
   const receiver =
     'erd1deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaqtv0gag'; // add your receiver address here
   const data = 'Hello_world';
-  const value = TokenTransfer.egldFromAmount('0.01').toString();
+  const value = TokenTransfer.newFromNativeAmount(
+    BigInt(1_000_000_000_000_000)
+  ).toString(); // 0.001 EGLD
   const callbackUrl = encodeURIComponent(safeWindow.origin ?? '');
 
   const searchParams = {
