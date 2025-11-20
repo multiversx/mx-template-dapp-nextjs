@@ -17,5 +17,3 @@ export {
   UserSecretKey,
   UserSigner
 } from '@multiversx/sdk-core';
-
-export { safeWindow } from '@multiversx/sdk-dapp/out/constants';
