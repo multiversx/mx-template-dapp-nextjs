@@ -18,4 +18,4 @@ export {
   UserSigner
 } from '@multiversx/sdk-core';
 
-export { safeWindow } from '@multiversx/sdk-dapp/out/constants';
+export { safeWindow } from '@multiversx/sdk-dapp/out/constants/window.constants.mjs';
