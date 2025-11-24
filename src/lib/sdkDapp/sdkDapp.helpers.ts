@@ -3,7 +3,6 @@ export { NotificationsFeedManager } from '@multiversx/sdk-dapp/out/managers/Noti
 export { ProviderFactory } from '@multiversx/sdk-dapp/out/providers/ProviderFactory';
 export { TransactionManager } from '@multiversx/sdk-dapp/out/managers/TransactionManager';
 export { TransactionsTableController } from '@multiversx/sdk-dapp/out/controllers/TransactionsTableController';
-export { WALLET_PROVIDER_SEND_TRANSACTION_URL } from '@multiversx/sdk-dapp/out/constants/webWalletProvider.constants';
 export { getAccountProvider } from '@multiversx/sdk-dapp/out/providers/helpers/accountProvider';
 export { getActiveTransactionsStatus } from '@multiversx/sdk-dapp/out/utils/transactions/getActiveTransactionsStatus';
 export { getInterpretedTransaction } from '@multiversx/sdk-dapp/out/utils/transactions/getInterpretedTransaction';
