@@ -6,6 +6,7 @@ import { safeWindow, TokenTransfer } from '@/lib';
 export const getTransactionUrl = (walletAddress: string) => {
   const walletBaseUrl = `${walletAddress}/hook/transaction`;
 
+  console.log('test');
   const receiver =
     'erd1deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaqtv0gag'; // add your receiver address here
   const data = 'Hello_world';
