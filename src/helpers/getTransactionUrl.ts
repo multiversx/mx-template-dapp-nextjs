@@ -1,14 +1,10 @@
-import {
-  safeWindow,
-  TokenTransfer,
-  WALLET_PROVIDER_SEND_TRANSACTION_URL
-} from '@/lib';
+import { safeWindow, TokenTransfer } from '@/lib';
 
 /**
  * For documentation, check out {@link https://docs.multiversx.com/wallet/webhooks#send-transaction-hook send transaciton hook}
  */
 export const getTransactionUrl = (walletAddress: string) => {
-  const walletBaseUrl = `${walletAddress}/${WALLET_PROVIDER_SEND_TRANSACTION_URL}`;
+  const walletBaseUrl = `${walletAddress}/hook/transaction`;
 
   const receiver =
     'erd1deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaqtv0gag'; // add your receiver address here
