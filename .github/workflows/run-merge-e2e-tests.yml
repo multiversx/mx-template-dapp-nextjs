@@ -49,7 +49,9 @@ jobs:
           max_attempts: 2
           command: yarn install --frozen-lockfile
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
+      - name: Build Next.js app
+        run: yarn next build
       - name: Run Playwright E2E Tests
         run: xvfb-run yarn run run-playwright-test
       - name: Upload Playwright test report
