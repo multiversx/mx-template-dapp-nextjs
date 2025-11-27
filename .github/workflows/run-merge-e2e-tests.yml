@@ -51,7 +51,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
       - name: Build Next.js app
-        run: yarn next build
+        run: yarn build:devnet
       - name: Run Playwright E2E Tests
         run: xvfb-run yarn run run-playwright-test
       - name: Upload Playwright test report
