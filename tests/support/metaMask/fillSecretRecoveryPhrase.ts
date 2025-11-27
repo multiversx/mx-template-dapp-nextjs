@@ -16,7 +16,7 @@ async function fillSeedWords(page: Page, words: string[]) {
   // Skip first word (already filled in the textarea)
   const remainingWords = words.slice(1);
 
-  for (const [index, word] of remainingWords.entries()) {
+  for (const [index, word] of Array.from(remainingWords.entries())) {
     const inputSelector = secretRecoverySelectors.wordInput(index + 1);
     await fillSingleWord(page, inputSelector, word);
   }
