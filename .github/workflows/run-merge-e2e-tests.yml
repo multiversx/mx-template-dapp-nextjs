@@ -47,7 +47,7 @@ jobs:
           timeout_minutes: 120
           retry_on: error
           max_attempts: 2
-          command: yarn install --frozen-lockfile
+          command: yarn install
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
       - name: Build Next.js app
