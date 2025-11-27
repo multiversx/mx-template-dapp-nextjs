@@ -43,8 +43,17 @@ yalc.lock
 .idea
 .yalc
 
-
 #cypress 
 cypress/reports/
 cypress/screenshots/
 cypress/videos/
+
+# playwright
+playwright-report/
+test-results/
+
+# secrets (local only)
+tests/support/wallets/
+
+# metamask cache
+.cache/
