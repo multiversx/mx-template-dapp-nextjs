@@ -44,12 +44,12 @@ export async function handleMetaMaskSnap(
       }
 
       return; // All steps completed successfully
-    } catch (error: any) {
+    } catch (error) {
       attempt++;
 
       console.warn(
         `[MetaMaskSnap] Attempt ${attempt}/${maxRetries} failed: ${
-          error?.message || error
+          error instanceof Error ? error.message : 'Unknown error'
         }`
       );
       console.warn(
@@ -78,10 +78,10 @@ async function attemptClick(
   try {
     await element.waitFor({ state: 'visible', timeout: CLICK_TIMEOUT_MS });
     await element.click();
-  } catch (error: any) {
+  } catch (error) {
     console.error(
       `[MetaMaskSnap] Failed to click "${action.name}": ${
-        error?.message || error
+        error instanceof Error ? error.message : 'Unknown error'
       }`
     );
     console.error(

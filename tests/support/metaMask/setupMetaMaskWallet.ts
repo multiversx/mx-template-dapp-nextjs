@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { ChromiumBrowserContext, Page } from '@playwright/test';
 import { handleMetaMetrics } from '../metaMask/handleMetrics';
 import { getPageAndWaitForLoad } from '../template/getPageAndWaitForLoad';
 import { waitUntilStable } from '../template/waitUntilStable';
@@ -49,7 +49,10 @@ async function initializeMetaMaskExtension() {
   return { context, extensionId };
 }
 
-async function openAndPrepareExtensionPage(context: any, extensionId: string) {
+async function openAndPrepareExtensionPage(
+  context: ChromiumBrowserContext,
+  extensionId: string
+) {
   const metamaskPage = await getPageAndWaitForLoad(
     context,
     `chrome-extension://${extensionId}/`

@@ -8,7 +8,9 @@ export const navigateToConnectWallet = async (page: Page) => {
       break;
     } catch (error) {
       console.warn(
-        `[navigateToConnectWallet] Attempt ${i + 1} failed: ${error.message}`
+        `[navigateToConnectWallet] Attempt ${i + 1} failed: ${
+          error instanceof Error ? error.message : 'Unknown error'
+        }`
       );
       if (i === maxRetries - 1) throw error;
       await page.waitForTimeout(5000); // Increase wait time
