@@ -6,7 +6,6 @@ import { OutputContainer } from '@/components/OutputContainer';
 
 import {
   useGetLoginInfo,
-  useGetNetworkConfig,
   useGetAccount,
   FormatAmount
 } from '@/lib';
