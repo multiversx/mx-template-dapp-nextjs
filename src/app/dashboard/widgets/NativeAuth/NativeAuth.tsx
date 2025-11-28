@@ -54,7 +54,7 @@ export const NativeAuth = () => {
         <FormatAmount
           value={balance}
           data-testid='balance'
-          showLabel={true}
+          showLabel
         />
       </div>
     </OutputContainer>
