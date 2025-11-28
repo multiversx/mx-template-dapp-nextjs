@@ -17,7 +17,6 @@ export const NativeAuth = () => {
   const { tokenLogin, isLoggedIn } = useGetLoginInfo();
   const { balance } = useGetAccount();
   const { isLoading, profile, getProfile } = useGetProfile();
-  const { network } = useGetNetworkConfig();
 
   useEffect(() => {
     // On page refresh, tokenInfo is null which implies that we do not have access to loginInfo data
