@@ -10,6 +10,7 @@ export const decodeMessage = ({
   const messageObj = JSON.parse(JSON.stringify(message));
   messageObj.signature = `0x${signature}`;
 
+  console.log('test');
   const encodedMessage =
     '0x' +
     Array.from(message.data, (byte) => byte.toString(16).padStart(2, '0')).join(
