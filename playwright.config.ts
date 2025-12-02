@@ -33,7 +33,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://localhost:3002',
     ignoreHTTPSErrors: true,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
@@ -64,8 +64,8 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'yarn next start',
-    url: 'http://localhost:3000',
+    command: 'yarn start:devnet',
+    url: 'https://localhost:3002',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',

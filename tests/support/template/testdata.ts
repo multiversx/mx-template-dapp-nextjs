@@ -12,13 +12,13 @@ export const NA = 'N/A';
 
 export enum OriginPageEnum {
   multiversxWallet = 'devnet-wallet.multiversx.com',
-  templateHome = 'localhost:3000/home',
-  templateDashboard = 'localhost:3000/dashboard',
-  templateUnlock = 'localhost:3000/unlock'
+  templateHome = 'https://localhost:3002/home',
+  templateDashboard = 'https://localhost:3002/dashboard',
+  templateUnlock = 'https://localhost:3002/unlock'
 }
 
 export const UrlRegex = {
-  templateDashboard: /localhost:3000\/dashboard/,
+  templateDashboard: /https:\/\/localhost:3002\/dashboard/,
   multiversxWallet: /devnet-wallet\.multiversx\.com/
 } as const;
 

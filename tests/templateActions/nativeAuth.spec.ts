@@ -9,9 +9,7 @@ const keystoreConfig = {
   address: TestDataEnums.keystoreWalletAddress1
 };
 
-// TODO: Unable to load profile error appears -> check if this is a known issue
-// and then adjust the test accordingly (if necessary)
-test.describe.skip('Native auth', () => {
+test.describe('Native auth', () => {
   test.beforeEach(async ({ page }) => {
     await TestActions.navigateToConnectWallet(page);
     await TestActions.connectWebWallet({ page, loginMethod: keystoreConfig });
@@ -38,11 +36,10 @@ test.describe.skip('Native auth', () => {
     await expect(container).toBeInViewport();
 
     // Check that the address is displayed and matches the account address
-    const nativeAuthAddress = page
-      .locator(SelectorsEnum.nativeAuthContainer)
-      .getByTestId(SelectorsEnum.trimFullAddress);
-
-    await expect(nativeAuthAddress).toHaveText(keystoreConfig.address);
+    const addressRow = page.locator(`${SelectorsEnum.nativeAuthContainer} p`, {
+      hasText: 'Address:'
+    });
+    await expect(addressRow).toContainText(keystoreConfig.address);
 
     // Check that the balance is displayed and matches the account balance
     const nativeAuthBalance = await extractBalanceFromContainer({
