@@ -58,7 +58,8 @@ const WIDGETS: WidgetType[] = [
     widget: NativeAuth,
     description:
       'A secure authentication token can be used to interact with the backend',
-    reference: 'https://github.com/multiversx/mx-sdk-js-native-auth-server'
+    reference: 'https://github.com/multiversx/mx-sdk-js-native-auth-server',
+    anchor: 'native-auth'
   },
   {
     title: 'Batch Transactions',

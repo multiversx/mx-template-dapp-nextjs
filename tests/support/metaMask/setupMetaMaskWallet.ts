@@ -111,6 +111,6 @@ async function fillFirstSecretRecoveryPhraseWord(page: Page, mnemonic: string) {
   await srpInput.click();
 
   const [firstWord] = mnemonic.split(' ');
-  await srpInput.type(firstWord);
+  await srpInput.fill(firstWord);
   await srpInput.press('Enter');
 }
