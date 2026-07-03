@@ -49,7 +49,6 @@ const browserLogos: BrowserLogo[] = [
 
 export const ExtensionConnect = () => {
   const detectedBrowser = getDetectedBrowser();
-  console.log('here', detectedBrowser);
   const isFirefox = detectedBrowser === BrowserEnum.Firefox;
   const WalletChromeLogo = walletChromeLogo;
   const WalletFirefoxLogo = walletFirefoxLogo;

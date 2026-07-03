@@ -5,7 +5,9 @@ import moment from 'moment';
 
 import { environment } from '@/config';
 
-import { version } from '../../../../package.json';
+import packageJson from '../../../../package.json';
+
+const { version } = packageJson;
 
 // prettier-ignore
 const styles = {

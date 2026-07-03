@@ -1,4 +1,4 @@
-import { safeWindow } from '@multiversx/sdk-dapp';
+import { safeWindow } from '@/lib';
 
 import { BrowserEnum } from '@/localConstants/browser.enum';
 
