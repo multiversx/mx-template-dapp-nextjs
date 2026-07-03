@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 
 import { Label, MissingNativeAuthError, OutputContainer } from '@/components';
 import {
-  // ACCOUNTS_ENDPOINT,
+  ACCOUNTS_ENDPOINT,
   DECIMALS,
   DIGITS,
   FormatAmountController,
-  // MvxDataWithExplorerLink,
+  MvxDataWithExplorerLink,
   MvxFormatAmount,
   useGetAccount,
   useGetLoginInfo,
@@ -73,12 +73,12 @@ export const NativeAuth = () => {
         <Label>Address</Label>
 
         <OutputContainer isLoading={isLoading}>
-          {/* <MvxDataWithExplorerLink
+          <MvxDataWithExplorerLink
             withTooltip={true}
             data={profile?.address ?? 'N/A'}
             className={styles.nativeAuthAddress}
-            explorerLink={`/${ACCOUNTS_ENDPOINT}/${profile?.address}`}
-          /> */}
+            explorerLink={`${network.explorerAddress}/${ACCOUNTS_ENDPOINT}/${profile?.address}`}
+          />
         </OutputContainer>
       </div>
 

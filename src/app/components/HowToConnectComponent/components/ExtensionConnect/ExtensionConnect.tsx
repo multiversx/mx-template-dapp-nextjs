@@ -19,6 +19,7 @@ import extensionImage from '@/assets/img/extension-image.png';
 
 import { BrowserFrame } from './components';
 import { FunctionComponent, SVGProps } from 'react';
+import Image from 'next/image';
 
 // prettier-ignore
 const styles = {
@@ -112,7 +113,13 @@ export const ExtensionConnect = () => {
 
         <BrowserFrame />
 
-        <img src={extensionImage.src} className={styles.extensionCardScreen} />
+        <Image
+          src={extensionImage.src}
+          className={styles.extensionCardScreen}
+          width={224}
+          height={358}
+          alt='MultiversX Wallet Extension'
+        />
       </div>
     </div>
   );

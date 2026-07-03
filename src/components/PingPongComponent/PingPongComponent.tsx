@@ -14,8 +14,15 @@ import {
   PingPongOutput
 } from '@/components';
 
+import { contractAddress } from '@/config';
 import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
-import { Transaction, useGetPendingTransactions } from '@/lib';
+import {
+  ACCOUNTS_ENDPOINT,
+  MvxDataWithExplorerLink,
+  Transaction,
+  useGetNetworkConfig,
+  useGetPendingTransactions
+} from '@/lib';
 import { ItemsIdentifiersEnum } from '@/app/dashboard/dashboard.types';
 
 // prettier-ignore
@@ -50,6 +57,7 @@ export const PingPongComponent = ({
   getPongTransaction,
   tokenLogin
 }: PingPongComponentPropsType) => {
+  const { network } = useGetNetworkConfig();
   const transactions = useGetPendingTransactions();
   const hasPendingTransactions = transactions.length > 0;
 
@@ -125,12 +133,12 @@ export const PingPongComponent = ({
         <OutputContainer>
           {!hasPendingTransactions && (
             <>
-              {/* <MvxDataWithExplorerLink
+              <MvxDataWithExplorerLink
                 withTooltip={true}
                 data={contractAddress}
                 className={styles.addressComponent}
-                explorerLink={`/${ACCOUNTS_ENDPOINT}/${contractAddress}`}
-              /> */}
+                explorerLink={`${network.explorerAddress}/${ACCOUNTS_ENDPOINT}/${contractAddress}`}
+              />
 
               {!pongAllowed && (
                 <p>

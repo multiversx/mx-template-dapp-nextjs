@@ -21,6 +21,7 @@ import {
 
 import { Username } from './components';
 import { useGetUserHerotag } from './hooks/useGetUserHerotag';
+import Image from 'next/image';
 
 // prettier-ignore
 const styles = {
@@ -87,8 +88,9 @@ export const Account = () => {
     {
       icon: herotag ? (
         profileUrl ? (
-          <img
+          <Image
             src={profileUrl}
+            alt='profile'
             className={styles.connectedAccountDetailsHerotag}
           />
         ) : (
@@ -155,12 +157,12 @@ export const Account = () => {
               {accountDetail.icon}
             </div>
 
-            <p className={styles.connectedAccountInfoText}>
+            <div className={styles.connectedAccountInfoText}>
               <Label>{accountDetail.label}</Label>
               <span className={styles.connectedAccountInfoTextValue}>
                 {accountDetail.value}
               </span>
-            </p>
+            </div>
           </div>
         ))}
       </div>
