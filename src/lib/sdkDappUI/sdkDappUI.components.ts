@@ -3,5 +3,6 @@ export {
   MvxExplorerLink,
   MvxFormatAmount,
   MvxTransactionsTable,
-  MvxTrim
+  MvxTrim,
+  MvxDataWithExplorerLink
 } from '@multiversx/sdk-dapp-ui/react';
