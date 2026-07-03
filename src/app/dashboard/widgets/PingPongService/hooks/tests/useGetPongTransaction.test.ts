@@ -15,16 +15,8 @@ const pongTransaction = {
   version: 1
 };
 
-jest.mock('@/lib', () => ({
-  useGetLoginInfo: jest.fn()
-}));
-
 jest.mock('@/config', () => ({
-  EnvironmentsEnum: {
-    devnet: 'devnet',
-    testnet: 'testnet',
-    mainnet: 'mainnet'
-  }
+  API_URL: 'https://devnet-template-api.multiversx.com'
 }));
 
 describe('useGetPongTransaction', () => {
@@ -40,7 +32,9 @@ describe('useGetPongTransaction', () => {
     const { result } = renderHook(() => useGetPongTransaction());
     const transactionReceived = await result.current();
 
-    expect(transactionReceived).toBe(pongTransaction);
+    // The hook parses the API payload into a sdk-core Transaction instance,
+    // so compare the serialized form rather than object identity.
+    expect(transactionReceived?.toPlainObject()).toEqual(pongTransaction);
   });
 
   it('should return null', async () => {
