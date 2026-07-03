@@ -22,6 +22,7 @@ import {
 import { Username } from './components';
 import { useGetUserHerotag } from './hooks/useGetUserHerotag';
 import Image from 'next/image';
+import { DataTestIdsEnum } from '@/localConstants';
 
 // prettier-ignore
 const styles = {
@@ -81,6 +82,7 @@ export const Account = () => {
       value: (
         <MvxTrim
           text={address}
+          data-testid={DataTestIdsEnum.userAddress}
           className={styles.connectedAccountDetailsTrimAddress}
         />
       )
@@ -110,7 +112,9 @@ export const Account = () => {
         />
       ),
       label: 'Shard',
-      value: account.shard
+      value: (
+        <span data-testid={DataTestIdsEnum.addressShard}>{account.shard}</span>
+      )
     },
     {
       icon: <XLogo className={styles.connectedAccountDetailsXLogo} />,

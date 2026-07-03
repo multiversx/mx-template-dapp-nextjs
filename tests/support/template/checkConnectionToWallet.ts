@@ -7,6 +7,6 @@ export const checkConnectionToWallet = async (
   page: Page,
   walletAddress: string
 ) => {
-  const addressElement = await page.getByTestId(SelectorsEnum.accountAddress);
+  const addressElement = page.getByTestId(SelectorsEnum.userAddress).first();
   await expect(addressElement).toContainText(walletAddress);
 };

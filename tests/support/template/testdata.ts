@@ -60,7 +60,6 @@ export enum SelectorsEnum {
   pingPongAbiContainer = '#ping-pong-abi',
   batchTransactionsContainer = '#batch-transactions',
   signMessageContainer = '#sign-message',
-  accountAddress = 'accountAddress',
   userAddress = 'userAddress',
   heroTag = 'heroTag',
   shard = 'addressShard',

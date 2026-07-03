@@ -24,6 +24,7 @@ test.describe('Sign & send batch', () => {
     );
   });
 
+  // NOTE: Requires the wallet to hold > 5 EGLD (MIN_BALANCE_FOR_BATCH_TX).
   test('should have sufficient balance for batch transactions', async ({
     page
   }) => {
@@ -43,42 +44,40 @@ test.describe('Sign & send batch', () => {
   test('should complete full batch transaction flow', async ({ page }) => {
     const numberOfTransactions = 5;
 
-    // Scroll to the batch transactions container into viewport
+    // Scroll the batch transactions container into viewport (widget id and
+    // dashboard anchor share the id, so scope to the first match)
     await page
       .locator(SelectorsEnum.batchTransactionsContainer)
+      .first()
       .scrollIntoViewIfNeeded();
 
-    // Click on the sign and batch button
-    await page.getByTestId(SelectorsEnum.signAndBatchButton).click();
+    // Click sign-and-batch
+    await page.getByTestId(SelectorsEnum.signAndBatchButton).first().click();
 
-    // Switch to web wallet page
+    // Switch to the web wallet page
     const walletPage = await TestActions.getPageAndWaitForLoad(
       page.context(),
       OriginPageEnum.multiversxWallet
     );
-
-    // Verify wallet page opened
     await expect(walletPage).toHaveURL(UrlRegex.multiversxWallet, {
       timeout: WALLET_URL_TIMEOUT_MS
     });
 
-    // Sign transaction by confirming with keystore in the web wallet
+    // Confirm with the keystore and sign each transaction in the batch
     await TestActions.confirmWalletTransaction(walletPage, keystoreConfig);
-
-    // Sign batch transactions in the web wallet
     await TestActions.signBatchTransactions({
       walletPage,
       buttonSelector: SelectorsEnum.signAndBatchButton,
       numberOfTransactions
     });
 
-    // Switch to template page
+    // Switch back to the template dashboard
     const templatePage = await TestActions.getPageAndWaitForLoad(
       page.context(),
       OriginPageEnum.templateDashboard
     );
 
-    // Wait for transaction toast to be displayed
+    // Wait for the transaction toast to be displayed
     await TestActions.waitForToastToBeDisplayed(templatePage);
 
     // Check that the transaction toast shows that all transactions are signed

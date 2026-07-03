@@ -125,6 +125,10 @@ export const PingPongComponent = ({
     return <MissingNativeAuthError />;
   }
 
+  // Derive a per-widget testid suffix from the id, e.g. 'ping-pong-abi' -> 'Abi'
+  const idSuffix = id.split('-').pop() ?? '';
+  const testIdSuffix = idSuffix.charAt(0).toUpperCase() + idSuffix.slice(1);
+
   return (
     <div id={id} className={styles.pingPongContainer}>
       <div className={styles.infosContainer}>
@@ -162,6 +166,7 @@ export const PingPongComponent = ({
       <div className={styles.buttonsContainer}>
         <div className={styles.buttons}>
           <Button
+            data-testid={`btnPing${testIdSuffix}`}
             disabled={!hasPing || hasPendingTransactions}
             onClick={onSendPingTransaction}
             size='small'
@@ -175,6 +180,7 @@ export const PingPongComponent = ({
           </Button>
 
           <Button
+            data-testid={`btnPong${testIdSuffix}`}
             disabled={!pongAllowed || hasPing || hasPendingTransactions}
             onClick={onSendPongTransaction}
             size='small'

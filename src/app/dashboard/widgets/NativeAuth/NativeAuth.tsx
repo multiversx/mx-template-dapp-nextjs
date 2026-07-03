@@ -14,6 +14,7 @@ import {
 } from '@/lib';
 
 import { useGetProfile } from './hooks';
+import { DataTestIdsEnum } from '@/localConstants';
 import { ItemsIdentifiersEnum } from '../../dashboard.types';
 import { Username } from '../../components/LeftPanel/components/Account/components';
 
@@ -76,6 +77,7 @@ export const NativeAuth = () => {
           <MvxDataWithExplorerLink
             withTooltip={true}
             data={profile?.address ?? 'N/A'}
+            data-testid={DataTestIdsEnum.userAddress}
             className={styles.nativeAuthAddress}
             explorerLink={`${network.explorerAddress}/${ACCOUNTS_ENDPOINT}/${profile?.address}`}
           />
