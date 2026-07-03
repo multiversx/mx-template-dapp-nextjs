@@ -54,7 +54,11 @@ export const TransactionOutput = ({
           <div className={styles.buttons}>
             <MvxCopyButton text={transaction.hash} />
 
-            <a href={hashExplorerLink} target='_blank' rel='noreferrer'>
+            <a
+              href={hashExplorerLink}
+              target='_blank'
+              rel='noreferrer noopener'
+            >
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </a>
           </div>
@@ -69,7 +73,11 @@ export const TransactionOutput = ({
           <div className={styles.buttons}>
             <MvxCopyButton text={transaction.receiver} />
 
-            <a href={receiverExplorerLink} target='_blank' rel='noreferrer'>
+            <a
+              href={receiverExplorerLink}
+              target='_blank'
+              rel='noreferrer noopener'
+            >
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </a>
           </div>

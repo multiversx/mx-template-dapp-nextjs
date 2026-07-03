@@ -10,7 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { AddressComponent, Button, Logo, Tooltip } from '@/components';
+import { Logo, Tooltip } from '@/components';
 import { environment, GITHUB_REPO_URL } from '@/config';
 import {
   ACCOUNTS_ENDPOINT,
@@ -43,7 +43,7 @@ const styles = {
   headerNavigationNetworkLabel: 'header-navigation-network-label relative z-1',
   headerNavigationConnect: 'header-navigation-connect',
   headerNavigationConnectDesktop:
-    'header-navigation-connect-desktop h-8 lg:h-10 hidden sm:block!',
+    'header-navigation-connect-desktop h-8 lg:h-10 flex max-sm:hidden items-center justify-center gap-2 px-6 font-bold leading-none rounded-xl cursor-pointer transition-all duration-200 ease-in-out bg-btn-primary text-btn-primary hover:opacity-75',
   headerNavigationConnectMobile:
     'header-navigation-connect-mobile w-8 h-8 bg-btn-tertiary cursor-pointer flex justify-center items-center sm:hidden text-xs rounded-xl',
   headerNavigationConnectIcon: 'header-navigation-connect-icon text-accent',
@@ -124,23 +124,23 @@ export const Header = () => {
         <ThemeTooltip />
 
         <div className={styles.headerNavigationButtons}>
-          {headerBrowseButtons.map((headerBrowseButton) => (
+          {headerBrowseButtons
+            .filter((headerBrowseButton) => headerBrowseButton.isVisible)
+            .map((headerBrowseButton) => (
             <Tooltip
               key={`header-${headerBrowseButton.label}-button`}
               position='bottom'
-              trigger={() =>
-                headerBrowseButton.isVisible && (
-                  <div
-                    onClick={headerBrowseButton.handleClick}
-                    className={styles.headerNavigationButton}
-                  >
-                    <FontAwesomeIcon
-                      className={styles.headerNavigationButtonIcon}
-                      icon={headerBrowseButton.icon}
-                    />
-                  </div>
-                )
-              }
+              trigger={() => (
+                <div
+                  onClick={headerBrowseButton.handleClick}
+                  className={styles.headerNavigationButton}
+                >
+                  <FontAwesomeIcon
+                    className={styles.headerNavigationButtonIcon}
+                    icon={headerBrowseButton.icon}
+                  />
+                </div>
+              )}
             >
               <div className={styles.headerNavigationButtonTooltip}>
                 {headerBrowseButton.label}
@@ -190,12 +190,12 @@ export const Header = () => {
           </div>
         ) : (
           <div className={styles.headerNavigationConnect}>
-            <Button
+            <button
               onClick={handleLogIn}
               className={styles.headerNavigationConnectDesktop}
             >
               Connect
-            </Button>
+            </button>
 
             <button
               onClick={handleLogIn}

@@ -60,7 +60,7 @@ export const AddressComponent = ({
         <a
           href={explorerLink}
           target='_blank'
-          rel='noreferrer'
+          rel='noreferrer noopener'
           className={classNames(styles.addressButton, {
             [styles.addressButtonHeader]: isHeader
           })}

@@ -51,7 +51,7 @@ export const PingPongOutput = ({
         <div className={styles.pingPongButtons}>
           <MvxCopyButton text={contractAddress} />
 
-          <a href={explorerLink} target='_blank' rel='noreferrer'>
+          <a href={explorerLink} target='_blank' rel='noreferrer noopener'>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
         </div>

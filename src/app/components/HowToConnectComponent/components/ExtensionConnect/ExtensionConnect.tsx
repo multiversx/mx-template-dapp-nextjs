@@ -93,6 +93,7 @@ export const ExtensionConnect = () => {
           <a
             href={isFirefox ? FIREFOX_ADDON_LINK : CHROME_EXTENSION_LINK}
             target='_blank'
+            rel='noreferrer noopener'
             className={styles.extensionCardLink}
           >
             <span className={styles.extensionCardLinkTitle}>Get Extension</span>

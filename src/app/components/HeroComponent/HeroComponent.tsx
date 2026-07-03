@@ -1,7 +1,5 @@
 'use client';
 
-import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import {
   FunctionComponent,
@@ -12,11 +10,11 @@ import {
 } from 'react';
 import { useRouter } from 'next/navigation';
 
+import ArrowUpRightIcon from '@/assets/icons/arrow-up-right-icon.svg';
 import brightLightIcon from '@/assets/img/bright-light-icon.svg';
 import tealLabIcon from '@/assets/img/teal-lab-icon.svg';
 import vibeModeIcon from '@/assets/img/vibe-mode-icon.svg';
 import { DOCUMENTATION_LINK, RouteNamesEnum } from '@/localConstants';
-import { Button } from '@/components';
 
 // prettier-ignore
 const styles = {
@@ -26,6 +24,7 @@ const styles = {
   heroTitle: 'hero-title !text-primary text-[42px] lg:text-[84px] font-medium leading-[1] tracking-[-2.52px] transition-all duration-200 ease-out',
   heroDescription: 'hero-description text-secondary text-xl lg:text-2xl lg:text-center leading-[1.5] tracking-[-0.24px] max-w-138 transition-all duration-200 ease-out',
   heroSectionTopButtons: 'hero-section-top-buttons flex flex-col lg:flex-row items-start lg:items-center justify-start gap-6',
+  heroSectionTopConnectButton: 'hero-section-top-connect-button flex items-center justify-center gap-2 px-6 h-8 lg:h-10 font-bold leading-none rounded-xl cursor-pointer bg-btn-primary text-btn-primary hover:opacity-75 transition-all duration-200 ease-out',
   heroSectionTopDocButton: 'hero-section-top-doc-button flex items-center px-3 text-btn-secondary bg-btn-secondary hover:bg-btn-primary hover:text-btn-primary font-bold rounded-xl h-8 lg:h-10 transition-all duration-200 ease-out',
   heroSectionTopDocButtonText: 'hero-section-top-doc-button-text px-4',
   heroSectionTopDocButtonIcon: 'hero-section-top-doc-button-icon px-3',
@@ -127,22 +126,24 @@ export const HeroComponent = () => {
         </div>
 
         <div className={styles.heroSectionTopButtons}>
-          <Button onClick={handleLogIn}>Connect Wallet</Button>
+          <button
+            onClick={handleLogIn}
+            className={styles.heroSectionTopConnectButton}
+          >
+            Connect Wallet
+          </button>
 
           <a
             href={DOCUMENTATION_LINK}
             target='_blank'
-            rel='noreferrer'
+            rel='noreferrer noopener'
             className={styles.heroSectionTopDocButton}
           >
             <span className={styles.heroSectionTopDocButtonText}>
               See Documentation
             </span>
 
-            <FontAwesomeIcon
-              icon={faArrowRightLong}
-              className={styles.heroSectionTopDocButtonIcon}
-            />
+            <ArrowUpRightIcon />
           </a>
         </div>
       </div>

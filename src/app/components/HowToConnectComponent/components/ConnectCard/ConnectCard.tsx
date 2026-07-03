@@ -40,6 +40,7 @@ export const ConnectCard = ({
       <a
         href={linkDownloadAddress}
         target='_blank'
+        rel='noreferrer noopener'
         className={styles.connectCardLink}
       >
         <span className={styles.connectCardLinkTitle}>{linkTitle}</span>
