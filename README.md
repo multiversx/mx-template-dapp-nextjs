@@ -17,48 +17,59 @@ module.exports = nextConfig;
 
 ---
 
+## Requirements
+
+- [Node.js](https://nodejs.org/) 24
+- [pnpm](https://pnpm.io/) 11 (`corepack enable` will provision the version pinned in `package.json`)
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
 ## Getting Started
 
 Run the development server on the desired network:
 
 ```bash
-yarn start-testnet
+pnpm start:testnet
 ```
 
 or
 
 ```bash
-yarn start-devnet
+pnpm start:devnet
 ```
 
 or
 
 ```bash
-yarn start-mainnet
+pnpm start:mainnet
 ```
+
+The dev server runs behind a local SSL proxy — open [https://localhost:3002](https://localhost:3002) with your browser to see the result.
 
 Run a production build:
 
 ```bash
-yarn build-testnet
+pnpm build:testnet
 ```
 
 or
 
 ```bash
-yarn build-devnet
+pnpm build:devnet
 ```
 
 or
 
 ```bash
-yarn build-mainnet
+pnpm build:mainnet
 ```
 
 and then
 
 ```bash
-yarn start
+pnpm preview
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
