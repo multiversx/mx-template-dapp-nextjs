@@ -64,7 +64,9 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'pnpm start:devnet',
+    // In CI, serve the already-built app (fast, deterministic). Locally, fall
+    // back to the dev server (reused if one is already running on :3000).
+    command: process.env.CI ? 'pnpm preview:ci' : 'pnpm start:devnet',
     url: 'https://localhost:3000',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,

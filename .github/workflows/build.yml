@@ -8,18 +8,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [24]
-
     steps:
-      - uses: actions/checkout@v6
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install pnpm
+          node-version: 24
+      - name: Setup pnpm
         run: npm install -g pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
