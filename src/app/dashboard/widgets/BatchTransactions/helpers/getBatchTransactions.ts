@@ -9,7 +9,7 @@ import { TransactionProps } from '@/types';
 
 const NUMBER_OF_TRANSACTIONS = 5;
 
-export const getBatchTransactions = ({
+export const getBatchTransactions = async ({
   address,
   chainID
 }: TransactionProps): Promise<Transaction[]> => {
@@ -24,7 +24,9 @@ export const getBatchTransactions = ({
         Address.newFromBech32(address),
         {
           receiver: Address.newFromBech32(address),
-          nativeAmount: BigInt(new BigNumber(id).plus(1).shiftedBy(18).toFixed())
+          nativeAmount: BigInt(
+            new BigNumber(id).plus(1).shiftedBy(18).toFixed()
+          )
         }
       )
     )
