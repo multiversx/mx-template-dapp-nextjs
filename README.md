@@ -48,7 +48,7 @@ or
 pnpm start:mainnet
 ```
 
-The dev server runs behind a local SSL proxy — open [https://localhost:3002](https://localhost:3002) with your browser to see the result.
+The dev server runs behind a local SSL proxy — open [https://localhost:3000](https://localhost:3000) with your browser to see the result. (Use the HTTPS URL, not `http://localhost:3002` — wallet extensions only inject their provider on an `https://` origin.)
 
 Run a production build:
 

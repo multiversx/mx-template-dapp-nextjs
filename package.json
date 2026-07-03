@@ -6,7 +6,7 @@
   "license": "GPL-3.0-or-later",
   "repository": "@multiversx/mx-template-dapp-nextjs",
   "scripts": {
-    "dev": "next dev --webpack | local-ssl-proxy --source 3002 --target 3000",
+    "dev": "next dev --webpack --port 3002 | local-ssl-proxy --source 3000 --target 3002",
     "build": "pnpm build:devnet",
     "lint": "eslint .",
     "start": "pnpm copy-devnet-config && pnpm dev",
