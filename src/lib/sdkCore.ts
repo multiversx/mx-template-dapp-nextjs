@@ -6,7 +6,6 @@ export {
   Message,
   MessageComputer,
   ProxyNetworkProvider,
-  SmartContract,
   SmartContractController,
   SmartContractTransactionsFactory,
   Token,
@@ -18,5 +17,3 @@ export {
   UserSecretKey,
   UserSigner
 } from '@multiversx/sdk-core';
-
-export { safeWindow } from '@multiversx/sdk-dapp/out/constants';

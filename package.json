@@ -17,7 +17,8 @@
     "build:devnet": "yarn run copy-devnet-config & next build",
     "preview": "next start",
     "test": "jest",
-    "cy:run": "node scripts/cypress.ts"
+    "run-playwright-test": "playwright test",
+    "run-playwright-test-ui": "playwright test --ui"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.5.1",
@@ -29,15 +30,18 @@
     "@multiversx/sdk-dapp-ui": "0.0.26",
     "@multiversx/sdk-dapp-utils": "2.0.2",
     "axios": "^1.10.0",
+    "bignumber.js": "^9.x",
     "classnames": "2.3.2",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.3",
     "moment": "2.29.4",
     "next": "13.5.4",
     "next-transpile-modules": "10.0.1",
+    "protobufjs": "7.5.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "vite": "^7.2.4"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

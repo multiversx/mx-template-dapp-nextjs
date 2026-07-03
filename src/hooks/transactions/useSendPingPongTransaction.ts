@@ -62,7 +62,7 @@ export const useSendPingPongTransaction = () => {
 
   const sendPingTransactionFromAbi = async (amount: string) => {
     const scFactory = await getSmartContractFactory();
-    const pingTransaction = scFactory.createTransactionForExecute(
+    const pingTransaction = await scFactory.createTransactionForExecute(
       new Address(address),
       {
         gasLimit: BigInt(60000000),
@@ -109,7 +109,7 @@ export const useSendPingPongTransaction = () => {
 
   const sendPongTransactionFromAbi = async () => {
     const scFactory = await getSmartContractFactory();
-    const pongTransaction = scFactory.createTransactionForExecute(
+    const pongTransaction = await scFactory.createTransactionForExecute(
       new Address(address),
       {
         gasLimit: BigInt(60000000),
