@@ -7,7 +7,14 @@ import prettier from 'eslint-config-prettier';
 // stylistic rules that conflict with Prettier.
 const eslintConfig = [
   {
-    ignores: ['build/**', 'node_modules/**', 'cypress/**', 'scripts/**']
+    ignores: [
+      'build/**',
+      'node_modules/**',
+      'cypress/**',
+      'scripts/**',
+      'playwright-report/**',
+      'test-results/**'
+    ]
   },
   ...nextCoreWebVitals,
   ...nextTypescript,
