@@ -72,6 +72,7 @@ export enum SelectorsEnum {
 
   // Web wallet selectors
   signCancelButton = 'signCancelBtn',
+  signNextTransactionButton = 'signNextTransactionBtn',
 
   // Transaction table selectors
   transactionLink = 'transactionLink',
