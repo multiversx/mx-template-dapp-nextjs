@@ -48,10 +48,10 @@ jobs:
           retry_on: error
           max_attempts: 2
           command: pnpm install --frozen-lockfile
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps chromium
       - name: Build Next.js app
         run: pnpm build:devnet
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps chromium
       - name: Run Playwright E2E Tests
         run: xvfb-run pnpm run run-playwright-test
       - name: Upload Playwright test report
