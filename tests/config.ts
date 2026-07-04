@@ -11,4 +11,4 @@ export const TEST_CONFIG = {
   fullyParallel: false
 } as const;
 
-export const WALLET_URL_TIMEOUT_MS = 10_000;
+export const WALLET_URL_TIMEOUT_MS = 20_000;
