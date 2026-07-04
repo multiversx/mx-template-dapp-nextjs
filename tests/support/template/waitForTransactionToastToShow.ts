@@ -38,9 +38,14 @@ export const waitForTransactionToastToContain = async ({
   }
 
   if (toastStatus) {
-    await expect(statusLocator.nth(toastIndex)).toContainText(toastStatus, {
-      timeout: TEST_CONSTANTS.TOAST_WAIT_TIMEOUT,
-      useInnerText: true
+    // The batch status text progresses (1 / 5 → 2 / 5 → … → 5 / 5) and can live
+    // on a re-rendered or duplicated node, so pinning to a single nth() snapshot
+    // can get stuck on an element that never reaches the final value. Instead,
+    // wait for ANY status element to contain the target text.
+    await expect(
+      statusLocator.filter({ hasText: toastStatus }).first()
+    ).toBeVisible({
+      timeout: TEST_CONSTANTS.TOAST_WAIT_TIMEOUT
     });
   }
 };

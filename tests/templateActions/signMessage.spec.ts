@@ -56,8 +56,17 @@ test.describe('Sign Message', () => {
       OriginPageEnum.templateDashboard
     );
 
-    // The encoded message is the hex of the input and is independent of the
-    // signing key, so it is a stable assertion for the sign-success output.
-    await expect(templatePage.getByText('0x6d7678')).toBeVisible();
+    // Scroll the sign message widget into view and assert its sign-success
+    // output. The encoded message is the hex of the input and is independent of
+    // the signing key, so it is a stable assertion. Scoping to the widget (and
+    // giving it up to the expect timeout) waits for SignSuccess to render after
+    // the wallet round-trip, rather than failing on an early snapshot.
+    const signMessageWidget = templatePage
+      .locator(SelectorsEnum.signMessageContainer)
+      .first();
+    await signMessageWidget.scrollIntoViewIfNeeded();
+    await expect(signMessageWidget).toContainText('0x6d7678', {
+      useInnerText: true
+    });
   });
 });
