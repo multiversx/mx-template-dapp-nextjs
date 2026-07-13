@@ -2,5 +2,7 @@ export {
   MvxCopyButton,
   MvxExplorerLink,
   MvxFormatAmount,
-  MvxTransactionsTable
+  MvxTransactionsTable,
+  MvxTrim,
+  MvxDataWithExplorerLink
 } from '@multiversx/sdk-dapp-ui/react';

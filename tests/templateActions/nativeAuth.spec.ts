@@ -26,20 +26,21 @@ test.describe('Native auth', () => {
       selectorType: 'testId'
     });
 
-    // Scroll to the native auth container into viewport
-    await page
-      .locator(SelectorsEnum.nativeAuthContainer)
-      .scrollIntoViewIfNeeded();
+    // Scroll the native auth container into viewport. The dashboard anchor and
+    // the widget share the `native-auth` id, so scope to the first match.
+    const container = page.locator(SelectorsEnum.nativeAuthContainer).first();
+    await container.scrollIntoViewIfNeeded();
 
     // Verify container is in viewport
-    const container = page.locator(SelectorsEnum.nativeAuthContainer);
     await expect(container).toBeInViewport();
 
-    // Check that the address is displayed and matches the account address
-    const addressRow = page.locator(`${SelectorsEnum.nativeAuthContainer} p`, {
-      hasText: 'Address:'
-    });
-    await expect(addressRow).toContainText(keystoreConfig.address);
+    // Check that the address is displayed and matches the account address.
+    // The visible value is trimmed via a web component, so assert on the
+    // untrimmed value carried by the userAddress testid within the widget.
+    const addressElement = container
+      .getByTestId(SelectorsEnum.userAddress)
+      .first();
+    await expect(addressElement).toContainText(keystoreConfig.address);
 
     // Check that the balance is displayed and matches the account balance
     const nativeAuthBalance = await extractBalanceFromContainer({

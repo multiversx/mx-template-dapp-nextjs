@@ -1,0 +1,199 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { TokenLoginType } from '@multiversx/sdk-dapp/out/types/login.types';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
+
+import {
+  Label,
+  MissingNativeAuthError,
+  OutputContainer,
+  PingPongOutput
+} from '@/components';
+
+import { contractAddress } from '@/config';
+import { getCountdownSeconds, setTimeRemaining } from '@/helpers';
+import {
+  ACCOUNTS_ENDPOINT,
+  MvxDataWithExplorerLink,
+  Transaction,
+  useGetNetworkConfig,
+  useGetPendingTransactions
+} from '@/lib';
+import { ItemsIdentifiersEnum } from '@/app/dashboard/dashboard.types';
+
+// prettier-ignore
+const styles = {
+  pingPongContainer: 'ping-pong-container flex flex-col gap-6',
+  infosContainer: 'infos-container flex flex-col gap-2',
+  addressComponent: 'address-component flex w-full justify-between',
+  timeRemaining: 'text-red-600',
+  buttonsContainer: 'buttons-container flex flex-col gap-2',
+  buttons: 'buttons flex justify-start gap-2',
+  actionButton: 'action-button flex items-center justify-center gap-2 px-4 h-8 lg:h-10 rounded-xl font-bold leading-none cursor-pointer transition-all duration-200 ease-in-out bg-btn-primary text-btn-primary hover:opacity-75 disabled:bg-transparent disabled:text-secondary disabled:border disabled:border-secondary disabled:cursor-default disabled:hover:opacity-100',
+  buttonContent: 'button-content text-sm font-normal'
+} satisfies Record<string, string>;
+
+interface PingPongComponentPropsType {
+  id: ItemsIdentifiersEnum;
+  sendPingTransaction: (amount: any) => Promise<any>;
+  sendPongTransaction: (transaction?: any) => Promise<any>;
+  getTimeToPong: () => Promise<number | null | undefined>;
+  pingAmount?: string;
+  getPingTransaction?: () => Promise<Transaction | null>;
+  getPongTransaction?: () => Promise<Transaction | null>;
+  tokenLogin?: TokenLoginType | null;
+}
+
+export const PingPongComponent = ({
+  id,
+  sendPingTransaction,
+  sendPongTransaction,
+  getTimeToPong,
+  pingAmount,
+  getPingTransaction,
+  getPongTransaction,
+  tokenLogin
+}: PingPongComponentPropsType) => {
+  const { network } = useGetNetworkConfig();
+  const transactions = useGetPendingTransactions();
+  const hasPendingTransactions = transactions.length > 0;
+
+  const [hasPing, setHasPing] = useState(true);
+  const [secondsLeft, setSecondsLeft] = useState(0);
+
+  const setSecondsRemaining = async () => {
+    if (tokenLogin && !tokenLogin?.nativeAuthToken) {
+      return;
+    }
+
+    const secondsRemaining = await getTimeToPong();
+    const { canPing, timeRemaining } = setTimeRemaining(secondsRemaining);
+
+    setHasPing(canPing);
+    if (timeRemaining && timeRemaining >= 0) {
+      setSecondsLeft(timeRemaining);
+    }
+  };
+
+  const onSendPingTransaction = async () => {
+    if (pingAmount) {
+      await sendPingTransaction(pingAmount);
+    } else if (getPingTransaction) {
+      const pingTransaction = await getPingTransaction();
+
+      if (!pingTransaction) {
+        return;
+      }
+
+      await sendPingTransaction([pingTransaction]);
+    }
+  };
+
+  const onSendPongTransaction = async () => {
+    if (pingAmount) {
+      await sendPongTransaction();
+    } else if (getPongTransaction) {
+      const pongTransaction = await getPongTransaction();
+
+      if (!pongTransaction) {
+        return;
+      }
+
+      await sendPongTransaction([pongTransaction]);
+    }
+  };
+
+  const timeRemaining = moment()
+    .startOf('day')
+    .seconds(secondsLeft ?? 0)
+    .format('mm:ss');
+
+  const pongAllowed = secondsLeft === 0;
+
+  useEffect(() => {
+    getCountdownSeconds({ secondsLeft, setSecondsLeft });
+  }, [hasPing]);
+
+  useEffect(() => {
+    setSecondsRemaining();
+  }, [hasPendingTransactions]);
+
+  if (tokenLogin && !tokenLogin?.nativeAuthToken) {
+    return <MissingNativeAuthError />;
+  }
+
+  // Derive a per-widget testid suffix from the id, e.g. 'ping-pong-abi' -> 'Abi'
+  const idSuffix = id.split('-').pop() ?? '';
+  const testIdSuffix = idSuffix.charAt(0).toUpperCase() + idSuffix.slice(1);
+
+  return (
+    <div id={id} className={styles.pingPongContainer}>
+      <div className={styles.infosContainer}>
+        <Label>Contract: </Label>
+
+        <OutputContainer>
+          {!hasPendingTransactions && (
+            <>
+              <MvxDataWithExplorerLink
+                withTooltip={true}
+                data={contractAddress}
+                className={styles.addressComponent}
+                explorerLink={`${network.explorerAddress}/${ACCOUNTS_ENDPOINT}/${contractAddress}`}
+              />
+
+              {!pongAllowed && (
+                <p>
+                  <Label>Time remaining: </Label>
+                  <span className={styles.timeRemaining}>{timeRemaining}</span>
+
+                  <span> until able to pong</span>
+                </p>
+              )}
+            </>
+          )}
+
+          <PingPongOutput
+            transactions={transactions}
+            pongAllowed={pongAllowed}
+            timeRemaining={timeRemaining}
+          />
+        </OutputContainer>
+      </div>
+
+      <div className={styles.buttonsContainer}>
+        <div className={styles.buttons}>
+          <button
+            data-testid={`btnPing${testIdSuffix}`}
+            disabled={!hasPing || hasPendingTransactions}
+            onClick={onSendPingTransaction}
+            className={styles.actionButton}
+          >
+            <FontAwesomeIcon
+              icon={faArrowUp}
+              className={styles.buttonContent}
+            />
+
+            <span className={styles.buttonContent}>Ping</span>
+          </button>
+
+          <button
+            data-testid={`btnPong${testIdSuffix}`}
+            disabled={!pongAllowed || hasPing || hasPendingTransactions}
+            onClick={onSendPongTransaction}
+            className={styles.actionButton}
+          >
+            <FontAwesomeIcon
+              icon={faArrowDown}
+              className={styles.buttonContent}
+            />
+
+            <span className={styles.buttonContent}>Pong</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

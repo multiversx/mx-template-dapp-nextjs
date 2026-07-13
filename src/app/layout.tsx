@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import type { ReactNode } from 'react';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Layout } from '@/components/Layout';
 import App from './index';
@@ -12,13 +12,14 @@ export const metadata: Metadata = {
   title: 'Template dApp Next.js',
   description:
     'A basic implementation of MultiversX dApp providing the basics for MultiversX authentication and TX signing.',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1
-  },
   icons: {
     icon: '/favicon.ico'
   }
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
