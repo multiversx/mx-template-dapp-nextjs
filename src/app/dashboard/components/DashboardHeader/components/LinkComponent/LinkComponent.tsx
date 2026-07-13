@@ -16,7 +16,7 @@ export const LinkComponent = ({
   <a
     href={linkAddress}
     target='_blank'
-    rel='noreferrer'
+    rel='noreferrer noopener'
     className={styles.linkAddress}
   >
     {children}

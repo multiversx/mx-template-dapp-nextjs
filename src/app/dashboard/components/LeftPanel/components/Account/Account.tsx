@@ -21,6 +21,8 @@ import {
 
 import { Username } from './components';
 import { useGetUserHerotag } from './hooks/useGetUserHerotag';
+import Image from 'next/image';
+import { DataTestIdsEnum } from '@/localConstants';
 
 // prettier-ignore
 const styles = {
@@ -80,6 +82,7 @@ export const Account = () => {
       value: (
         <MvxTrim
           text={address}
+          data-testid={DataTestIdsEnum.userAddress}
           className={styles.connectedAccountDetailsTrimAddress}
         />
       )
@@ -87,8 +90,9 @@ export const Account = () => {
     {
       icon: herotag ? (
         profileUrl ? (
-          <img
+          <Image
             src={profileUrl}
+            alt='profile'
             className={styles.connectedAccountDetailsHerotag}
           />
         ) : (
@@ -108,7 +112,9 @@ export const Account = () => {
         />
       ),
       label: 'Shard',
-      value: account.shard
+      value: (
+        <span data-testid={DataTestIdsEnum.addressShard}>{account.shard}</span>
+      )
     },
     {
       icon: <XLogo className={styles.connectedAccountDetailsXLogo} />,
@@ -155,12 +161,12 @@ export const Account = () => {
               {accountDetail.icon}
             </div>
 
-            <p className={styles.connectedAccountInfoText}>
+            <div className={styles.connectedAccountInfoText}>
               <Label>{accountDetail.label}</Label>
               <span className={styles.connectedAccountInfoTextValue}>
                 {accountDetail.value}
               </span>
-            </p>
+            </div>
           </div>
         ))}
       </div>

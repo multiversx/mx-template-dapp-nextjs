@@ -45,7 +45,7 @@ export const TransactionOutput = ({
 
   return (
     <div className={styles.transactionContainer}>
-      <p className={styles.transactionElementContainer}>
+      <div className={styles.transactionElementContainer}>
         <Label>Hash:</Label>
 
         <div className={styles.transactionElement}>
@@ -54,14 +54,18 @@ export const TransactionOutput = ({
           <div className={styles.buttons}>
             <MvxCopyButton text={transaction.hash} />
 
-            <a href={hashExplorerLink} target='_blank' rel='noreferrer'>
+            <a
+              href={hashExplorerLink}
+              target='_blank'
+              rel='noreferrer noopener'
+            >
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </a>
           </div>
         </div>
-      </p>
+      </div>
 
-      <p className={styles.transactionElementContainer}>
+      <div className={styles.transactionElementContainer}>
         <Label>Receiver:</Label>
         <div className={styles.transactionElement}>
           {transaction.receiver}
@@ -69,12 +73,16 @@ export const TransactionOutput = ({
           <div className={styles.buttons}>
             <MvxCopyButton text={transaction.receiver} />
 
-            <a href={receiverExplorerLink} target='_blank' rel='noreferrer'>
+            <a
+              href={receiverExplorerLink}
+              target='_blank'
+              rel='noreferrer noopener'
+            >
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </a>
           </div>
         </div>
-      </p>
+      </div>
 
       <p>
         <Label>Amount: </Label>

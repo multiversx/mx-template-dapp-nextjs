@@ -13,6 +13,7 @@
 //   by the tests and are never written to disk.
 
 import path from 'path';
+import { chromium, type FullConfig } from '@playwright/test';
 import { loadLocalEnv } from './loadLocalEnv';
 import { writeValueToFile } from '../fs/writeValueToFile';
 import { type FileEncoding } from './types';
@@ -89,7 +90,43 @@ async function writeKeystoreFilesFromEnv(
   }
 }
 
+// Pre-compile the app routes before the tests run. With `next dev` (local),
+// each route is compiled on first request, so the first test to hit a route can
+// act while Next is still compiling and fail. Warming the routes once here (the
+// webServer is already up at this point) moves that cost out of the tests. On CI
+// the app is a production build with no on-demand compilation, so this is a
+// cheap no-op.
+async function warmUpRoutes(baseURL: string) {
+  const routes = ['/', '/unlock', '/dashboard'];
+  const browser = await chromium.launch();
+  try {
+    const context = await browser.newContext({ ignoreHTTPSErrors: true });
+    const page = await context.newPage();
+    for (const route of routes) {
+      try {
+        await page.goto(`${baseURL}${route}`, {
+          waitUntil: 'load',
+          timeout: 90_000
+        });
+      } catch (error) {
+        console.warn(
+          `[globalSetup] Warm-up failed for ${route}:`,
+          error instanceof Error ? error.message : error
+        );
+      }
+    }
+  } finally {
+    await browser.close();
+  }
+}
+
 // Global setup function
-export default async function globalSetup() {
+export default async function globalSetup(config: FullConfig) {
   await writeKeystoreFilesFromEnv('base64', true);
+
+  const baseURL = config.projects[0]?.use?.baseURL;
+  if (baseURL) {
+    console.log('[globalSetup] Warming up routes (pre-compiling for next dev)…');
+    await warmUpRoutes(baseURL);
+  }
 }

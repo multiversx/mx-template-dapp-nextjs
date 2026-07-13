@@ -1,4 +1,6 @@
 export enum DataTestIdsEnum {
+  userAddress = 'userAddress',
+  addressShard = 'addressShard',
   balance = 'balance',
   heroTag = 'heroTag',
   nftExplorerLink = 'nftExplorerLink',

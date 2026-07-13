@@ -5,6 +5,7 @@ import { decodeMessage } from '../helpers';
 interface VerifyMessagePropsType {
   message: Message;
   signature: string;
+  address: string;
 }
 
 export const SignSuccess = (props: VerifyMessagePropsType) => {

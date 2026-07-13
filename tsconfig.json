@@ -1,14 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "jest"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["jest"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -27,9 +21,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -39,7 +31,5 @@
     "build/types/**/*.ts",
     "build/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -19,6 +19,7 @@ import extensionImage from '@/assets/img/extension-image.png';
 
 import { BrowserFrame } from './components';
 import { FunctionComponent, SVGProps } from 'react';
+import Image from 'next/image';
 
 // prettier-ignore
 const styles = {
@@ -49,7 +50,6 @@ const browserLogos: BrowserLogo[] = [
 
 export const ExtensionConnect = () => {
   const detectedBrowser = getDetectedBrowser();
-  console.log('here', detectedBrowser);
   const isFirefox = detectedBrowser === BrowserEnum.Firefox;
   const WalletChromeLogo = walletChromeLogo;
   const WalletFirefoxLogo = walletFirefoxLogo;
@@ -93,6 +93,7 @@ export const ExtensionConnect = () => {
           <a
             href={isFirefox ? FIREFOX_ADDON_LINK : CHROME_EXTENSION_LINK}
             target='_blank'
+            rel='noreferrer noopener'
             className={styles.extensionCardLink}
           >
             <span className={styles.extensionCardLinkTitle}>Get Extension</span>
@@ -113,7 +114,13 @@ export const ExtensionConnect = () => {
 
         <BrowserFrame />
 
-        <img src={extensionImage.src} className={styles.extensionCardScreen} />
+        <Image
+          src={extensionImage.src}
+          className={styles.extensionCardScreen}
+          width={224}
+          height={358}
+          alt='MultiversX Wallet Extension'
+        />
       </div>
     </div>
   );

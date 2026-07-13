@@ -4,6 +4,10 @@ import { RouteNamesEnum } from '@/localConstants';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
+// Renders nothing itself: the homepage is the group layout's persistent
+// background, and this page just opens the global unlock panel over it (a
+// drawer). Closing the panel navigates back to `/`, which keeps the same
+// mounted background.
 export default function Unlock() {
   const router = useRouter();
   const { isLoggedIn } = useGetLoginInfo();

@@ -1,5 +1,5 @@
 import {
-  REACT_LINK,
+  NEXT_LINK,
   SDK_DAPP_PACKAGE_LINK,
   TYPESCRIPT_LINK
 } from '@/localConstants';
@@ -19,7 +19,7 @@ export const DashboardHeader = () => (
 
     <div className={styles.dashboardHeaderDescription}>
       <span>The MultiversX dApp Template, built using </span>
-      <LinkComponent linkAddress={REACT_LINK}>React.js</LinkComponent>
+      <LinkComponent linkAddress={NEXT_LINK}>Next.js</LinkComponent>
       <span> and </span>
       <LinkComponent linkAddress={TYPESCRIPT_LINK}>Typescript</LinkComponent>.
       <span> It&apos;s a basic implementation of </span>

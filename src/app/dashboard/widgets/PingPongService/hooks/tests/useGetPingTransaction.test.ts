@@ -12,24 +12,7 @@ const pingTransaction = {
   gasLimit: 6000000,
   data: 'cGluZw==',
   chainID: 'D',
-  version: 1,
-  guardian: {
-    bech32: '',
-    pubkey: ''
-  },
-  guardianSignature: {
-    data: [],
-    type: 'Buffer'
-  },
-  options: 0,
-  receiverUsername: '',
-  relayer: { bech32: '', pubkey: '' },
-  relayerSignature: {
-    data: [],
-    type: 'Buffer'
-  },
-  senderUsername: '',
-  signature: { data: [], type: 'Buffer' }
+  version: 1
 };
 
 describe('useGetPingTransaction', () => {
@@ -41,7 +24,9 @@ describe('useGetPingTransaction', () => {
     const { result } = renderHook(() => useGetPingTransaction());
     const transactionReceived = await result.current();
 
-    expect(transactionReceived).toBe(pingTransaction);
+    // The hook parses the API payload into a sdk-core Transaction instance,
+    // so compare the serialized form rather than object identity.
+    expect(transactionReceived?.toPlainObject()).toEqual(pingTransaction);
   });
 
   it('should return null', async () => {

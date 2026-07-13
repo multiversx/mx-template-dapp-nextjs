@@ -21,7 +21,7 @@ jest.mock('@/config', () => ({
 }));
 
 jest.mock(
-  '@multiversx/sdk-dapp/out/store/selectors/hooks/network/useGetNetworkConfig',
+  '@multiversx/sdk-dapp/out/react/network/useGetNetworkConfig',
   () => ({
     useGetNetworkConfig: jest.fn().mockReturnValue({
       network: { apiAddress: 'https://devnet-api.multiversx.com' }

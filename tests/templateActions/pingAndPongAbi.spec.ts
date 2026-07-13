@@ -50,40 +50,39 @@ test.describe('Ping & Pong (ABI)', () => {
       selectorType: 'testId'
     });
 
-    // Scroll to the ping & pong container into viewport
+    // Scroll the ping & pong container into viewport (widget id and dashboard
+    // anchor share the id, so scope to the first match)
     await page
       .locator(SelectorsEnum.pingPongAbiContainer)
+      .first()
       .scrollIntoViewIfNeeded();
 
+    // Click Ping (or Pong when in cooldown)
     const clickedButton = await TestActions.handlePingPong({
       page,
       type: PingPongEnum.abi
     });
 
-    // Switch to web wallet page
+    // Switch to the web wallet page
     const walletPage = await TestActions.getPageAndWaitForLoad(
       page.context(),
       OriginPageEnum.multiversxWallet
     );
-
-    // Verify wallet page opened
     await expect(walletPage).toHaveURL(UrlRegex.multiversxWallet, {
       timeout: WALLET_URL_TIMEOUT_MS
     });
 
-    // Sign transaction by confirming with pem
+    // Confirm with the PEM and sign the transaction in the web wallet
     await TestActions.confirmWalletTransaction(walletPage, pemConfig);
+    await walletPage.getByTestId(SelectorsEnum.signNextTransactionButton).click();
 
-    // Click on Sign button to confirm the transaction in the web wallet
-    await walletPage.getByTestId(SelectorsEnum.signButton).click();
-
-    // Switch to template dashboard page
+    // Switch back to the template dashboard
     const templatePage = await TestActions.getPageAndWaitForLoad(
       page.context(),
       OriginPageEnum.templateDashboard
     );
 
-    // Wait for transaction toast to be displayed
+    // Wait for the transaction toast to be displayed
     await TestActions.waitForToastToBeDisplayed(templatePage);
 
     // Check balance change based on the clicked button

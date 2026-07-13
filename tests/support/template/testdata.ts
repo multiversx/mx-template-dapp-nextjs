@@ -12,7 +12,7 @@ export const NA = 'N/A';
 
 export enum OriginPageEnum {
   multiversxWallet = 'devnet-wallet.multiversx.com',
-  templateHome = 'https://localhost:3002/home',
+  templateHome = 'https://localhost:3002',
   templateDashboard = 'https://localhost:3002/dashboard',
   templateUnlock = 'https://localhost:3002/unlock'
 }
@@ -60,7 +60,7 @@ export enum SelectorsEnum {
   pingPongAbiContainer = '#ping-pong-abi',
   batchTransactionsContainer = '#batch-transactions',
   signMessageContainer = '#sign-message',
-  accountAddress = 'accountAddress',
+  userAddress = 'userAddress',
   heroTag = 'heroTag',
   shard = 'addressShard',
   decodedMessage = 'decodedMessage',
@@ -72,6 +72,7 @@ export enum SelectorsEnum {
 
   // Web wallet selectors
   signCancelButton = 'signCancelBtn',
+  signNextTransactionButton = 'signNextTransactionBtn',
 
   // Transaction table selectors
   transactionLink = 'transactionLink',

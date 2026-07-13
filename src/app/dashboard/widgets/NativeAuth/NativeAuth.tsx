@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 
 import { Label, MissingNativeAuthError, OutputContainer } from '@/components';
 import {
-  // ACCOUNTS_ENDPOINT,
+  ACCOUNTS_ENDPOINT,
   DECIMALS,
   DIGITS,
   FormatAmountController,
-  // MvxDataWithExplorerLink,
+  MvxDataWithExplorerLink,
   MvxFormatAmount,
   useGetAccount,
   useGetLoginInfo,
@@ -14,6 +14,7 @@ import {
 } from '@/lib';
 
 import { useGetProfile } from './hooks';
+import { DataTestIdsEnum } from '@/localConstants';
 import { ItemsIdentifiersEnum } from '../../dashboard.types';
 import { Username } from '../../components/LeftPanel/components/Account/components';
 
@@ -73,12 +74,13 @@ export const NativeAuth = () => {
         <Label>Address</Label>
 
         <OutputContainer isLoading={isLoading}>
-          {/* <MvxDataWithExplorerLink
+          <MvxDataWithExplorerLink
             withTooltip={true}
             data={profile?.address ?? 'N/A'}
+            data-testid={DataTestIdsEnum.userAddress}
             className={styles.nativeAuthAddress}
-            explorerLink={`/${ACCOUNTS_ENDPOINT}/${profile?.address}`}
-          /> */}
+            explorerLink={`${network.explorerAddress}/${ACCOUNTS_ENDPOINT}/${profile?.address}`}
+          />
         </OutputContainer>
       </div>
 
