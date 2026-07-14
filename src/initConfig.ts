@@ -2,7 +2,7 @@
 import './styles/globals.css';
 import './styles/tailwind.css';
 
-import { walletConnectV2ProjectId } from './config';
+import { environment, walletConnectV2ProjectId } from './config';
 
 import { InMemoryProvider } from './provider/inMemoryProvider';
 import {
@@ -10,7 +10,6 @@ import {
   ICustomProvider,
   ProviderTypeEnum,
   InitAppType,
-  EnvironmentsEnum,
   ProviderType
 } from '@/lib';
 
@@ -41,7 +40,7 @@ export const config: InitAppType = {
   storage: { getStorageCallback: () => sessionStorage },
   dAppConfig: {
     nativeAuth: true,
-    environment: EnvironmentsEnum.devnet,
+    environment,
     providers: {
       walletConnect: {
         walletConnectV2ProjectId
