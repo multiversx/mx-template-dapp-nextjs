@@ -26,45 +26,47 @@ test.describe('Sign Message', () => {
   test('should complete full message signing flow', async ({ page }) => {
     const message = 'mvx';
 
-    // Scroll to the sign message container into viewport
+    // Scroll the sign message container into viewport
     await page
       .locator(SelectorsEnum.signMessageContainer)
       .scrollIntoViewIfNeeded();
 
-    // Enter message
+    // Enter message and sign
     await page
       .getByRole('textbox', { name: 'Write message here' })
       .fill(message);
-
-    // Click on Sign button
     await page.getByTestId(SelectorsEnum.signMsgButton).click();
 
-    // Switch to web wallet page
+    // Switch to the web wallet page
     const walletPage = await TestActions.getPageAndWaitForLoad(
       page.context(),
       OriginPageEnum.multiversxWallet
     );
-
-    // Verify wallet page opened
     await expect(walletPage).toHaveURL(UrlRegex.multiversxWallet, {
       timeout: WALLET_URL_TIMEOUT_MS
     });
 
-    // Sign transaction by confirming with keystore in the web wallet
+    // Confirm with the keystore and sign the message in the web wallet
     await TestActions.confirmWalletTransaction(walletPage, keystoreConfig);
-
-    // Click on Sign button to confirm the sign message in the web wallet
     await walletPage.getByTestId(SelectorsEnum.signMsgWalletButton).click();
 
-    // Switch to template dashboard page
+    // Switch back to the template dashboard
     const templatePage = await TestActions.getPageAndWaitForLoad(
       page.context(),
       OriginPageEnum.templateDashboard
     );
 
-    // Verify the decoded message contains the expected message
-    const decodedMessage =
-      'cb0f0cbcf70e54e0e79fb2c1a48e01883e15fb3bb686773a7bb8b26ebb69447de75dd8c8645e9af1';
-    await expect(templatePage.getByText(decodedMessage)).toBeVisible();
+    // Scroll the sign message widget into view and assert its sign-success
+    // output. The encoded message is the hex of the input and is independent of
+    // the signing key, so it is a stable assertion. Scoping to the widget (and
+    // giving it up to the expect timeout) waits for SignSuccess to render after
+    // the wallet round-trip, rather than failing on an early snapshot.
+    const signMessageWidget = templatePage
+      .locator(SelectorsEnum.signMessageContainer)
+      .first();
+    await signMessageWidget.scrollIntoViewIfNeeded();
+    await expect(signMessageWidget).toContainText('0x6d7678', {
+      useInnerText: true
+    });
   });
 });

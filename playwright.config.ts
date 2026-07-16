@@ -64,9 +64,22 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'yarn start:devnet',
-    url: 'https://localhost:3002',
-    timeout: 120 * 1000,
+    // Always serve the production build, never `next dev`. `next dev` compiles
+    // routes on demand, so under parallel workers a test can act while Next is
+    // still compiling and fail intermittently. On CI the app is already built
+    // (workflow build step); locally we build first, then serve. Both serve the
+    // same `next start` + local-ssl-proxy, so tests are deterministic.
+    command: process.env.CI
+      ? 'pnpm preview:ci'
+      : 'pnpm build:devnet && pnpm preview:ci',
+    // Wait on the raw Next server, NOT the HTTPS proxy: local-ssl-proxy binds
+    // instantly and crashes if it receives a request before Next is listening
+    // (ECONNREFUSED), which would make the webServer "exit early". Polling Next
+    // directly keeps the proxy untouched until the app is actually up. Tests
+    // still run against the HTTPS `baseURL` (https://localhost:3002).
+    url: 'http://localhost:3000',
+    // Building (local) can take a while before the server comes up.
+    timeout: 300 * 1000,
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
     stderr: 'pipe',

@@ -34,28 +34,28 @@ jobs:
       METAMASK_PASSWORD: ${{ secrets.METAMASK_PASSWORD }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
-      - name: Setup Yarn
-        run: npm install -g yarn
+          node-version: 24
+      - name: Setup pnpm
+        run: npm install -g pnpm
       - name: Install Dependencies
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 120
           retry_on: error
           max_attempts: 2
-          command: yarn install
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
+          command: pnpm install --frozen-lockfile
       - name: Build Next.js app
-        run: yarn build:devnet
+        run: pnpm build:devnet
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps chromium
       - name: Run Playwright E2E Tests
-        run: xvfb-run yarn run run-playwright-test
+        run: xvfb-run pnpm run run-playwright-test
       - name: Upload Playwright test report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:
           name: playwright-report

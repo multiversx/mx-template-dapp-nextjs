@@ -1,5 +1,4 @@
 'use client';
-import { Button } from '@/components';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { createRoot } from 'react-dom/client';
@@ -41,6 +40,13 @@ const modalStyles = {
     gap: '10px',
     justifyContent: 'flex-end',
     marginTop: '15px'
+  },
+  button: {
+    padding: '8px 20px',
+    borderRadius: '8px',
+    border: '1px solid #ccc',
+    fontWeight: 700,
+    cursor: 'pointer'
   }
 };
 
@@ -94,8 +100,12 @@ export const Modal = ({ onSubmit, onClose, needsAddress }: ModalProps) => {
             />
           </div>
           <div style={modalStyles.buttonGroup}>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button type='submit'>Submit</Button>
+            <button type='button' onClick={onClose} style={modalStyles.button}>
+              Cancel
+            </button>
+            <button type='submit' style={modalStyles.button}>
+              Submit
+            </button>
           </div>
         </form>
       </div>

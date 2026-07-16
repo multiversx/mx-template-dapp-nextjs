@@ -1,24 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-/* Add the group-hover plugin */
-@layer utilities {
-  .group:hover .group-hover\:block {
-    display: block;
-    text-decoration: underline;
-  }
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../assets/fonts/Satoshi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-.mx-transactions > td {
-  @apply p-2;
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../assets/fonts/Satoshi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
-.mx-transactions td > span,
-.mx-transactions td > div {
-  @apply flex w-max;
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../assets/fonts/Satoshi-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
-
-.mx-transactions td > div > a {
-  @apply text-blue-600;
+* {
+  font-family: 'Satoshi', sans-serif;
 }

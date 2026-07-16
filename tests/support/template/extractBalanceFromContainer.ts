@@ -8,20 +8,24 @@ export const extractBalanceFromContainer = async ({
   containerSelector,
   selectorType = 'testId'
 }: ExtractBalanceFromContainerType): Promise<number> => {
-  const containerElement =
+  const containerElement = (
     selectorType === 'testId'
       ? page.getByTestId(containerSelector)
-      : page.locator(containerSelector);
+      : page.locator(containerSelector)
+  ).first();
 
   await containerElement.scrollIntoViewIfNeeded();
 
-  const balanceElement = containerElement.getByTestId(SelectorsEnum.balance);
+  const balanceElement = containerElement
+    .getByTestId(SelectorsEnum.balance)
+    .first();
   await expect(balanceElement).toBeVisible();
 
   // Integer part
   const intText = (
     await balanceElement
       .locator(getTestIdSelector(SelectorsEnum.formatAmountInt))
+      .first()
       .innerText()
   )?.trim();
 
@@ -29,6 +33,7 @@ export const extractBalanceFromContainer = async ({
   const decimalsText = (
     await balanceElement
       .locator(getTestIdSelector(SelectorsEnum.formatAmountDecimals))
+      .first()
       .innerText()
   )?.trim();
 
