@@ -2,6 +2,7 @@
 import './styles/globals.css';
 import './styles/tailwind.css';
 
+import { config as fontAwesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import { environment, walletConnectV2ProjectId } from './config';
 
 import { InMemoryProvider } from './provider/inMemoryProvider';
@@ -35,6 +36,8 @@ const providers: ICustomProvider<ProviderType>[] = [
 (safeWindow as any).multiversx = {};
 // Option 1: Add providers using the `window.providers` array
 (safeWindow as any).multiversx.providers = providers;
+
+fontAwesomeConfig.autoAddCss = false;
 
 export const config: InitAppType = {
   storage: { getStorageCallback: () => sessionStorage },

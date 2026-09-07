@@ -50,7 +50,7 @@ const styles = {
   headerNavigationAddress:
     'header-navigation-address h-8 lg:h-10 w-8 lg:w-full text-primary justify-center text-xs rounded-xl lg:text-base lg:pr-4 lg:pl-5 max-w-100 flex relative lg:border lg:border-secondary lg:rounded-full items-center gap-3 after:absolute after:bg-btn-tertiary after:rounded-xl lg:after:rounded-full after:opacity-40 after:left-0 after:right-0 after:top-0 after:bottom-0 after:pointer-events-none',
   headerNavigationAddressWallet:
-    'header-navigation-address-wallet relative z-1 text-accent hidden lg:flex!',
+    'header-navigation-address-wallet relative z-1 text-accent hidden lg:flex',
   headerNavigationAddressExplorer:
     'header-navigation-address-explorer min-w-0 relative z-1 hidden lg:block!',
   headerNavigationAddressLogout:
@@ -127,26 +127,26 @@ export const Header = () => {
           {headerBrowseButtons
             .filter((headerBrowseButton) => headerBrowseButton.isVisible)
             .map((headerBrowseButton) => (
-            <Tooltip
-              key={`header-${headerBrowseButton.label}-button`}
-              position='bottom'
-              trigger={() => (
-                <div
-                  onClick={headerBrowseButton.handleClick}
-                  className={styles.headerNavigationButton}
-                >
-                  <FontAwesomeIcon
-                    className={styles.headerNavigationButtonIcon}
-                    icon={headerBrowseButton.icon}
-                  />
+              <Tooltip
+                key={`header-${headerBrowseButton.label}-button`}
+                position='bottom'
+                trigger={() => (
+                  <div
+                    onClick={headerBrowseButton.handleClick}
+                    className={styles.headerNavigationButton}
+                  >
+                    <FontAwesomeIcon
+                      className={styles.headerNavigationButtonIcon}
+                      icon={headerBrowseButton.icon}
+                    />
+                  </div>
+                )}
+              >
+                <div className={styles.headerNavigationButtonTooltip}>
+                  {headerBrowseButton.label}
                 </div>
-              )}
-            >
-              <div className={styles.headerNavigationButtonTooltip}>
-                {headerBrowseButton.label}
-              </div>
-            </Tooltip>
-          ))}
+              </Tooltip>
+            ))}
         </div>
 
         <div className={styles.headerNavigationNetwork}>

@@ -1,3 +1,4 @@
+@layer properties, theme, base, mvx-reset, components, utilities;
 @import 'tailwindcss';
 
 @font-face {
